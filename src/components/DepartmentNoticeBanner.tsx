@@ -9,6 +9,7 @@ import {
   Library
 } from 'lucide-react';
 import { AcademicLevel } from '../types';
+import { NaselsCrest } from './NaselsCrest';
 
 interface DepartmentNoticeBannerProps {
   totalItems: number;
@@ -42,7 +43,7 @@ export const DepartmentNoticeBanner: React.FC<DepartmentNoticeBannerProps> = ({
 
         <button 
           onClick={onOpenStudyGuide}
-          className="inline-flex items-center gap-1 font-semibold text-[#0E5C36] hover:text-[#083820] underline text-xs font-sans"
+          className="inline-flex items-center gap-1 font-semibold text-[#0E5C36] hover:text-[#083820] underline text-xs font-sans cursor-pointer"
         >
           <span>View Exam Answering Strategies</span>
           <ArrowRight className="w-3 h-3" />
@@ -54,33 +55,51 @@ export const DepartmentNoticeBanner: React.FC<DepartmentNoticeBannerProps> = ({
         {/* Subtle decorative background ring */}
         <div className="absolute -right-20 -bottom-20 w-96 h-96 bg-[#0E5C36]/5 rounded-full pointer-events-none select-none"></div>
 
-        <div className="relative z-10 max-w-3xl space-y-3.5">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[6px] bg-white text-[#0E5C36] border border-[#F0EAD6] text-xs font-semibold shadow-2xs font-sans">
-            <Library className="w-3.5 h-3.5 text-[#0E5C36]" />
-            <span>Official Departmental Repository</span>
+        <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="max-w-2xl space-y-3.5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[6px] bg-white text-[#0E5C36] border border-[#F0EAD6] text-xs font-semibold shadow-2xs font-sans">
+              <Library className="w-3.5 h-3.5 text-[#0E5C36]" />
+              <span>Official Departmental Repository</span>
+            </div>
+
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-editorial tracking-tight text-[#141A16] leading-tight">
+              Preserving the Legacy of the <span className="italic text-[#141A16]">Written Word.</span>
+            </h1>
+
+            <p className="text-sm sm:text-base text-[#2C3530] font-sans leading-relaxed max-w-xl">
+              Department of English Language & Literature, Faculty of Arts, Nnamdi Azikiwe University, Awka.
+              Digital repository for authenticated literary texts, comprehensive lecture notes, course outlines, and past examination questions.
+            </p>
+
+            {/* Quick Level Navigation Buttons */}
+            <div className="pt-2 flex flex-wrap items-center gap-2 font-sans">
+              <span className="text-xs uppercase tracking-wider text-[#525D56] font-bold mr-1">Quick Jump:</span>
+              {(['100', '200', '300', '400'] as AcademicLevel[]).map((lvl) => (
+                <button
+                  key={lvl}
+                  onClick={() => onSelectLevel(lvl)}
+                  className="px-3.5 py-1.5 text-xs font-semibold rounded-[6px] bg-white hover:bg-[#E7F3EC] hover:text-[#0E5C36] hover:border-[#0E5C36] border border-[#F0EAD6] text-[#2C3530] transition-all shadow-2xs cursor-pointer"
+                >
+                  {lvl} Level
+                </button>
+              ))}
+            </div>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-editorial tracking-tight text-[#141A16] leading-tight">
-            Preserving the Legacy of the <span className="italic text-[#141A16]">Written Word.</span>
-          </h1>
-
-          <p className="text-sm sm:text-base text-[#2C3530] font-sans leading-relaxed max-w-2xl">
-            Department of English Language & Literature, Faculty of Arts, Nnamdi Azikiwe University, Awka.
-            Digital repository for authenticated literary texts, comprehensive lecture notes, course outlines, and past examination questions.
-          </p>
-
-          {/* Quick Level Navigation Buttons */}
-          <div className="pt-2 flex flex-wrap items-center gap-2 font-sans">
-            <span className="text-xs uppercase tracking-wider text-[#525D56] font-bold mr-1">Quick Jump:</span>
-            {(['100', '200', '300', '400'] as AcademicLevel[]).map((lvl) => (
-              <button
-                key={lvl}
-                onClick={() => onSelectLevel(lvl)}
-                className="px-3.5 py-1.5 text-xs font-semibold rounded-[6px] bg-white hover:bg-[#E7F3EC] hover:text-[#0E5C36] hover:border-[#0E5C36] border border-[#F0EAD6] text-[#2C3530] transition-all shadow-2xs"
-              >
-                {lvl} Level
-              </button>
-            ))}
+          {/* Official Departmental Crest Showcase Badge */}
+          <div className="hidden sm:flex flex-col items-center bg-white p-4.5 rounded-2xl border border-[#F0EAD6] shadow-sm shrink-0 select-none group hover:border-[#0E5C36]/40 transition-all">
+            <NaselsCrest size={100} className="shadow-xs mb-2.5" />
+            <div className="text-center font-sans">
+              <div className="text-[11px] font-bold text-[#0E5C36] uppercase tracking-wider">
+                NASELS Emblem
+              </div>
+              <div className="text-[10px] text-[#525D56]">
+                UNIZIK Chapter
+              </div>
+              <div className="text-[9px] text-[#6B2361] font-editorial italic mt-0.5">
+                "Eloquentia et Sapientia"
+              </div>
+            </div>
           </div>
         </div>
 

@@ -319,7 +319,7 @@ export default function App() {
             {/* Col 1: About NASELS */}
             <div className="space-y-3 md:col-span-1">
               <div className="flex items-center gap-2.5 text-white">
-                <NaselsCrest className="w-7 h-7 shrink-0" />
+                <NaselsCrest size={34} className="shrink-0" />
                 <span className="font-editorial font-bold text-lg tracking-tight">NASELS UNIZIK</span>
               </div>
               <p className="text-xs text-[#FAF7EE]/75 leading-relaxed font-sans">
