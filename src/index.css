@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  --color-natural-canvas: #FDFCF7;
+  --color-natural-card: #FFFFFF;
+  --color-natural-soft: #F5F1E9;
+  --color-natural-border: #DCD3C1;
+  --color-natural-primary: #3E2F24;
+  --color-natural-body: #5A4638;
+  --color-natural-accent: #8B7355;
+  --color-natural-accent-hover: #746046;
+  --color-natural-dark: #2A1F18;
+}
+
+body {
+  background-color: #FDFCF7;
+  color: #3E2F24;
+  font-family: "Lora", Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+::selection {
+  background-color: #DCD3C1;
+  color: #3E2F24;
+}

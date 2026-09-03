@@ -1,0 +1,7 @@
+{
+  "name": "NASELS UNIZIK Archive",
+  "description": "The official academic archive for the National Association of Students of English and Literary Studies (NASELS), Nnamdi Azikiwe University, Awka. Access recommended texts, lecture notes, and past examination questions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
