@@ -61,18 +61,18 @@ export function getTagType(tag: string): 'course' | 'year' | 'category' | 'level
 export function getTagStyles(type: 'course' | 'year' | 'category' | 'level' | 'track' | 'topic') {
   switch (type) {
     case 'course':
-      return 'bg-[#3E2F24] text-[#FDFCF7] border-[#3E2F24] font-mono font-bold';
+      return 'bg-[#141A16] text-[#FFFFFF] border-[#141A16] font-mono font-bold';
     case 'year':
-      return 'bg-[#F5F1E9] text-[#746046] border-[#DCD3C1] font-semibold';
+      return 'bg-[#FAF7EE] text-[#525D56] border-[#F0EAD6] font-semibold';
     case 'category':
-      return 'bg-[#8B7355] text-white border-[#8B7355] font-semibold';
+      return 'bg-[#E7F3EC] text-[#0E5C36] border-[#0E5C36]/30 font-semibold';
     case 'level':
-      return 'bg-[#F5F1E9] text-[#3E2F24] border-[#DCD3C1] font-bold';
+      return 'bg-[#E7F3EC] text-[#0E5C36] border-[#0E5C36]/20 font-bold';
     case 'track':
-      return 'bg-[#F5F1E9] text-[#8B7355] border-[#DCD3C1] font-medium';
+      return 'bg-[#F6EAF4] text-[#6B2361] border-[#6B2361]/20 font-medium';
     case 'topic':
     default:
-      return 'bg-white text-[#5A4638] border-[#DCD3C1] hover:border-[#8B7355] hover:text-[#3E2F24]';
+      return 'bg-white text-[#2C3530] border-[#F0EAD6] hover:border-[#0E5C36] hover:text-[#0E5C36]';
   }
 }
 

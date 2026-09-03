@@ -8,6 +8,7 @@ import { CourseDirectory } from './components/CourseDirectory';
 import { DocumentViewerModal } from './components/DocumentViewerModal';
 import { ContributeModal } from './components/ContributeModal';
 import { StudyTipsModal } from './components/StudyTipsModal';
+import { NaselsCrest } from './components/NaselsCrest';
 import { 
   GraduationCap, 
   BookOpen, 
@@ -199,7 +200,7 @@ export default function App() {
   const totalPQs = archiveItems.filter(i => i.category === 'past_question').length;
 
   return (
-    <div className="min-h-screen bg-[#FDFCF7] flex flex-col selection:bg-[#F5F1E9] selection:text-[#3E2F24] font-serif text-[#3E2F24]">
+    <div className="min-h-screen bg-[#FAF7EE] flex flex-col selection:bg-[#E7F3EC] selection:text-[#0E5C36] font-sans text-[#141A16]">
       {/* Navigation Header */}
       <Navbar
         searchQuery={searchQuery}
@@ -235,16 +236,16 @@ export default function App() {
           <div>
             {/* Header if in Saved Tab */}
             {activeTab === 'saved' && (
-              <div className="mb-6 p-4.5 rounded-2xl bg-[#F5F1E9] border border-[#DCD3C1] flex items-center justify-between text-[#3E2F24] shadow-2xs font-serif">
+              <div className="mb-6 p-4 rounded-xl bg-[#FAF7EE] border border-[#F0EAD6] flex items-center justify-between text-[#141A16] shadow-2xs font-sans">
                 <div className="flex items-center gap-2 text-xs font-medium">
-                  <Bookmark className="w-4 h-4 fill-[#8B7355] text-[#8B7355]" />
+                  <Bookmark className="w-4 h-4 fill-[#0E5C36] text-[#0E5C36]" />
                   <span>
                     Viewing your <strong>Saved Bookmarks</strong> ({filteredItems.length} item{filteredItems.length === 1 ? '' : 's'}). These remain stored locally for fast offline access.
                   </span>
                 </div>
                 <button
                   onClick={() => setActiveTab('archive')}
-                  className="text-xs font-bold text-[#8B7355] hover:text-[#3E2F24] underline"
+                  className="text-xs font-bold text-[#0E5C36] hover:text-[#083820] underline cursor-pointer"
                 >
                   Return to Full Archive
                 </button>
@@ -253,16 +254,18 @@ export default function App() {
 
             {/* Header if in Past Questions Tab */}
             {activeTab === 'past_questions' && (
-              <div className="mb-6 p-4.5 rounded-2xl bg-[#F5F1E9] border border-[#DCD3C1] flex items-center justify-between text-[#3E2F24] shadow-2xs font-serif">
-                <div className="flex items-center gap-2 text-xs font-medium">
-                  <Award className="w-4 h-4 text-[#8B7355]" />
+              <div className="mb-6 p-4 rounded-xl bg-[#FAF7EE] border border-[#F0EAD6] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[#141A16] shadow-2xs font-sans">
+                <div className="flex items-center gap-2.5 text-xs font-medium">
+                  <span className="p-1 rounded-[4px] bg-[#0E5C36] text-white shrink-0">
+                    <Award className="w-3.5 h-3.5 text-white" />
+                  </span>
                   <span>
-                    <strong>UNIZIK Past Questions Bank:</strong> Authentic semester examination papers with marking guidelines and compulsory question analyses.
+                    <strong className="text-[#141A16]">UNIZIK Past Questions Bank:</strong> Authentic semester examination papers with marking guidelines and compulsory question analyses.
                   </span>
                 </div>
                 <button
                   onClick={() => setIsStudyGuideOpen(true)}
-                  className="text-xs font-bold text-[#8B7355] hover:text-[#3E2F24] underline"
+                  className="text-xs font-bold text-[#0E5C36] hover:text-[#083820] underline shrink-0 font-sans"
                 >
                   View Exam Strategy Guide
                 </button>
@@ -271,11 +274,13 @@ export default function App() {
 
             {/* Header if in Texts Tab */}
             {activeTab === 'texts' && (
-              <div className="mb-6 p-4.5 rounded-2xl bg-[#F5F1E9] border border-[#DCD3C1] flex items-center justify-between text-[#3E2F24] shadow-2xs font-serif">
-                <div className="flex items-center gap-2 text-xs font-medium">
-                  <BookOpen className="w-4 h-4 text-[#8B7355]" />
+              <div className="mb-6 p-4 rounded-xl bg-[#FAF7EE] border border-[#F0EAD6] flex items-center justify-between text-[#141A16] shadow-2xs font-sans">
+                <div className="flex items-center gap-2.5 text-xs font-medium">
+                  <span className="p-1 rounded-[4px] bg-[#6B2361] text-white shrink-0">
+                    <BookOpen className="w-3.5 h-3.5 text-white" />
+                  </span>
                   <span>
-                    <strong>Recommended Texts & Critical Companions:</strong> Character indexes, thematic matrices, and examination quotes for prescribed African and World literature.
+                    <strong className="text-[#141A16]">Recommended Texts & Critical Companions:</strong> Character indexes, thematic matrices, and examination quotes for prescribed African and World literature.
                   </span>
                 </div>
               </div>
@@ -308,29 +313,29 @@ export default function App() {
       </main>
 
       {/* University & Department Footer */}
-      <footer className="no-print bg-[#2A1F18] text-[#DCD3C1] border-t border-[#3E2F24] mt-16 pt-12 pb-8 font-serif">
+      <footer className="no-print bg-[#0A1D13] text-[#FAF7EE] border-t border-[#0E5C36]/30 mt-16 pt-12 pb-8 font-sans">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* Col 1: About NASELS */}
             <div className="space-y-3 md:col-span-1">
-              <div className="flex items-center gap-2 text-[#FDFCF7]">
-                <GraduationCap className="w-5 h-5 text-[#8B7355]" />
-                <span className="font-serif font-bold text-lg">NASELS UNIZIK</span>
+              <div className="flex items-center gap-2.5 text-white">
+                <NaselsCrest className="w-7 h-7 shrink-0" />
+                <span className="font-editorial font-bold text-lg tracking-tight">NASELS UNIZIK</span>
               </div>
-              <p className="text-xs text-[#DCD3C1]/80 leading-relaxed font-serif">
+              <p className="text-xs text-[#FAF7EE]/75 leading-relaxed font-sans">
                 National Association of Students of English and Literary Studies, Department of English Language & Literature, Nnamdi Azikiwe University, P.M.B. 5025, Awka, Anambra State, Nigeria.
               </p>
-              <div className="text-[11px] text-[#8B7355] font-serif italic">
+              <div className="text-xs text-[#FAF7EE]/90 font-editorial italic">
                 "Eloquentia et Sapientia"
               </div>
             </div>
 
             {/* Col 2: Academic Levels */}
             <div className="space-y-2">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-[#FDFCF7] font-serif">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-white font-sans">
                 Academic Programs
               </h4>
-              <ul className="text-xs space-y-1.5 text-[#DCD3C1]/80 font-serif">
+              <ul className="text-xs space-y-2 text-[#FAF7EE]/75 font-sans">
                 <li>
                   <button onClick={() => { setSelectedLevel('100'); setActiveTab('archive'); }} className="hover:text-white transition-colors">
                     100 Level (Freshmen Archive)
@@ -356,10 +361,10 @@ export default function App() {
 
             {/* Col 3: Department Resources */}
             <div className="space-y-2">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-[#FDFCF7] font-serif">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-white font-sans">
                 Archive Resources
               </h4>
-              <ul className="text-xs space-y-1.5 text-[#DCD3C1]/80 font-serif">
+              <ul className="text-xs space-y-2 text-[#FAF7EE]/75 font-sans">
                 <li>
                   <button onClick={() => handleTabChange('past_questions')} className="hover:text-white transition-colors">
                     Past Examination Papers (PQ)
@@ -385,22 +390,22 @@ export default function App() {
 
             {/* Col 4: Departmental Contact */}
             <div className="space-y-2">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-[#FDFCF7] font-serif">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-white font-sans">
                 Departmental Secretariats
               </h4>
-              <div className="text-xs text-[#DCD3C1]/80 space-y-2 font-serif">
+              <div className="text-xs text-[#FAF7EE]/75 space-y-2 font-sans">
                 <div className="flex items-start gap-2">
-                  <MapPin className="w-3.5 h-3.5 text-[#8B7355] shrink-0 mt-0.5" />
+                  <MapPin className="w-3.5 h-3.5 text-[#0E5C36] shrink-0 mt-0.5" />
                   <span>Faculty of Arts Building, UNIZIK Main Campus, Awka</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Mail className="w-3.5 h-3.5 text-[#8B7355] shrink-0" />
+                  <Mail className="w-3.5 h-3.5 text-[#0E5C36] shrink-0" />
                   <span>nasels.unizik@unizik.edu.ng</span>
                 </div>
                 <div className="pt-2">
                   <button
                     onClick={() => setIsContributeOpen(true)}
-                    className="w-full py-2 px-4 bg-[#3E2F24] hover:bg-[#5A4638] text-[#FDFCF7] rounded-full text-xs font-semibold border border-[#5A4638] transition-colors"
+                    className="w-full py-2 px-4 bg-[#0E5C36] hover:bg-[#147B4A] text-white rounded-[6px] text-xs font-semibold transition-colors"
                   >
                     Submit Material to Archive
                   </button>
@@ -409,7 +414,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="pt-8 border-t border-[#3E2F24] flex flex-col sm:flex-row items-center justify-between text-xs text-[#DCD3C1]/60 gap-2 font-serif">
+          <div className="pt-8 border-t border-[#0E5C36]/20 flex flex-col sm:flex-row items-center justify-between text-xs text-[#FAF7EE]/60 gap-2 font-sans">
             <p>
               © {new Date().getFullYear()} NASELS UNIZIK. Department of English Language and Literature.
             </p>

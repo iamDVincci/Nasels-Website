@@ -70,41 +70,41 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
   const getCategoryIcon = (category: string) => {
     switch (category) {
       case 'text':
-        return <BookOpen className="w-4 h-4 text-[#8B7355]" />;
+        return <BookOpen className="w-3.5 h-3.5 text-[#6B2361]" />;
       case 'notes':
-        return <FileText className="w-4 h-4 text-[#5A4638]" />;
+        return <FileText className="w-3.5 h-3.5 text-[#0E5C36]" />;
       case 'past_question':
-        return <Award className="w-4 h-4 text-[#3E2F24]" />;
+        return <Award className="w-3.5 h-3.5 text-[#334155]" />;
       default:
-        return <GraduationCap className="w-4 h-4 text-[#8B7355]" />;
+        return <GraduationCap className="w-3.5 h-3.5 text-[#0E5C36]" />;
     }
   };
 
   const getCategoryBadge = (category: string) => {
     switch (category) {
       case 'text':
-        return { label: 'Recommended Text', bg: 'bg-[#F5F1E9] text-[#8B7355] border-[#DCD3C1]' };
+        return { label: 'Recommended Text', bg: 'bg-[#F6EAF4] text-[#6B2361] border-[#6B2361]/20' };
       case 'notes':
-        return { label: 'Lecture Notes', bg: 'bg-[#F5F1E9] text-[#3E2F24] border-[#DCD3C1]' };
+        return { label: 'Lecture Notes', bg: 'bg-[#E7F3EC] text-[#0E5C36] border-[#0E5C36]/20' };
       case 'past_question':
-        return { label: 'Past Question (PQ)', bg: 'bg-[#F5F1E9] text-[#746046] border-[#DCD3C1]' };
+        return { label: 'Past Question Paper', bg: 'bg-[#F1F5F9] text-[#334155] border-[#E2E8F0]' };
       default:
-        return { label: 'Course Outline', bg: 'bg-[#F5F1E9] text-[#5A4638] border-[#DCD3C1]' };
+        return { label: 'Course Outline', bg: 'bg-[#F3F4F6] text-[#374151] border-[#E5E7EB]' };
     }
   };
 
   const getLevelColor = (level: string) => {
     switch (level) {
       case '100':
-        return 'bg-[#8B7355] text-white';
+        return 'bg-[#0E5C36] text-white';
       case '200':
-        return 'bg-[#746046] text-white';
+        return 'bg-[#147B4A] text-white';
       case '300':
-        return 'bg-[#5A4638] text-white';
+        return 'bg-[#6B2361] text-white';
       case '400':
-        return 'bg-[#3E2F24] text-[#FDFCF7]';
+        return 'bg-[#141A16] text-white';
       default:
-        return 'bg-[#3E2F24] text-white';
+        return 'bg-[#0E5C36] text-white';
     }
   };
 
@@ -112,17 +112,17 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
   const totalCount = items.length;
 
   return (
-    <div className="space-y-6 font-serif">
+    <div className="space-y-6">
       {/* View Mode Switcher Header */}
-      <div className="bg-white rounded-2xl border border-[#DCD3C1] shadow-2xs p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="bg-white rounded-xl border border-[#F0EAD6] shadow-2xs p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-sans">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#8B7355]">Archive Organization:</span>
-            <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#F5F1E9] text-[#3E2F24] border border-[#DCD3C1]">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#0E5C36]">Archive Organization:</span>
+            <span className="px-2.5 py-0.5 rounded-[4px] text-[11px] font-bold bg-[#E7F3EC] text-[#0E5C36] border border-[#0E5C36]/20">
               {archiveViewMode === 'courses' ? 'Structured Course Categories' : 'All Resources Matrix'}
             </span>
           </div>
-          <p className="text-xs text-[#5A4638]">
+          <p className="text-xs text-[#525D56]">
             {archiveViewMode === 'courses' 
               ? 'Organized by Departmental Courses, with each course sub-categorized by Academic Year.'
               : 'Flat catalog displaying all authenticated texts, lecture notes, and past examination papers.'}
@@ -130,13 +130,13 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
         </div>
 
         {/* Mode Toggle Buttons */}
-        <div className="flex items-center bg-[#F5F1E9] p-1 rounded-xl border border-[#DCD3C1] shrink-0">
+        <div className="flex items-center bg-[#FAF7EE] p-1 rounded-lg border border-[#F0EAD6] shrink-0 font-sans">
           <button
             onClick={() => setArchiveViewMode('courses')}
-            className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-bold transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] text-xs font-semibold transition-all ${
               archiveViewMode === 'courses'
-                ? 'bg-[#3E2F24] text-[#FDFCF7] shadow-xs'
-                : 'text-[#5A4638] hover:text-[#3E2F24]'
+                ? 'bg-[#0E5C36] text-white shadow-2xs'
+                : 'text-[#2C3530] hover:text-[#0E5C36]'
             }`}
           >
             <FolderTree className="w-3.5 h-3.5" />
@@ -145,10 +145,10 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
 
           <button
             onClick={() => setArchiveViewMode('grid')}
-            className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-bold transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] text-xs font-semibold transition-all ${
               archiveViewMode === 'grid'
-                ? 'bg-[#3E2F24] text-[#FDFCF7] shadow-xs'
-                : 'text-[#5A4638] hover:text-[#3E2F24]'
+                ? 'bg-[#0E5C36] text-white shadow-2xs'
+                : 'text-[#2C3530] hover:text-[#0E5C36]'
             }`}
           >
             <LayoutGrid className="w-3.5 h-3.5" />
@@ -158,11 +158,11 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
       </div>
 
       {/* Filtering Header Toolbar */}
-      <div className="bg-white rounded-2xl border border-[#DCD3C1] shadow-2xs p-5 sm:p-6 space-y-4">
+      <div className="bg-white rounded-xl border border-[#F0EAD6] shadow-2xs p-5 sm:p-6 space-y-4 font-sans">
         {/* Row 1: Academic Level Selector */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div className="flex items-center gap-2 text-xs font-bold text-[#8B7355] uppercase tracking-wider">
-            <Layers className="w-4 h-4 text-[#8B7355]" />
+          <div className="flex items-center gap-2 text-xs font-bold text-[#0E5C36] uppercase tracking-wider">
+            <Layers className="w-4 h-4 text-[#0E5C36]" />
             <span>Academic Level:</span>
           </div>
 
@@ -171,10 +171,10 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
               <button
                 key={lvl}
                 onClick={() => setSelectedLevel(lvl)}
-                className={`px-4 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+                className={`px-3.5 py-1.5 text-xs font-semibold rounded-[6px] border transition-all ${
                   selectedLevel === lvl
-                    ? 'bg-[#3E2F24] text-[#FDFCF7] shadow-xs'
-                    : 'bg-[#F5F1E9] text-[#5A4638] hover:bg-[#DCD3C1] hover:text-[#3E2F24]'
+                    ? 'bg-[#0E5C36] text-white border-[#0E5C36] shadow-2xs'
+                    : 'bg-white text-[#2C3530] border-[#F0EAD6] hover:bg-[#E7F3EC] hover:text-[#0E5C36]'
                 }`}
               >
                 {lvl === 'All' ? 'All Levels' : `${lvl} Level`}
@@ -183,7 +183,7 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
           </div>
         </div>
 
-        <div className="h-px bg-[#DCD3C1]/60" />
+        <div className="h-px bg-[#F0EAD6]" />
 
         {/* Row 2: Category Filter Tabs */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
@@ -198,10 +198,10 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id as ResourceCategory)}
-                className={`px-3.5 py-1.5 text-xs font-medium rounded-xl border transition-all ${
+                className={`px-3.5 py-1.5 text-xs font-medium rounded-[6px] border transition-all ${
                   selectedCategory === cat.id
-                    ? 'bg-[#8B7355] text-white font-bold border-[#8B7355] shadow-2xs'
-                    : 'bg-white text-[#5A4638] border-[#DCD3C1] hover:bg-[#F5F1E9] hover:text-[#3E2F24]'
+                    ? 'bg-[#0E5C36] text-white font-bold border-[#0E5C36] shadow-2xs'
+                    : 'bg-white text-[#2C3530] border-[#F0EAD6] hover:bg-[#E7F3EC] hover:text-[#0E5C36]'
                 }`}
               >
                 {cat.label}
@@ -214,7 +214,7 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
             <select
               value={selectedTrack}
               onChange={(e) => setSelectedTrack(e.target.value as AcademicTrack)}
-              className="bg-[#F5F1E9] border border-[#DCD3C1] text-[#3E2F24] py-1.5 px-3 rounded-xl focus:outline-none focus:border-[#8B7355]"
+              className="bg-[#FAF7EE] border border-[#F0EAD6] text-[#141A16] py-1.5 px-3 rounded-[6px] focus:outline-none focus:border-[#0E5C36]"
             >
               <option value="All">All Disciplines</option>
               <option value="Literature">Literature in English</option>
@@ -224,7 +224,7 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
             <select
               value={selectedSemester}
               onChange={(e) => setSelectedSemester(e.target.value as Semester)}
-              className="bg-[#F5F1E9] border border-[#DCD3C1] text-[#3E2F24] py-1.5 px-3 rounded-xl focus:outline-none focus:border-[#8B7355]"
+              className="bg-[#FAF7EE] border border-[#F0EAD6] text-[#141A16] py-1.5 px-3 rounded-[6px] focus:outline-none focus:border-[#0E5C36]"
             >
               <option value="All">All Semesters</option>
               <option value="1st">1st Semester</option>
@@ -234,7 +234,7 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
             {(selectedLevel !== 'All' || selectedCategory !== 'all' || selectedTrack !== 'All' || selectedSemester !== 'All' || searchQuery) && (
               <button
                 onClick={onResetFilters}
-                className="text-xs text-[#8B7355] hover:text-[#3E2F24] font-semibold underline px-1"
+                className="text-xs text-[#0E5C36] hover:text-[#083820] font-semibold underline px-1"
               >
                 Reset
               </button>
@@ -268,33 +268,33 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
         /* Flat Grid View: All Resources Cards Matrix */
         <div className="space-y-6">
           {/* Resource Count & Active Filters Indicator */}
-          <div className="flex items-center justify-between text-xs text-[#5A4638] px-1">
+          <div className="flex items-center justify-between text-xs text-[#525D56] px-1 font-sans">
             <p>
-              Showing <span className="font-bold text-[#3E2F24]">{totalCount}</span> academic material{totalCount === 1 ? '' : 's'} 
+              Showing <span className="font-bold text-[#141A16]">{totalCount}</span> academic material{totalCount === 1 ? '' : 's'} 
               {selectedLevel !== 'All' && ` for ${selectedLevel} Level`}
               {selectedCategory !== 'all' && ` • ${selectedCategory.replace('_', ' ')}`}
               {searchQuery && ` matching "${searchQuery}"`}
             </p>
 
-            <span className="hidden sm:inline text-[#8B7355] italic">
+            <span className="hidden sm:inline text-[#0E5C36] italic">
               Click any card to read, practice questions, or download
             </span>
           </div>
 
           {items.length === 0 ? (
-            <div className="bg-white rounded-2xl border border-[#DCD3C1] p-12 text-center space-y-4">
-              <div className="w-14 h-14 mx-auto rounded-full bg-[#F5F1E9] flex items-center justify-center text-[#8B7355]">
-                <Search className="w-7 h-7 text-[#8B7355]" />
+            <div className="bg-white rounded-xl border border-[#F0EAD6] p-12 text-center space-y-4 shadow-2xs font-sans">
+              <div className="w-14 h-14 mx-auto rounded-full bg-[#FAF7EE] flex items-center justify-center text-[#0E5C36] border border-[#F0EAD6]">
+                <Search className="w-7 h-7 text-[#0E5C36]" />
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-[#3E2F24]">
+              <h3 className="text-base sm:text-lg font-bold font-editorial text-[#141A16]">
                 No matching academic materials found
               </h3>
-              <p className="text-xs text-[#5A4638] max-w-md mx-auto">
+              <p className="text-xs text-[#525D56] max-w-md mx-auto leading-relaxed">
                 We couldn't find any resources matching your search terms or current filter combination. Try adjusting the level or resetting your filters.
               </p>
               <button
                 onClick={onResetFilters}
-                className="px-6 py-2.5 rounded-full bg-[#3E2F24] text-[#FDFCF7] text-xs font-semibold hover:bg-[#5A4638] transition-colors shadow-xs"
+                className="px-6 py-2.5 rounded-[6px] bg-[#0E5C36] text-white text-xs font-semibold hover:bg-[#147B4A] transition-colors shadow-2xs cursor-pointer"
               >
                 Clear All Filters & Show All
               </button>
@@ -310,20 +310,21 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
                   <div
                     key={item.id}
                     onClick={() => onSelectItem(item)}
-                    className="group bg-white rounded-2xl border border-[#DCD3C1] shadow-2xs hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer flex flex-col justify-between overflow-hidden"
+                    className="group bg-white rounded-lg border border-[#F0EAD6] p-5 transition-all hover:border-[#0E5C36] hover:-translate-y-0.5 hover:shadow-[0_4px_16px_rgba(14,92,54,0.06)] cursor-pointer flex flex-col justify-between"
                   >
-                    {/* Card Header Top */}
-                    <div className="p-5 sm:p-6 space-y-3.5">
+                    {/* Card Content Top */}
+                    <div className="space-y-3">
+                      {/* Meta Top */}
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex items-center gap-1.5 flex-wrap">
-                          <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold ${getLevelColor(item.level)} font-mono`}>
-                            {item.level}L
-                          </span>
-                          <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#F5F1E9] text-[#3E2F24] border border-[#DCD3C1] font-mono">
+                          <span className="bg-[#141A16] text-[#FFFFFF] text-[11px] font-bold px-2 py-0.5 rounded-[4px] font-mono">
                             {item.courseCode}
                           </span>
-                          <span className="text-[11px] text-[#8B7355] font-medium">
-                            {item.semester} Sem
+                          <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-[4px] border ${badge.bg}`}>
+                            {badge.label}
+                          </span>
+                          <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-[4px] ${getLevelColor(item.level)}`}>
+                            {item.level}L
                           </span>
                         </div>
 
@@ -332,52 +333,43 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
                             e.stopPropagation();
                             onToggleBookmark(item.id);
                           }}
-                          className={`p-1.5 rounded-full hover:bg-[#F5F1E9] transition-colors ${
-                            isBookmarked ? 'text-[#8B7355]' : 'text-[#DCD3C1] hover:text-[#8B7355]'
+                          className={`p-1.5 rounded-[4px] hover:bg-[#FAF7EE] transition-colors ${
+                            isBookmarked ? 'text-[#0E5C36]' : 'text-[#525D56]/50 hover:text-[#0E5C36]'
                           }`}
                           title={isBookmarked ? 'Saved to bookmarks' : 'Save bookmark'}
                         >
-                          <Bookmark className={`w-4 h-4 ${isBookmarked ? 'fill-[#8B7355]' : ''}`} />
+                          <Bookmark className={`w-4 h-4 ${isBookmarked ? 'fill-[#0E5C36]' : ''}`} />
                         </button>
                       </div>
 
-                      {/* Academic Year Sub-Category Indicator */}
-                      <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#746046] bg-[#F5F1E9] px-2.5 py-1 rounded-lg border border-[#DCD3C1]/80 w-fit">
-                        <Calendar className="w-3.5 h-3.5 text-[#8B7355]" />
+                      {/* Academic Year Session */}
+                      <div className="flex items-center gap-1.5 text-[11px] font-medium text-[#525D56] bg-[#FAF7EE] px-2.5 py-1 rounded-[4px] border border-[#F0EAD6] w-fit font-sans">
+                        <Calendar className="w-3.5 h-3.5 text-[#0E5C36]" />
                         <span>Academic Session: {yearNormalized}</span>
                       </div>
 
                       {/* Title & Course */}
                       <div>
-                        <div className="flex items-center gap-1.5 text-[11px] font-medium text-[#8B7355]">
-                          {getCategoryIcon(item.category)}
-                          <span className={`px-2 py-0.5 rounded-full border text-[10px] font-semibold ${badge.bg}`}>
-                            {badge.label}
-                          </span>
-                        </div>
-
-                        <h3 className="text-base font-bold text-[#3E2F24] group-hover:text-[#8B7355] transition-colors mt-2 line-clamp-2 leading-snug">
+                        <h3 className="font-editorial font-bold text-base text-[#141A16] group-hover:text-[#0E5C36] transition-colors leading-snug line-clamp-2">
                           {item.title}
                         </h3>
-
-                        <p className="text-xs text-[#5A4638] mt-1 font-medium truncate">
+                        <p className="text-xs text-[#525D56] mt-1 font-sans truncate">
                           {item.courseTitle}
                         </p>
                       </div>
 
-                      {/* Author / Lecturer */}
-                      <div className="text-xs text-[#5A4638] flex items-center gap-1.5">
-                        <span className="text-[#8B7355]">By:</span>
-                        <span className="font-semibold text-[#3E2F24] truncate">{item.author}</span>
-                      </div>
+                      {/* Author */}
+                      <p className="text-xs text-[#525D56] font-sans">
+                        By <span className="font-semibold text-[#141A16]">{item.author}</span>
+                      </p>
 
-                      {/* Excerpt / Summary */}
-                      <p className="text-xs text-[#5A4638] line-clamp-2 leading-relaxed">
+                      {/* Summary */}
+                      <p className="text-xs text-[#2C3530] font-sans line-clamp-2 leading-relaxed">
                         {item.description}
                       </p>
 
                       {/* Standardized Tags */}
-                      <div className="flex flex-wrap gap-1 pt-1">
+                      <div className="flex flex-wrap gap-1 pt-1 font-sans">
                         {item.tags.map((tag) => {
                           const tagType = getTagType(tag);
                           return (
@@ -387,7 +379,7 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
                                 e.stopPropagation();
                                 setSearchQuery(tag);
                               }}
-                              className={`text-[10px] px-2 py-0.5 rounded-md border ${getTagStyles(tagType)} cursor-pointer transition-colors`}
+                              className={`text-[10px] px-2 py-0.5 rounded-[4px] border ${getTagStyles(tagType)} cursor-pointer transition-colors`}
                               title={`Filter by tag: ${tag}`}
                             >
                               {tag}
@@ -398,21 +390,21 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
                     </div>
 
                     {/* Card Footer */}
-                    <div className="bg-[#FDFCF7] px-5 py-3.5 border-t border-[#DCD3C1] flex items-center justify-between text-xs text-[#5A4638]">
-                      <div className="flex items-center gap-1.5 text-[11px]">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#8B7355]" />
-                        <span className="truncate max-w-[120px] sm:max-w-[150px]">Verified UNIZIK</span>
-                      </div>
+                    <div className="mt-4 pt-3.5 border-t border-[#F0EAD6] flex items-center justify-between text-xs">
+                      <span className="text-[11px] text-[#525D56] font-sans font-medium">
+                        {item.fileFormat} • {item.fileSize} • Sem {item.semester}
+                      </span>
 
-                      <div className="flex items-center gap-2">
-                        <span className="text-[11px] text-[#8B7355] font-mono">
-                          {item.fileFormat} • {item.fileSize}
-                        </span>
-                        <span className="text-[#8B7355] font-bold group-hover:text-[#3E2F24] group-hover:translate-x-0.5 transition-all flex items-center gap-0.5">
-                          <span>View</span>
-                          <ExternalLink className="w-3 h-3" />
-                        </span>
-                      </div>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onSelectItem(item);
+                        }}
+                        className="bg-transparent text-[#0E5C36] border border-[#0E5C36] font-semibold text-xs px-2.5 py-1 rounded-[4px] hover:bg-[#0E5C36] hover:text-white transition-colors cursor-pointer flex items-center gap-1 font-sans"
+                      >
+                        <span>Download</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </button>
                     </div>
                   </div>
                 );

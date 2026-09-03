@@ -1,24 +1,86 @@
 @import "tailwindcss";
 
+:root {
+  /* Brand Core */
+  --nasels-green-900: #083820;
+  --nasels-green-800: #0E5C36; /* Brand Green */
+  --nasels-green-700: #147B4A;
+  --nasels-green-100: #E7F3EC;
+
+  /* Secondary Literature Accent */
+  --nasels-purple-700: #521949;
+  --nasels-purple-600: #6B2361; /* Crest Ribbon Purple */
+  --nasels-purple-100: #F6EAF4;
+
+  /* Surfaces & Canvas */
+  --nasels-cream-50: #FDFCFA;
+  --nasels-cream-100: #FAF7EE; /* Page Canvas */
+  --nasels-cream-200: #F0EAD6; /* Card Borders */
+
+  /* Neutral Typography */
+  --nasels-ink-900: #141A16;   /* Headings */
+  --nasels-ink-700: #2C3530;   /* Body */
+  --nasels-ink-500: #606C64;   /* Captions & Meta */
+
+  /* Semantic Aliases */
+  --bg-app: var(--nasels-cream-100);
+  --surface-card: #FFFFFF;
+  --border-default: var(--nasels-cream-200);
+  --text-primary: var(--nasels-ink-900);
+  --text-secondary: var(--nasels-ink-500);
+  --action-primary: var(--nasels-green-800);
+  --action-hover: var(--nasels-green-900);
+
+  --font-serif: 'Newsreader', 'Playfair Display', Georgia, Cambria, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
 @theme {
-  --color-natural-canvas: #FDFCF7;
+  --color-nasels-green-900: #083820;
+  --color-nasels-green-800: #0E5C36;
+  --color-nasels-green-700: #147B4A;
+  --color-nasels-green-100: #E7F3EC;
+
+  --color-nasels-purple-700: #521949;
+  --color-nasels-purple-600: #6B2361;
+  --color-nasels-purple-100: #F6EAF4;
+
+  --color-nasels-cream-50: #FDFCFA;
+  --color-nasels-cream-100: #FAF7EE;
+  --color-nasels-cream-200: #F0EAD6;
+
+  --color-nasels-ink-900: #141A16;
+  --color-nasels-ink-700: #2C3530;
+  --color-nasels-ink-500: #606C64;
+
+  /* Backward compatible semantic aliases */
+  --color-natural-canvas: #FAF7EE;
   --color-natural-card: #FFFFFF;
-  --color-natural-soft: #F5F1E9;
-  --color-natural-border: #DCD3C1;
-  --color-natural-primary: #3E2F24;
-  --color-natural-body: #5A4638;
-  --color-natural-accent: #8B7355;
-  --color-natural-accent-hover: #746046;
-  --color-natural-dark: #2A1F18;
+  --color-natural-soft: #F0EAD6;
+  --color-natural-border: #F0EAD6;
+  --color-natural-primary: #141A16;
+  --color-natural-body: #2C3530;
+  --color-natural-accent: #0E5C36;
+  --color-natural-accent-hover: #083820;
+  --color-natural-dark: #0A1D13;
 }
 
 body {
-  background-color: #FDFCF7;
-  color: #3E2F24;
-  font-family: "Lora", Georgia, Cambria, "Times New Roman", Times, serif;
+  background-color: var(--nasels-cream-100);
+  color: var(--nasels-ink-700);
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4, .font-editorial {
+  font-family: var(--font-serif);
+  letter-spacing: -0.015em;
+}
+
+button, input, select, textarea, .font-ui {
+  font-family: var(--font-sans);
 }
 
 ::selection {
-  background-color: #DCD3C1;
-  color: #3E2F24;
+  background-color: var(--nasels-green-100);
+  color: var(--nasels-green-800);
 }

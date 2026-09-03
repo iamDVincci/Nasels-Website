@@ -255,20 +255,22 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
   ];
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-[#2A1F18]/80 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-[#0A1D13]/75 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6">
       <div 
-        className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-[#DCD3C1] overflow-hidden text-[#3E2F24]"
+        className="relative w-full max-w-2xl bg-white rounded-xl shadow-2xl border border-[#F0EAD6] overflow-hidden text-[#141A16]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="bg-[#FDFCF7] text-[#3E2F24] px-6 py-4 flex items-center justify-between border-b border-[#DCD3C1]">
+        <div className="bg-[#FAF7EE] text-[#141A16] px-6 py-4 flex items-center justify-between border-b border-[#F0EAD6]">
           <div className="flex items-center gap-2.5">
-            <Upload className="w-5 h-5 text-[#8B7355]" />
+            <div className="w-8 h-8 rounded-[6px] bg-[#E7F3EC] flex items-center justify-center text-[#0E5C36]">
+              <Upload className="w-4 h-4 text-[#0E5C36]" />
+            </div>
             <div>
-              <h2 className="text-base font-bold font-serif text-[#3E2F24]">
+              <h2 className="text-base font-bold font-editorial text-[#141A16]">
                 Contribute Material to NASELS Archive
               </h2>
-              <p className="text-xs text-[#5A4638] font-serif">
+              <p className="text-xs text-[#525D56] font-sans">
                 Department of English Language and Literature, UNIZIK
               </p>
             </div>
@@ -276,16 +278,16 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg hover:bg-[#F5F1E9] text-[#8B7355] hover:text-[#3E2F24] transition-colors"
+            className="p-1.5 rounded-[6px] hover:bg-[#F0EAD6] text-[#525D56] hover:text-[#141A16] transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Form Body */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-4 max-h-[82vh] overflow-y-auto bg-[#FDFCF7]/40 font-serif">
+        <form onSubmit={handleSubmit} className="p-6 space-y-4 max-h-[82vh] overflow-y-auto bg-white font-sans">
           {errorMsg && (
-            <div className="p-3 bg-[#F5F1E9] border border-rose-300 text-rose-800 rounded-xl text-xs flex items-center gap-2">
+            <div className="p-3 bg-rose-50 border border-rose-200 text-rose-800 rounded-lg text-xs flex items-center gap-2">
               <AlertCircle className="w-4 h-4 shrink-0 text-rose-700" />
               <span>{errorMsg}</span>
             </div>
@@ -297,10 +299,10 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
             onClick={() => fileInputRef.current?.click()}
-            className={`border-2 border-dashed rounded-2xl p-4 sm:p-5 text-center cursor-pointer transition-colors ${
+            className={`border-2 border-dashed rounded-xl p-4 sm:p-5 text-center cursor-pointer transition-colors ${
               isDragging
-                ? 'border-[#8B7355] bg-[#F5F1E9]'
-                : 'border-[#DCD3C1] hover:border-[#8B7355] bg-[#FDFCF7]'
+                ? 'border-[#0E5C36] bg-[#E7F3EC]'
+                : 'border-[#F0EAD6] hover:border-[#0E5C36] bg-[#FAF7EE]/60'
             }`}
           >
             <input
@@ -310,34 +312,34 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
               className="hidden"
               accept=".pdf,.doc,.docx,.txt,.md"
             />
-            <div className="w-10 h-10 mx-auto rounded-full bg-[#F5F1E9] border border-[#DCD3C1] flex items-center justify-center text-[#8B7355] mb-2">
+            <div className="w-10 h-10 mx-auto rounded-full bg-white border border-[#F0EAD6] flex items-center justify-center text-[#0E5C36] mb-2 shadow-2xs">
               <Paperclip className="w-5 h-5" />
             </div>
-            <p className="text-xs font-bold text-[#3E2F24]">
+            <p className="text-xs font-bold text-[#141A16]">
               {uploadedFileName ? (
-                <span className="text-[#8B7355]">Selected: {uploadedFileName}</span>
+                <span className="text-[#0E5C36]">Selected: {uploadedFileName}</span>
               ) : (
                 'Drop your lecture handout, question slip, or text PDF here, or click to browse'
               )}
             </p>
-            <p className="text-[11px] text-[#5A4638] mt-1">
+            <p className="text-[11px] text-[#525D56] mt-1">
               Supports PDF, DOCX, TXT, or manual text transcription below
             </p>
           </div>
 
           {/* Course Category Quick Selector from Official UNIZIK Curriculum */}
-          <div className="p-3.5 bg-[#F5F1E9] rounded-xl border border-[#DCD3C1] space-y-2">
+          <div className="p-3.5 bg-[#FAF7EE] rounded-lg border border-[#F0EAD6] space-y-2">
             <div className="flex items-center justify-between">
-              <label className="text-xs font-bold text-[#3E2F24] flex items-center gap-1.5 uppercase tracking-wider">
-                <GraduationCap className="w-3.5 h-3.5 text-[#8B7355]" />
+              <label className="text-xs font-bold text-[#141A16] flex items-center gap-1.5 uppercase tracking-wider">
+                <GraduationCap className="w-3.5 h-3.5 text-[#0E5C36]" />
                 <span>Select Departmental Course Category:</span>
               </label>
-              <span className="text-[10px] text-[#8B7355] font-mono">UNIZIK Syllabus</span>
+              <span className="text-[10px] text-[#0E5C36] font-mono">UNIZIK Syllabus</span>
             </div>
             <select
               value={selectedCourseIndex}
               onChange={(e) => handleCourseSelect(e.target.value)}
-              className="w-full px-3 py-2 text-xs border border-[#DCD3C1] rounded-lg bg-white text-[#3E2F24] focus:outline-none focus:border-[#8B7355]"
+              className="w-full px-3 py-2 text-xs border border-[#F0EAD6] rounded-lg bg-white text-[#141A16] focus:outline-none focus:border-[#0E5C36]"
             >
               <option value="custom">-- Choose a Course or Enter Custom Below --</option>
               <optgroup label="100 Level Courses">
@@ -365,7 +367,7 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
 
           {/* Title */}
           <div>
-            <label className="block text-xs font-bold text-[#5A4638] uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-[#525D56] uppercase tracking-wider mb-1">
               Document / Material Title *
             </label>
             <input
@@ -373,7 +375,7 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
               placeholder="e.g. ENG 211 First Semester Past Questions (2022/2023) or Soyinka Study Notes"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full px-3.5 py-2.5 text-sm border border-[#DCD3C1] rounded-xl bg-white text-[#3E2F24] focus:outline-none focus:border-[#8B7355] focus:ring-1 focus:ring-[#8B7355]"
+              className="w-full px-3.5 py-2.5 text-sm border border-[#F0EAD6] rounded-lg bg-white text-[#141A16] focus:outline-none focus:border-[#0E5C36] focus:ring-1 focus:ring-[#0E5C36]"
               required
             />
           </div>
@@ -381,7 +383,7 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
           {/* Course Code & Course Title */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-bold text-[#5A4638] uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-[#525D56] uppercase tracking-wider mb-1">
                 Course Code *
               </label>
               <input
@@ -389,13 +391,13 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
                 placeholder="e.g. ENG 101, ENG 211, ENG 313"
                 value={courseCode}
                 onChange={(e) => setCourseCode(e.target.value)}
-                className="w-full px-3.5 py-2.5 text-sm border border-[#DCD3C1] rounded-xl bg-white text-[#3E2F24] focus:outline-none focus:border-[#8B7355] focus:ring-1 focus:ring-[#8B7355] uppercase font-mono"
+                className="w-full px-3.5 py-2.5 text-sm border border-[#F0EAD6] rounded-lg bg-white text-[#141A16] focus:outline-none focus:border-[#0E5C36] focus:ring-1 focus:ring-[#0E5C36] uppercase font-mono"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#5A4638] uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-[#525D56] uppercase tracking-wider mb-1">
                 Course Title
               </label>
               <input
@@ -403,7 +405,7 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
                 placeholder="e.g. African Prose Fiction"
                 value={courseTitle}
                 onChange={(e) => setCourseTitle(e.target.value)}
-                className="w-full px-3.5 py-2.5 text-sm border border-[#DCD3C1] rounded-xl bg-white text-[#3E2F24] focus:outline-none focus:border-[#8B7355] focus:ring-1 focus:ring-[#8B7355]"
+                className="w-full px-3.5 py-2.5 text-sm border border-[#F0EAD6] rounded-lg bg-white text-[#141A16] focus:outline-none focus:border-[#0E5C36] focus:ring-1 focus:ring-[#0E5C36]"
               />
             </div>
           </div>
@@ -411,11 +413,11 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
           {/* Level, Semester, Category, Track */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
             <div>
-              <label className="block font-bold text-[#5A4638] mb-1">Level</label>
+              <label className="block font-bold text-[#525D56] mb-1">Level</label>
               <select
                 value={level}
                 onChange={(e) => setLevel(e.target.value as any)}
-                className="w-full px-2.5 py-2.5 border border-[#DCD3C1] rounded-xl bg-white text-[#3E2F24] focus:outline-none focus:border-[#8B7355]"
+                className="w-full px-2.5 py-2.5 border border-[#F0EAD6] rounded-lg bg-white text-[#141A16] focus:outline-none focus:border-[#0E5C36]"
               >
                 <option value="100">100 Level</option>
                 <option value="200">200 Level</option>
@@ -425,11 +427,11 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
             </div>
 
             <div>
-              <label className="block font-bold text-[#5A4638] mb-1">Semester</label>
+              <label className="block font-bold text-[#525D56] mb-1">Semester</label>
               <select
                 value={semester}
                 onChange={(e) => setSemester(e.target.value as any)}
-                className="w-full px-2.5 py-2.5 border border-[#DCD3C1] rounded-xl bg-white text-[#3E2F24] focus:outline-none focus:border-[#8B7355]"
+                className="w-full px-2.5 py-2.5 border border-[#F0EAD6] rounded-lg bg-white text-[#141A16] focus:outline-none focus:border-[#0E5C36]"
               >
                 <option value="1st">1st Semester</option>
                 <option value="2nd">2nd Semester</option>
@@ -437,11 +439,11 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
             </div>
 
             <div>
-              <label className="block font-bold text-[#5A4638] mb-1">Category</label>
+              <label className="block font-bold text-[#525D56] mb-1">Category</label>
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value as any)}
-                className="w-full px-2.5 py-2.5 border border-[#DCD3C1] rounded-xl bg-white text-[#3E2F24] focus:outline-none focus:border-[#8B7355]"
+                className="w-full px-2.5 py-2.5 border border-[#F0EAD6] rounded-lg bg-white text-[#141A16] focus:outline-none focus:border-[#0E5C36]"
               >
                 <option value="past_question">Past Question (PQ)</option>
                 <option value="notes">Lecture Notes</option>
@@ -451,11 +453,11 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
             </div>
 
             <div>
-              <label className="block font-bold text-[#5A4638] mb-1">Discipline</label>
+              <label className="block font-bold text-[#525D56] mb-1">Discipline</label>
               <select
                 value={track}
                 onChange={(e) => setTrack(e.target.value as any)}
-                className="w-full px-2.5 py-2.5 border border-[#DCD3C1] rounded-xl bg-white text-[#3E2F24] focus:outline-none focus:border-[#8B7355]"
+                className="w-full px-2.5 py-2.5 border border-[#F0EAD6] rounded-lg bg-white text-[#141A16] focus:outline-none focus:border-[#0E5C36]"
               >
                 <option value="Literature">Literature</option>
                 <option value="Language & Linguistics">Linguistics</option>
@@ -467,7 +469,7 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
           {/* Academic Session Sub-Category & Author */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-bold text-[#5A4638] uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-[#525D56] uppercase tracking-wider mb-1">
                 Author / Lecturer in Charge
               </label>
               <input
@@ -475,18 +477,18 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
                 placeholder="e.g. Prof. C. N. Okeke or Chinua Achebe"
                 value={author}
                 onChange={(e) => setAuthor(e.target.value)}
-                className="w-full px-3.5 py-2.5 text-sm border border-[#DCD3C1] rounded-xl bg-white text-[#3E2F24] focus:outline-none focus:border-[#8B7355]"
+                className="w-full px-3.5 py-2.5 text-sm border border-[#F0EAD6] rounded-lg bg-white text-[#141A16] focus:outline-none focus:border-[#0E5C36]"
               />
             </div>
 
             {/* Academic Session / Year Dropdown */}
             <div>
-              <label className="block text-xs font-bold text-[#5A4638] uppercase tracking-wider mb-1 flex items-center justify-between">
+              <label className="block text-xs font-bold text-[#525D56] uppercase tracking-wider mb-1 flex items-center justify-between">
                 <span>Academic Session (Sub-Category) *</span>
                 <button
                   type="button"
                   onClick={() => setIsCustomYear(!isCustomYear)}
-                  className="text-[11px] text-[#8B7355] hover:underline"
+                  className="text-[11px] text-[#0E5C36] hover:underline"
                 >
                   {isCustomYear ? 'Choose Standard Year' : 'Enter Custom'}
                 </button>
@@ -497,14 +499,14 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
                   placeholder="e.g. 2020/2021 Session"
                   value={customYearText}
                   onChange={(e) => setCustomYearText(e.target.value)}
-                  className="w-full px-3.5 py-2.5 text-sm border border-[#DCD3C1] rounded-xl bg-white text-[#3E2F24] focus:outline-none focus:border-[#8B7355]"
+                  className="w-full px-3.5 py-2.5 text-sm border border-[#F0EAD6] rounded-lg bg-white text-[#141A16] focus:outline-none focus:border-[#0E5C36]"
                   required
                 />
               ) : (
                 <select
                   value={academicYear}
                   onChange={(e) => setAcademicYear(e.target.value)}
-                  className="w-full px-3.5 py-2.5 text-sm border border-[#DCD3C1] rounded-xl bg-white text-[#3E2F24] focus:outline-none focus:border-[#8B7355]"
+                  className="w-full px-3.5 py-2.5 text-sm border border-[#F0EAD6] rounded-lg bg-white text-[#141A16] focus:outline-none focus:border-[#0E5C36]"
                 >
                   {STANDARD_ACADEMIC_YEARS.map(yr => (
                     <option key={yr} value={yr}>{yr}</option>
@@ -518,7 +520,7 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
 
           {/* Brief Description */}
           <div>
-            <label className="block text-xs font-bold text-[#5A4638] uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-[#525D56] uppercase tracking-wider mb-1">
               Short Description / Summary
             </label>
             <input
@@ -526,13 +528,13 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
               placeholder="e.g. Comprehensive notes on generative syntax, X-bar schema, and UNIZIK exam practice questions."
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full px-3.5 py-2.5 text-sm border border-[#DCD3C1] rounded-xl bg-white text-[#3E2F24] focus:outline-none focus:border-[#8B7355]"
+              className="w-full px-3.5 py-2.5 text-sm border border-[#F0EAD6] rounded-lg bg-white text-[#141A16] focus:outline-none focus:border-[#0E5C36]"
             />
           </div>
 
           {/* Text Content / Questions Transcript */}
           <div>
-            <label className="block text-xs font-bold text-[#5A4638] uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-[#525D56] uppercase tracking-wider mb-1">
               Notes Transcript / Questions & Answers *
             </label>
             <textarea
@@ -540,7 +542,7 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
               placeholder="Paste the examination questions, lecture notes points, or book critical review here..."
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              className="w-full px-3.5 py-2.5 text-xs font-mono border border-[#DCD3C1] rounded-xl bg-white text-[#3E2F24] focus:outline-none focus:border-[#8B7355]"
+              className="w-full px-3.5 py-2.5 text-xs font-mono border border-[#F0EAD6] rounded-lg bg-white text-[#141A16] focus:outline-none focus:border-[#0E5C36]"
               required
             />
           </div>
@@ -548,29 +550,29 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
           {/* ========================================================= */}
           {/* CONSISTENT TAGGING SYSTEM INTERFACE */}
           {/* ========================================================= */}
-          <div className="p-4 bg-white rounded-xl border border-[#DCD3C1] space-y-3">
+          <div className="p-4 bg-white rounded-lg border border-[#F0EAD6] space-y-3">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1.5 text-xs font-bold text-[#3E2F24]">
-                <Tag className="w-4 h-4 text-[#8B7355]" />
+              <div className="flex items-center gap-1.5 text-xs font-bold text-[#141A16]">
+                <Tag className="w-4 h-4 text-[#0E5C36]" />
                 <span>Standardized Tagging System (Auto-Generated)</span>
               </div>
-              <span className="text-[10px] text-[#8B7355] font-semibold bg-[#F5F1E9] px-2 py-0.5 rounded border border-[#DCD3C1]">
+              <span className="text-[10px] text-[#0E5C36] font-semibold bg-[#FAF7EE] px-2 py-0.5 rounded-[4px] border border-[#F0EAD6]">
                 {standardizedTags.length} Active Tags
               </span>
             </div>
 
-            <p className="text-[11px] text-[#5A4638] leading-normal">
+            <p className="text-[11px] text-[#525D56] leading-normal">
               Tags are automatically standardized across Course Code, Level, Academic Session, Category, and Track. You can also select or add topic keywords below:
             </p>
 
             {/* Live Generated Tag Chips */}
-            <div className="flex flex-wrap gap-1.5 p-2.5 bg-[#FDFCF7] rounded-lg border border-[#DCD3C1]/80">
+            <div className="flex flex-wrap gap-1.5 p-2.5 bg-[#FAF7EE]/60 rounded-lg border border-[#F0EAD6]">
               {standardizedTags.map(tag => {
                 const tagType = getTagType(tag);
                 return (
                   <span
                     key={tag}
-                    className={`text-xs px-2 py-0.5 rounded-md border flex items-center gap-1 ${getTagStyles(tagType)}`}
+                    className={`text-xs px-2 py-0.5 rounded-[4px] border flex items-center gap-1 ${getTagStyles(tagType)}`}
                   >
                     <span>{tag}</span>
                   </span>
@@ -580,7 +582,7 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
 
             {/* Recommended Topic Chips for this course */}
             <div className="space-y-1.5 pt-1">
-              <span className="text-[11px] font-bold text-[#8B7355] uppercase tracking-wider block">
+              <span className="text-[11px] font-bold text-[#0E5C36] uppercase tracking-wider block">
                 Suggested Topic Tags for {courseCode || 'this course'} (Click to add/remove):
               </span>
               <div className="flex flex-wrap gap-1.5">
@@ -591,10 +593,10 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
                       type="button"
                       key={topic}
                       onClick={() => handleToggleTopic(topic)}
-                      className={`text-xs px-2.5 py-1 rounded-lg border transition-all ${
+                      className={`text-xs px-2.5 py-1 rounded-[6px] border transition-all cursor-pointer ${
                         isSelected
-                          ? 'bg-[#3E2F24] text-[#FDFCF7] border-[#3E2F24] font-bold'
-                          : 'bg-white text-[#5A4638] border-[#DCD3C1] hover:border-[#8B7355]'
+                          ? 'bg-[#0E5C36] text-white border-[#0E5C36] font-bold shadow-2xs'
+                          : 'bg-white text-[#2C3530] border-[#F0EAD6] hover:border-[#0E5C36]'
                       }`}
                     >
                       {isSelected ? `✓ ${topic}` : `+ ${topic}`}
@@ -617,31 +619,31 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
                     handleAddCustomTopic(e);
                   }
                 }}
-                className="flex-1 px-3 py-1.5 text-xs border border-[#DCD3C1] rounded-lg bg-white text-[#3E2F24] focus:outline-none focus:border-[#8B7355]"
+                className="flex-1 px-3 py-1.5 text-xs border border-[#F0EAD6] rounded-lg bg-white text-[#141A16] focus:outline-none focus:border-[#0E5C36]"
               />
               <button
                 type="button"
                 onClick={handleAddCustomTopic}
-                className="px-3 py-1.5 rounded-lg bg-[#F5F1E9] text-[#3E2F24] border border-[#DCD3C1] hover:bg-[#DCD3C1] text-xs font-semibold flex items-center gap-1"
+                className="px-3 py-1.5 rounded-[6px] bg-[#FAF7EE] text-[#141A16] border border-[#F0EAD6] hover:bg-[#F0EAD6] text-xs font-semibold flex items-center gap-1 cursor-pointer"
               >
-                <Plus className="w-3.5 h-3.5" />
+                <Plus className="w-3.5 h-3.5 text-[#0E5C36]" />
                 <span>Add Tag</span>
               </button>
             </div>
           </div>
 
           {/* Footer CTA */}
-          <div className="pt-4 border-t border-[#DCD3C1] flex items-center justify-end gap-3">
+          <div className="pt-4 border-t border-[#F0EAD6] flex items-center justify-end gap-3 font-sans">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-xs font-medium text-[#5A4638] hover:text-[#3E2F24]"
+              className="px-4 py-2 text-xs font-semibold text-[#525D56] hover:text-[#141A16] transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-6 py-2.5 text-xs font-semibold rounded-full bg-[#3E2F24] hover:bg-[#5A4638] text-[#FDFCF7] transition-colors shadow-xs"
+              className="px-6 py-2.5 text-xs font-semibold rounded-[6px] bg-[#0E5C36] hover:bg-[#147B4A] text-white transition-colors shadow-2xs cursor-pointer"
             >
               Add to NASELS Archive
             </button>

@@ -219,45 +219,45 @@ export const CourseArchiveView: React.FC<CourseArchiveViewProps> = ({
   const getCategoryIcon = (category: string) => {
     switch (category) {
       case 'text':
-        return <BookOpen className="w-3.5 h-3.5 text-[#8B7355]" />;
+        return <BookOpen className="w-3.5 h-3.5 text-[#6B2361]" />;
       case 'notes':
-        return <FileText className="w-3.5 h-3.5 text-[#5A4638]" />;
+        return <FileText className="w-3.5 h-3.5 text-[#0E5C36]" />;
       case 'past_question':
-        return <Award className="w-3.5 h-3.5 text-[#3E2F24]" />;
+        return <Award className="w-3.5 h-3.5 text-[#0E5C36]" />;
       default:
-        return <GraduationCap className="w-3.5 h-3.5 text-[#8B7355]" />;
+        return <GraduationCap className="w-3.5 h-3.5 text-[#525D56]" />;
     }
   };
 
   return (
-    <div className="space-y-6 font-serif">
+    <div className="space-y-6 font-sans">
       {/* Overview & Structure Banner */}
-      <div className="bg-[#F5F1E9] rounded-2xl border border-[#DCD3C1] p-5 sm:p-6 text-[#3E2F24] shadow-xs">
+      <div className="bg-[#FAF7EE] rounded-xl border border-[#F0EAD6] p-5 sm:p-6 text-[#141A16] shadow-2xs">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="space-y-1.5">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[#8B7355] text-xs font-bold uppercase tracking-wider border border-[#DCD3C1]">
-              <FolderTree className="w-3.5 h-3.5 text-[#8B7355]" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[4px] bg-white text-[#0E5C36] text-xs font-bold uppercase tracking-wider border border-[#F0EAD6]">
+              <FolderTree className="w-3.5 h-3.5 text-[#0E5C36]" />
               Course Hierarchy & Academic Session Categorization
             </div>
-            <h2 className="text-xl sm:text-2xl font-bold text-[#3E2F24]">
+            <h2 className="text-xl sm:text-2xl font-bold font-editorial text-[#141A16]">
               NASELS Departmental Course Catalog & Session Archive
             </h2>
-            <p className="text-xs text-[#5A4638] leading-relaxed max-w-2xl">
+            <p className="text-xs text-[#525D56] leading-relaxed max-w-2xl font-sans">
               Each course is categorized with its official UNIZIK syllabus code, credit load, and lecturer in charge. Within each course, materials are systematically sub-categorized by <strong>Academic Session</strong> with standardized tags.
             </p>
           </div>
 
           {/* Quick Action Controls */}
-          <div className="flex flex-wrap items-center gap-2 text-xs shrink-0">
+          <div className="flex flex-wrap items-center gap-2 text-xs shrink-0 font-sans">
             <button
               onClick={expandAll}
-              className="px-3.5 py-1.5 rounded-xl bg-white border border-[#DCD3C1] text-[#5A4638] hover:text-[#3E2F24] hover:bg-white/80 transition-colors"
+              className="px-3.5 py-1.5 rounded-[6px] bg-white border border-[#F0EAD6] text-[#2C3530] hover:text-[#0E5C36] hover:bg-[#FAF7EE] transition-colors cursor-pointer"
             >
               Expand All Courses
             </button>
             <button
               onClick={collapseAll}
-              className="px-3.5 py-1.5 rounded-xl bg-white border border-[#DCD3C1] text-[#5A4638] hover:text-[#3E2F24] hover:bg-white/80 transition-colors"
+              className="px-3.5 py-1.5 rounded-[6px] bg-white border border-[#F0EAD6] text-[#2C3530] hover:text-[#0E5C36] hover:bg-[#FAF7EE] transition-colors cursor-pointer"
             >
               Collapse All
             </button>
@@ -265,19 +265,19 @@ export const CourseArchiveView: React.FC<CourseArchiveViewProps> = ({
         </div>
 
         {/* Academic Year Filter Bar */}
-        <div className="mt-5 pt-4 border-t border-[#DCD3C1] flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
-          <div className="flex items-center gap-2 text-xs font-semibold text-[#8B7355]">
-            <Calendar className="w-4 h-4 text-[#8B7355]" />
+        <div className="mt-5 pt-4 border-t border-[#F0EAD6] flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
+          <div className="flex items-center gap-2 text-xs font-semibold text-[#0E5C36]">
+            <Calendar className="w-4 h-4 text-[#0E5C36]" />
             <span>Sub-Categorize by Academic Session:</span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-1.5 text-xs">
+          <div className="flex flex-wrap items-center gap-1.5 text-xs font-sans">
             <button
               onClick={() => setSelectedYearFilter('All')}
-              className={`px-3 py-1 rounded-lg border transition-all ${
+              className={`px-3 py-1 rounded-[6px] border transition-all cursor-pointer ${
                 selectedYearFilter === 'All'
-                  ? 'bg-[#3E2F24] text-[#FDFCF7] border-[#3E2F24] font-bold shadow-2xs'
-                  : 'bg-white text-[#5A4638] border-[#DCD3C1] hover:bg-[#DCD3C1]'
+                  ? 'bg-[#0E5C36] text-white border-[#0E5C36] font-bold shadow-2xs'
+                  : 'bg-white text-[#2C3530] border-[#F0EAD6] hover:bg-[#FAF7EE]'
               }`}
             >
               All Academic Sessions
@@ -287,10 +287,10 @@ export const CourseArchiveView: React.FC<CourseArchiveViewProps> = ({
               <button
                 key={year}
                 onClick={() => setSelectedYearFilter(year)}
-                className={`px-3 py-1 rounded-lg border transition-all ${
+                className={`px-3 py-1 rounded-[6px] border transition-all cursor-pointer ${
                   selectedYearFilter === year
-                    ? 'bg-[#8B7355] text-white border-[#8B7355] font-bold shadow-2xs'
-                    : 'bg-white text-[#5A4638] border-[#DCD3C1] hover:bg-[#DCD3C1]'
+                    ? 'bg-[#0E5C36] text-white border-[#0E5C36] font-bold shadow-2xs'
+                    : 'bg-white text-[#2C3530] border-[#F0EAD6] hover:bg-[#FAF7EE]'
                 }`}
               >
                 {year}
@@ -301,12 +301,12 @@ export const CourseArchiveView: React.FC<CourseArchiveViewProps> = ({
       </div>
 
       {/* Consistent Tagging System Bar */}
-      <div className="bg-white rounded-2xl border border-[#DCD3C1] p-4 sm:p-5 shadow-2xs space-y-2.5">
+      <div className="bg-white rounded-xl border border-[#F0EAD6] p-4 sm:p-5 shadow-2xs space-y-2.5">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B7355]">
-            <Tag className="w-3.5 h-3.5 text-[#8B7355]" />
+          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0E5C36] font-sans">
+            <Tag className="w-3.5 h-3.5 text-[#0E5C36]" />
             <span>Standardized Tag Index</span>
-            <span className="text-[10px] text-[#5A4638] lowercase font-normal">
+            <span className="text-[10px] text-[#525D56] lowercase font-normal">
               (click any standardized tag to filter all resources)
             </span>
           </div>
@@ -314,7 +314,7 @@ export const CourseArchiveView: React.FC<CourseArchiveViewProps> = ({
           {selectedTag !== 'All' && (
             <button
               onClick={() => setSelectedTag('All')}
-              className="text-xs text-[#8B7355] hover:text-[#3E2F24] font-bold underline"
+              className="text-xs text-[#0E5C36] hover:text-[#083820] font-bold underline cursor-pointer"
             >
               Clear Tag Filter ({selectedTag})
             </button>
@@ -329,9 +329,9 @@ export const CourseArchiveView: React.FC<CourseArchiveViewProps> = ({
               <button
                 key={tag}
                 onClick={() => setSelectedTag(isSelected ? 'All' : tag)}
-                className={`px-2.5 py-1 rounded-lg border transition-all text-xs flex items-center gap-1 ${
+                className={`px-2.5 py-1 rounded-[6px] border transition-all text-xs flex items-center gap-1 cursor-pointer ${
                   isSelected
-                    ? 'bg-[#3E2F24] text-white border-[#3E2F24] font-bold shadow-xs'
+                    ? 'bg-[#0E5C36] text-white border-[#0E5C36] font-bold shadow-2xs'
                     : `${getTagStyles(tagType)}`
                 }`}
               >
@@ -345,14 +345,14 @@ export const CourseArchiveView: React.FC<CourseArchiveViewProps> = ({
       {/* Course Categories List */}
       <div className="space-y-4">
         {displayedCourses.length === 0 ? (
-          <div className="bg-white rounded-2xl border border-[#DCD3C1] p-10 text-center space-y-3">
-            <div className="w-12 h-12 mx-auto rounded-full bg-[#F5F1E9] flex items-center justify-center text-[#8B7355]">
+          <div className="bg-white rounded-xl border border-[#F0EAD6] p-10 text-center space-y-3 shadow-2xs font-sans">
+            <div className="w-12 h-12 mx-auto rounded-full bg-[#FAF7EE] flex items-center justify-center text-[#0E5C36] border border-[#F0EAD6]">
               <Search className="w-6 h-6" />
             </div>
-            <h3 className="text-base font-bold text-[#3E2F24]">
+            <h3 className="text-base font-bold font-editorial text-[#141A16]">
               No courses matched your current filter
             </h3>
-            <p className="text-xs text-[#5A4638]">
+            <p className="text-xs text-[#525D56]">
               Try resetting the level, semester, academic session, or search query.
             </p>
             <button
@@ -361,7 +361,7 @@ export const CourseArchiveView: React.FC<CourseArchiveViewProps> = ({
                 setSelectedYearFilter('All');
                 setSelectedTag('All');
               }}
-              className="px-5 py-2 rounded-full bg-[#3E2F24] text-[#FDFCF7] text-xs font-semibold hover:bg-[#5A4638] transition-colors"
+              className="px-5 py-2 rounded-[6px] bg-[#0E5C36] text-white text-xs font-semibold hover:bg-[#147B4A] transition-colors shadow-2xs cursor-pointer"
             >
               Reset All Filters
             </button>
@@ -375,65 +375,65 @@ export const CourseArchiveView: React.FC<CourseArchiveViewProps> = ({
               <div 
                 key={course.code}
                 id={`course-${course.code.replace(/\s+/g, '-')}`}
-                className="bg-white rounded-2xl border border-[#DCD3C1] shadow-2xs overflow-hidden transition-all"
+                className="bg-white rounded-xl border border-[#F0EAD6] shadow-2xs overflow-hidden transition-all"
               >
                 {/* Course Header Banner */}
                 <div 
                   onClick={() => toggleCourse(course.code)}
-                  className="p-5 sm:p-6 bg-white hover:bg-[#FDFCF7] cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-colors border-b border-transparent hover:border-[#DCD3C1]/50"
+                  className="p-5 sm:p-6 bg-white hover:bg-[#FAF7EE]/50 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-colors border-b border-transparent hover:border-[#F0EAD6]"
                 >
                   <div className="flex items-start gap-3.5">
                     <button 
-                      className="mt-1 p-1 rounded-lg bg-[#F5F1E9] text-[#3E2F24] hover:bg-[#DCD3C1] transition-colors shrink-0"
+                      className="mt-1 p-1 rounded-[4px] bg-[#FAF7EE] text-[#141A16] hover:bg-[#F0EAD6] transition-colors shrink-0"
                       aria-label="Toggle course expansion"
                     >
                       {isExpanded ? (
-                        <ChevronDown className="w-4 h-4 text-[#3E2F24]" />
+                        <ChevronDown className="w-4 h-4 text-[#0E5C36]" />
                       ) : (
-                        <ChevronRight className="w-4 h-4 text-[#3E2F24]" />
+                        <ChevronRight className="w-4 h-4 text-[#525D56]" />
                       )}
                     </button>
 
                     <div className="space-y-1">
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="px-2.5 py-0.5 rounded-lg bg-[#3E2F24] text-[#FDFCF7] font-mono text-xs font-bold">
+                        <span className="px-2.5 py-0.5 rounded-[4px] bg-[#0E5C36] text-white font-mono text-xs font-bold">
                           {course.code}
                         </span>
-                        <span className="px-2 py-0.5 rounded-full text-[11px] font-bold bg-[#F5F1E9] text-[#3E2F24] border border-[#DCD3C1]">
+                        <span className="px-2 py-0.5 rounded-full text-[11px] font-bold bg-[#FAF7EE] text-[#0E5C36] border border-[#F0EAD6]">
                           {course.level} Level
                         </span>
-                        <span className="text-xs text-[#8B7355]">
+                        <span className="text-xs text-[#525D56]">
                           {course.semester} Sem • {course.creditUnits} Units
                         </span>
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold text-[#8B7355] bg-[#F5F1E9] border border-[#DCD3C1]">
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold text-[#6B2361] bg-[#FAF7EE] border border-[#F0EAD6]">
                           {course.track}
                         </span>
                       </div>
 
-                      <h3 className="text-base sm:text-lg font-bold text-[#3E2F24]">
+                      <h3 className="text-base sm:text-lg font-bold font-editorial text-[#141A16]">
                         {course.title}
                       </h3>
 
                       {course.lecturerInCharge && (
-                        <p className="text-xs text-[#5A4638]">
-                          <span className="font-semibold text-[#3E2F24]">Lecturer:</span> {course.lecturerInCharge}
+                        <p className="text-xs text-[#525D56] font-sans">
+                          <span className="font-semibold text-[#141A16]">Lecturer:</span> {course.lecturerInCharge}
                         </p>
                       )}
                     </div>
                   </div>
 
                   {/* Course Status & Session Counts */}
-                  <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-1.5 shrink-0 pl-7 sm:pl-0">
+                  <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-1.5 shrink-0 pl-7 sm:pl-0 font-sans">
                     <div className="flex items-center gap-1.5">
-                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#F5F1E9] text-[#3E2F24] border border-[#DCD3C1]">
+                      <span className="px-3 py-1 rounded-[4px] text-xs font-bold bg-[#FAF7EE] text-[#0E5C36] border border-[#F0EAD6]">
                         {filteredCount} {filteredCount === 1 ? 'Resource' : 'Resources'}
                       </span>
                     </div>
 
                     {/* Active Academic Sessions Available */}
-                    <div className="flex flex-wrap gap-1 text-[11px] text-[#8B7355]">
+                    <div className="flex flex-wrap gap-1 text-[11px] text-[#525D56]">
                       {sortedYears.map(yr => (
-                        <span key={yr} className="px-1.5 py-0.5 rounded bg-[#F5F1E9] border border-[#DCD3C1]/80">
+                        <span key={yr} className="px-1.5 py-0.5 rounded-[4px] bg-[#FAF7EE] border border-[#F0EAD6]">
                           {yr}
                         </span>
                       ))}
@@ -443,16 +443,16 @@ export const CourseArchiveView: React.FC<CourseArchiveViewProps> = ({
 
                 {/* Expanded Sub-Categories By Academic Year */}
                 {isExpanded && (
-                  <div className="p-5 sm:p-6 bg-[#FDFCF7]/60 border-t border-[#DCD3C1] space-y-6">
+                  <div className="p-5 sm:p-6 bg-[#FAF7EE]/50 border-t border-[#F0EAD6] space-y-6">
                     {/* Course Description & Modules Summary */}
-                    <div className="p-3.5 bg-white rounded-xl border border-[#DCD3C1]/80 text-xs text-[#5A4638] space-y-2">
-                      <p className="leading-relaxed">
-                        <strong className="text-[#3E2F24]">Course Scope:</strong> {course.description}
+                    <div className="p-3.5 bg-white rounded-lg border border-[#F0EAD6] text-xs text-[#525D56] space-y-2">
+                      <p className="leading-relaxed font-sans">
+                        <strong className="text-[#141A16]">Course Scope:</strong> {course.description}
                       </p>
-                      <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-[#DCD3C1]/50 text-[11px]">
-                        <span className="font-bold text-[#8B7355] uppercase">Key Modules:</span>
+                      <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-[#F0EAD6] text-[11px] font-sans">
+                        <span className="font-bold text-[#0E5C36] uppercase">Key Modules:</span>
                         {course.coreTopics.slice(0, 4).map((t, idx) => (
-                          <span key={idx} className="bg-[#F5F1E9] text-[#3E2F24] px-2 py-0.5 rounded border border-[#DCD3C1]/60">
+                          <span key={idx} className="bg-[#FAF7EE] text-[#141A16] px-2 py-0.5 rounded-[4px] border border-[#F0EAD6]">
                             {t}
                           </span>
                         ))}
@@ -461,14 +461,14 @@ export const CourseArchiveView: React.FC<CourseArchiveViewProps> = ({
 
                     {/* Academic Year Sub-Categories */}
                     {!hasItems ? (
-                      <div className="p-6 bg-white rounded-xl border border-dashed border-[#DCD3C1] text-center space-y-2">
-                        <p className="text-xs text-[#5A4638]">
+                      <div className="p-6 bg-white rounded-lg border border-dashed border-[#F0EAD6] text-center space-y-2">
+                        <p className="text-xs text-[#525D56]">
                           No resources currently available under this course for the selected session filter.
                         </p>
                         {onOpenContributeWithCourse && (
                           <button
                             onClick={() => onOpenContributeWithCourse(course.code, course.title, course.level)}
-                            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#3E2F24] text-[#FDFCF7] text-xs font-semibold hover:bg-[#5A4638] transition-colors"
+                            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-[6px] bg-[#0E5C36] text-white text-xs font-semibold hover:bg-[#147B4A] transition-colors cursor-pointer"
                           >
                             <Upload className="w-3.5 h-3.5" />
                             <span>Contribute Material for {course.code}</span>
@@ -482,19 +482,19 @@ export const CourseArchiveView: React.FC<CourseArchiveViewProps> = ({
                           return (
                             <div 
                               key={yearKey} 
-                              className="bg-white rounded-xl border border-[#DCD3C1] overflow-hidden shadow-2xs"
+                              className="bg-white rounded-lg border border-[#F0EAD6] overflow-hidden shadow-2xs"
                             >
                               {/* Sub-Category Header: Academic Year */}
-                              <div className="bg-[#F5F1E9] px-4 sm:px-5 py-3 border-b border-[#DCD3C1] flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                                <div className="flex items-center gap-2 text-xs font-bold text-[#3E2F24]">
-                                  <Calendar className="w-4 h-4 text-[#8B7355]" />
+                              <div className="bg-[#FAF7EE] px-4 sm:px-5 py-3 border-b border-[#F0EAD6] flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-sans">
+                                <div className="flex items-center gap-2 text-xs font-bold text-[#141A16]">
+                                  <Calendar className="w-4 h-4 text-[#0E5C36]" />
                                   <span>Academic Session: {yearKey}</span>
-                                  <span className="text-[11px] font-normal text-[#5A4638]">
+                                  <span className="text-[11px] font-normal text-[#525D56]">
                                     ({yearItems.length} {yearItems.length === 1 ? 'material' : 'materials'})
                                   </span>
                                 </div>
 
-                                <span className="text-[11px] text-[#8B7355] italic">
+                                <span className="text-[11px] text-[#0E5C36] font-medium italic">
                                   Verified by NASELS UNIZIK Academic Board
                                 </span>
                               </div>
@@ -509,17 +509,17 @@ export const CourseArchiveView: React.FC<CourseArchiveViewProps> = ({
                                     <div
                                       key={item.id}
                                       onClick={() => onSelectItem(item)}
-                                      className="group bg-[#FDFCF7] hover:bg-white rounded-xl border border-[#DCD3C1] p-4 flex flex-col justify-between space-y-3 cursor-pointer hover:shadow-md hover:-translate-y-0.5 transition-all"
+                                      className="group bg-white hover:bg-[#FAF7EE]/30 rounded-lg border border-[#F0EAD6] p-4 flex flex-col justify-between space-y-3 cursor-pointer hover:border-[#0E5C36]/40 hover:shadow-md hover:-translate-y-0.5 transition-all"
                                     >
                                       <div className="space-y-2">
                                         {/* Meta row */}
-                                        <div className="flex items-center justify-between gap-2">
+                                        <div className="flex items-center justify-between gap-2 font-sans">
                                           <div className="flex items-center gap-1.5">
-                                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#F5F1E9] text-[#3E2F24] border border-[#DCD3C1]">
+                                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-[4px] text-[11px] font-bold bg-[#FAF7EE] text-[#0E5C36] border border-[#F0EAD6]">
                                               {getCategoryIcon(item.category)}
                                               <span>{catLabel}</span>
                                             </span>
-                                            <span className="text-[11px] text-[#8B7355] font-mono font-medium">
+                                            <span className="text-[11px] text-[#525D56] font-mono font-medium">
                                               {item.fileFormat} • {item.fileSize}
                                             </span>
                                           </div>
@@ -529,35 +529,35 @@ export const CourseArchiveView: React.FC<CourseArchiveViewProps> = ({
                                               e.stopPropagation();
                                               onToggleBookmark(item.id);
                                             }}
-                                            className={`p-1.5 rounded-lg transition-colors ${
+                                            className={`p-1.5 rounded-[4px] transition-colors cursor-pointer ${
                                               isBookmarked
-                                                ? 'bg-[#F5F1E9] text-[#8B7355]'
-                                                : 'text-[#8B7355]/60 hover:text-[#3E2F24] hover:bg-[#F5F1E9]'
+                                                ? 'bg-[#E7F3EC] text-[#0E5C36]'
+                                                : 'text-[#525D56]/60 hover:text-[#0E5C36] hover:bg-[#FAF7EE]'
                                             }`}
                                             title={isBookmarked ? 'Remove Bookmark' : 'Bookmark Material'}
                                           >
-                                            <Bookmark className={`w-3.5 h-3.5 ${isBookmarked ? 'fill-[#8B7355]' : ''}`} />
+                                            <Bookmark className={`w-3.5 h-3.5 ${isBookmarked ? 'fill-[#0E5C36]' : ''}`} />
                                           </button>
                                         </div>
 
                                         {/* Material Title */}
-                                        <h4 className="text-sm font-bold text-[#3E2F24] group-hover:text-[#8B7355] transition-colors leading-snug">
+                                        <h4 className="text-sm font-bold font-editorial text-[#141A16] group-hover:text-[#0E5C36] transition-colors leading-snug">
                                           {item.title}
                                         </h4>
 
                                         {/* Author / Source */}
-                                        <p className="text-[11px] text-[#5A4638]">
-                                          <span className="font-semibold text-[#3E2F24]">Source:</span> {item.author}
+                                        <p className="text-[11px] text-[#525D56] font-sans">
+                                          <span className="font-semibold text-[#141A16]">Source:</span> {item.author}
                                         </p>
 
                                         {/* Description */}
-                                        <p className="text-xs text-[#5A4638] line-clamp-2 leading-relaxed">
+                                        <p className="text-xs text-[#525D56] line-clamp-2 leading-relaxed font-sans">
                                           {item.description}
                                         </p>
                                       </div>
 
                                       {/* Standardized Tags & Action */}
-                                      <div className="pt-2 border-t border-[#DCD3C1]/60 space-y-2.5">
+                                      <div className="pt-2 border-t border-[#F0EAD6] space-y-2.5 font-sans">
                                         {/* Consistent Tag Chips */}
                                         <div className="flex flex-wrap gap-1">
                                           {item.tags.map((tag) => {
@@ -565,7 +565,7 @@ export const CourseArchiveView: React.FC<CourseArchiveViewProps> = ({
                                             return (
                                               <span
                                                 key={tag}
-                                                className={`text-[10px] px-1.5 py-0.5 rounded border ${getTagStyles(tagType)}`}
+                                                className={`text-[10px] px-1.5 py-0.5 rounded-[4px] border ${getTagStyles(tagType)}`}
                                               >
                                                 {tag}
                                               </span>
@@ -575,12 +575,12 @@ export const CourseArchiveView: React.FC<CourseArchiveViewProps> = ({
 
                                         {/* Bottom Action */}
                                         <div className="flex items-center justify-between text-xs pt-1">
-                                          <span className="text-[11px] text-[#8B7355] flex items-center gap-1">
+                                          <span className="text-[11px] text-[#525D56] flex items-center gap-1">
                                             <Download className="w-3 h-3" />
                                             <span>{item.downloadCount} accesses</span>
                                           </span>
 
-                                          <span className="inline-flex items-center gap-1 font-semibold text-[#3E2F24] group-hover:text-[#8B7355] transition-colors">
+                                          <span className="inline-flex items-center gap-1 font-semibold text-[#0E5C36] group-hover:text-[#147B4A] transition-colors">
                                             <span>Open & Practice</span>
                                             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                                           </span>
