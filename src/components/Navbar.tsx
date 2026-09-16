@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   BookOpen, 
   FileText, 
-  GraduationCap, 
   Search, 
   Bookmark, 
   Upload,
   Library,
   HelpCircle,
   Menu,
-  X
+  X,
+  Sparkles,
+  Award,
+  GraduationCap
 } from 'lucide-react';
 import { NaselsCrest } from './NaselsCrest';
 
@@ -32,249 +34,219 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenContribute,
   onOpenStudyGuide
 }) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  const navItems: { id: 'archive' | 'courses' | 'past_questions' | 'texts'; label: string; icon: any }[] = [
+    { id: 'archive', label: 'Archive Vault', icon: Library },
+    { id: 'courses', label: 'Course Directory', icon: GraduationCap },
+    { id: 'past_questions', label: 'Past Questions', icon: Award },
+    { id: 'texts', label: 'Literary Texts', icon: BookOpen },
+  ];
 
   return (
-    <header className="sticky top-0 z-40 bg-[#FAF7EE] text-[#141A16] border-b border-[#F0EAD6] shadow-2xs">
-      {/* Top University Brand Bar */}
-      <div className="bg-[#0E5C36] text-[#FAF7EE] text-xs py-1.5 px-4">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <span className="inline-block w-2 h-2 rounded-full bg-[#FAF7EE] animate-pulse"></span>
-            <span className="font-semibold tracking-wider text-[11px] uppercase font-sans text-[#FAF7EE]">
-              NNAMDI AZIKIWE UNIVERSITY, AWKA • FACULTY OF ARTS
-            </span>
-          </div>
-          <div className="flex items-center gap-4 text-xs font-sans">
-            <span className="text-[#FAF7EE]/90">Motto: <em className="text-[#FAF7EE] font-serif font-medium">Discipline, Self-Reliance & Excellence</em></span>
-            <span className="hidden md:inline text-[#FAF7EE]/40">|</span>
-            <span className="hidden md:inline text-[#FAF7EE] font-semibold">NASELS UNIZIK Chapter</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Navbar Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
-        {/* Logo & Department Title */}
+    <header className="sticky top-2 sm:top-4 z-50 max-w-6xl w-full mx-auto px-3 sm:px-6">
+      {/* Floating Island Navigation Pill */}
+      <div className="glass-nav rounded-full px-3 sm:px-4 py-2 sm:py-2.5 flex items-center justify-between gap-2 sm:gap-4 transition-all duration-200">
+        
+        {/* Left: Brand Identity with Crest */}
         <div 
-          onClick={() => setActiveTab('archive')}
-          className="flex items-center gap-3 cursor-pointer group select-none"
+          onClick={() => {
+            setActiveTab('archive');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          className="flex items-center gap-2.5 cursor-pointer select-none shrink-0 group"
         >
-          <NaselsCrest size={46} className="group-hover:scale-105 transition-transform" />
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="text-xl sm:text-2xl font-bold tracking-tight text-[#141A16] font-editorial">
-                NASELS ARCHIVE
+          <div className="relative">
+            <NaselsCrest size={38} className="group-hover:scale-105 transition-transform duration-200" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-[#0E5C36] ring-2 ring-white"></span>
+          </div>
+          <div className="hidden sm:block">
+            <div className="flex items-center gap-1.5">
+              <span className="text-base font-bold font-editorial text-[#141A16] tracking-tight leading-none">
+                NASELS
               </span>
-              <span className="text-[10px] uppercase px-2 py-0.5 rounded-[4px] bg-[#E7F3EC] text-[#0E5C36] font-bold border border-[#0E5C36]/20 font-sans tracking-wide">
-                UNIZIK CHAPTER
+              <span className="text-[10px] uppercase font-bold tracking-widest px-1.5 py-0.5 rounded-full bg-[#E7F3EC] text-[#0E5C36] font-sans">
+                UNIZIK
               </span>
             </div>
-            <p className="text-[11px] uppercase tracking-wider text-[#525D56] font-sans font-medium">
-              Department of English Language & Literature
+            <p className="text-[10px] text-[#525D56] font-sans font-medium tracking-wide">
+              Academic Archive
             </p>
           </div>
         </div>
 
-        {/* Global Search Input */}
-        <div className="hidden md:flex flex-1 max-w-md mx-4 relative">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#525D56]" />
-          <input
-            type="text"
-            placeholder="Search by Course Code (e.g. ENG 101, Achebe, Syntax)..."
-            value={searchQuery}
-            onChange={(e) => onSearchChange(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 text-sm bg-white text-[#141A16] placeholder-[#525D56]/60 rounded-xl border border-[#F0EAD6] focus:outline-none focus:ring-2 focus:ring-[#0E5C36] focus:border-[#0E5C36] transition-all font-sans"
-          />
-          {searchQuery && (
-            <button
-              onClick={() => onSearchChange('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#525D56] hover:text-[#141A16]"
-            >
-              Clear
-            </button>
-          )}
-        </div>
+        {/* Center: Desktop Navigation Tabs */}
+        <nav className="hidden md:flex items-center gap-1 bg-[#FAF7EE]/80 p-1 rounded-full border border-[#F0EAD6]">
+          {navItems.map((tab) => {
+            const Icon = tab.icon;
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-150 cursor-pointer ${
+                  isActive
+                    ? 'bg-white text-[#0E5C36] shadow-xs font-bold border border-[#0E5C36]/15'
+                    : 'text-[#525D56] hover:text-[#141A16] hover:bg-white/60'
+                }`}
+              >
+                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#0E5C36]' : 'text-[#525D56]'}`} />
+                <span>{tab.label}</span>
+              </button>
+            );
+          })}
+        </nav>
 
-        {/* Right CTA Actions */}
-        <div className="hidden lg:flex items-center gap-2.5">
-          <button
-            onClick={onOpenStudyGuide}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[#2C3530] hover:text-[#0E5C36] hover:bg-[#E7F3EC] rounded-[6px] transition-colors font-sans"
-            title="Exam & MLA Study Guide"
-          >
-            <HelpCircle className="w-4 h-4 text-[#0E5C36]" />
-            <span>Study Guide</span>
-          </button>
+        {/* Right: Actions (Search, Saved, Study Guide, Upload) */}
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          
+          {/* Quick Search Toggle / Input */}
+          <div className="relative">
+            {searchOpen ? (
+              <div className="flex items-center bg-white rounded-full border border-[#0E5C36] px-2.5 py-1 shadow-sm w-44 sm:w-56 animate-in fade-in zoom-in-95 duration-150">
+                <Search className="w-3.5 h-3.5 text-[#0E5C36] shrink-0" />
+                <input
+                  autoFocus
+                  type="text"
+                  placeholder="Search ENG code, Achebe..."
+                  value={searchQuery}
+                  onChange={(e) => onSearchChange(e.target.value)}
+                  className="w-full bg-transparent pl-2 pr-1 text-xs text-[#141A16] focus:outline-none font-sans"
+                />
+                <button 
+                  onClick={() => {
+                    onSearchChange('');
+                    setSearchOpen(false);
+                  }}
+                  className="text-xs text-[#525D56] hover:text-[#141A16] p-0.5"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => setSearchOpen(true)}
+                className="p-2 rounded-full text-[#525D56] hover:text-[#141A16] hover:bg-[#FAF7EE] transition-colors cursor-pointer"
+                title="Search archive"
+              >
+                <Search className="w-4 h-4" />
+              </button>
+            )}
+          </div>
 
+          {/* Saved Bookmarks Pill */}
           <button
             onClick={() => setActiveTab('saved')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-[6px] border transition-colors relative font-sans ${
+            className={`hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer border ${
               activeTab === 'saved'
                 ? 'bg-[#E7F3EC] text-[#0E5C36] border-[#0E5C36] font-bold shadow-2xs'
-                : 'text-[#2C3530] border-[#F0EAD6] bg-white hover:bg-[#E7F3EC] hover:text-[#0E5C36]'
+                : 'text-[#2C3530] border-[#F0EAD6] bg-white hover:bg-[#FAF7EE]'
             }`}
           >
-            <Bookmark className="w-4 h-4 text-[#0E5C36]" />
+            <Bookmark className="w-3.5 h-3.5 text-[#0E5C36]" />
             <span>Saved</span>
             {savedCount > 0 && (
-              <span className="ml-1 px-1.5 py-0.2 text-[10px] font-bold rounded-full bg-[#0E5C36] text-white">
+              <span className="ml-0.5 px-1.5 py-0.2 text-[10px] font-bold rounded-full bg-[#0E5C36] text-white">
                 {savedCount}
               </span>
             )}
           </button>
 
-          {/* User Requested: Top-right Upload CTA in var(--nasels-green-800) with #FFFFFF text and 6px radius */}
+          {/* Study Guide Link */}
+          <button
+            onClick={onOpenStudyGuide}
+            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-[#2C3530] hover:text-[#0E5C36] hover:bg-[#E7F3EC] transition-colors cursor-pointer font-sans"
+          >
+            <HelpCircle className="w-3.5 h-3.5 text-[#0E5C36]" />
+            <span>Guide</span>
+          </button>
+
+          {/* Primary CTA: Upload / Contribute */}
           <button
             onClick={onOpenContribute}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-[6px] text-xs font-semibold bg-[#0E5C36] text-[#FFFFFF] hover:bg-[#083820] transition-colors shadow-xs font-sans"
+            className="flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-semibold bg-[#0E5C36] text-white hover:bg-[#083820] transition-all shadow-sm hover:shadow-md cursor-pointer font-sans"
           >
-            <Upload className="w-4 h-4 text-[#FFFFFF]" />
-            <span>Upload Records</span>
+            <Upload className="w-3.5 h-3.5 text-white shrink-0" />
+            <span className="hidden sm:inline">Contribute</span>
+            <span className="sm:hidden">Upload</span>
           </button>
-        </div>
 
-        {/* Mobile menu hamburger */}
-        <div className="flex md:hidden items-center gap-2">
-          <button
-            onClick={() => setActiveTab('saved')}
-            className="p-2 text-[#2C3530] hover:text-[#0E5C36] relative"
-          >
-            <Bookmark className="w-5 h-5 text-[#0E5C36]" />
-            {savedCount > 0 && (
-              <span className="absolute top-1 right-1 w-4 h-4 text-[9px] flex items-center justify-center font-bold rounded-full bg-[#0E5C36] text-white">
-                {savedCount}
-              </span>
-            )}
-          </button>
+          {/* Mobile Menu Trigger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-[#141A16] hover:text-[#0E5C36]"
+            className="md:hidden p-2 rounded-full text-[#525D56] hover:text-[#141A16] hover:bg-[#FAF7EE] transition-colors cursor-pointer"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6 text-[#141A16]" />}
+            {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Search & Navigation Drawer */}
+      {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#FAF7EE] border-t border-[#F0EAD6] px-4 py-3 space-y-3 font-sans">
+        <div className="md:hidden mt-2 p-4 bg-white/95 backdrop-blur-md rounded-2xl border border-[#F0EAD6] shadow-xl space-y-3 animate-in fade-in slide-in-from-top-2 duration-150">
+          {/* Mobile Search Bar */}
           <div className="relative">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#525D56]" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#525D56]" />
             <input
               type="text"
-              placeholder="Search courses, texts, or past questions..."
+              placeholder="Search courses, past questions, authors..."
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 text-sm bg-white text-[#141A16] placeholder-[#525D56]/60 rounded-xl border border-[#F0EAD6]"
+              className="w-full pl-9 pr-3 py-2 text-xs bg-[#FAF7EE] rounded-xl border border-[#F0EAD6] focus:outline-none focus:ring-1 focus:ring-[#0E5C36]"
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-2 pt-1 text-xs">
-            <button
-              onClick={() => { setActiveTab('archive'); setMobileMenuOpen(false); }}
-              className={`p-2.5 rounded-[6px] text-left font-medium border ${activeTab === 'archive' ? 'bg-[#0E5C36] text-white border-[#0E5C36] font-bold' : 'bg-white text-[#2C3530] border-[#F0EAD6]'}`}
-            >
-              📚 All Archive
-            </button>
-            <button
-              onClick={() => { setActiveTab('past_questions'); setMobileMenuOpen(false); }}
-              className={`p-2.5 rounded-[6px] text-left font-medium border ${activeTab === 'past_questions' ? 'bg-[#0E5C36] text-white border-[#0E5C36] font-bold' : 'bg-white text-[#2C3530] border-[#F0EAD6]'}`}
-            >
-              📝 Past Questions
-            </button>
-            <button
-              onClick={() => { setActiveTab('texts'); setMobileMenuOpen(false); }}
-              className={`p-2.5 rounded-[6px] text-left font-medium border ${activeTab === 'texts' ? 'bg-[#0E5C36] text-white border-[#0E5C36] font-bold' : 'bg-white text-[#2C3530] border-[#F0EAD6]'}`}
-            >
-              📖 Recommended Texts
-            </button>
-            <button
-              onClick={() => { setActiveTab('courses'); setMobileMenuOpen(false); }}
-              className={`p-2.5 rounded-[6px] text-left font-medium border ${activeTab === 'courses' ? 'bg-[#0E5C36] text-white border-[#0E5C36] font-bold' : 'bg-white text-[#2C3530] border-[#F0EAD6]'}`}
-            >
-              🎓 Course Outlines
-            </button>
+          {/* Mobile Links */}
+          <div className="grid grid-cols-2 gap-1.5 pt-1">
+            {navItems.map((tab) => {
+              const Icon = tab.icon;
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => {
+                    setActiveTab(tab.id);
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`flex items-center gap-2 p-2.5 rounded-xl text-xs font-semibold transition-all ${
+                    isActive
+                      ? 'bg-[#E7F3EC] text-[#0E5C36] font-bold'
+                      : 'text-[#2C3530] hover:bg-[#FAF7EE]'
+                  }`}
+                >
+                  <Icon className="w-4 h-4 text-[#0E5C36]" />
+                  <span>{tab.label}</span>
+                </button>
+              );
+            })}
           </div>
 
-          <div className="pt-2 flex gap-2">
+          <div className="pt-2 border-t border-[#F0EAD6] flex items-center justify-between text-xs">
             <button
-              onClick={() => { onOpenContribute(); setMobileMenuOpen(false); }}
-              className="flex-1 py-2.5 rounded-[6px] bg-[#0E5C36] text-[#FFFFFF] font-semibold text-xs text-center hover:bg-[#083820]"
+              onClick={() => {
+                setActiveTab('saved');
+                setMobileMenuOpen(false);
+              }}
+              className="flex items-center gap-1.5 text-[#0E5C36] font-semibold"
             >
-              + Upload Records
+              <Bookmark className="w-4 h-4" />
+              <span>Saved Items ({savedCount})</span>
             </button>
+
             <button
-              onClick={() => { onOpenStudyGuide(); setMobileMenuOpen(false); }}
-              className="px-4 py-2.5 rounded-[6px] bg-white text-[#141A16] text-xs font-semibold border border-[#F0EAD6] hover:bg-[#E7F3EC]"
+              onClick={() => {
+                onOpenStudyGuide();
+                setMobileMenuOpen(false);
+              }}
+              className="flex items-center gap-1.5 text-[#525D56] hover:text-[#141A16] font-medium"
             >
-              Guide
+              <HelpCircle className="w-4 h-4 text-[#0E5C36]" />
+              <span>MLA & Exam Guide</span>
             </button>
           </div>
         </div>
       )}
-
-      {/* Sub-Navigation Categories Bar */}
-      <div className="hidden md:block bg-[#FAF7EE] border-t border-[#F0EAD6] px-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs font-medium">
-          <div className="flex items-center space-x-1.5 py-2 font-sans">
-            <button
-              onClick={() => setActiveTab('archive')}
-              className={`px-3 py-1.5 rounded-[6px] transition-all flex items-center gap-1.5 ${
-                activeTab === 'archive'
-                  ? 'bg-[#0E5C36] text-white font-bold shadow-2xs'
-                  : 'text-[#2C3530] hover:text-[#0E5C36] hover:bg-[#E7F3EC]'
-              }`}
-            >
-              <Library className="w-3.5 h-3.5" />
-              <span>Full Archive Directory</span>
-            </button>
-
-            <button
-              onClick={() => setActiveTab('past_questions')}
-              className={`px-3 py-1.5 rounded-[6px] transition-all flex items-center gap-1.5 ${
-                activeTab === 'past_questions'
-                  ? 'bg-[#0E5C36] text-white font-bold shadow-2xs'
-                  : 'text-[#2C3530] hover:text-[#0E5C36] hover:bg-[#E7F3EC]'
-              }`}
-            >
-              <FileText className="w-3.5 h-3.5" />
-              <span>Past Questions Bank (PQ)</span>
-            </button>
-
-            <button
-              onClick={() => setActiveTab('texts')}
-              className={`px-3 py-1.5 rounded-[6px] transition-all flex items-center gap-1.5 ${
-                activeTab === 'texts'
-                  ? 'bg-[#0E5C36] text-white font-bold shadow-2xs'
-                  : 'text-[#2C3530] hover:text-[#0E5C36] hover:bg-[#E7F3EC]'
-              }`}
-            >
-              <BookOpen className="w-3.5 h-3.5" />
-              <span>Recommended Texts & Critiques</span>
-            </button>
-
-            <button
-              onClick={() => setActiveTab('courses')}
-              className={`px-3 py-1.5 rounded-[6px] transition-all flex items-center gap-1.5 ${
-                activeTab === 'courses'
-                  ? 'bg-[#0E5C36] text-white font-bold shadow-2xs'
-                  : 'text-[#2C3530] hover:text-[#0E5C36] hover:bg-[#E7F3EC]'
-              }`}
-            >
-              <GraduationCap className="w-3.5 h-3.5" />
-              <span>UNIZIK Course Syllabi (100L - 400L)</span>
-            </button>
-          </div>
-
-          <div className="text-[11px] text-[#525D56] flex items-center gap-3 font-sans">
-            <span className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-[#0E5C36]"></span>
-              Curriculum Updated: 2024/2025 Academic Session
-            </span>
-          </div>
-        </div>
-      </div>
     </header>
   );
 };

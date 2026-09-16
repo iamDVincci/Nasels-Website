@@ -17,8 +17,13 @@ import {
   ZoomOut,
   Calendar,
   Clock,
-  Award
+  Award,
+  Sparkles,
+  Bot,
+  Loader2,
+  AlertCircle
 } from 'lucide-react';
+import { api } from '../services/api';
 
 interface DocumentViewerModalProps {
   item: ArchiveItem | null;
@@ -38,6 +43,12 @@ export const DocumentViewerModal: React.FC<DocumentViewerModalProps> = ({
   const [copied, setCopied] = useState(false);
   const [downloadSuccess, setDownloadSuccess] = useState(false);
 
+  // Gemini AI Assistant State
+  const [aiLoading, setAiLoading] = useState<{ [key: string]: boolean }>({});
+  const [aiSolutions, setAiSolutions] = useState<{ [key: string]: string }>({});
+  const [aiErrors, setAiErrors] = useState<{ [key: string]: string }>({});
+  const [showAiSolution, setShowAiSolution] = useState<{ [key: string]: boolean }>({});
+
   if (!item) return null;
 
   const toggleHint = (num: number) => {
@@ -45,6 +56,70 @@ export const DocumentViewerModal: React.FC<DocumentViewerModalProps> = ({
       ...prev,
       [num]: !prev[num]
     }));
+  };
+
+  const handleSolveQuestion = async (qNum: number, qText: string, marks?: string) => {
+    const key = `q-${qNum}`;
+    setShowAiSolution(prev => ({ ...prev, [key]: !prev[key] }));
+    if (aiSolutions[key]) return;
+
+    setAiLoading(prev => ({ ...prev, [key]: true }));
+    setAiErrors(prev => ({ ...prev, [key]: '' }));
+    try {
+      const solution = await api.aiSolveQuestion({
+        questionText: qText,
+        courseCode: item.courseCode,
+        courseTitle: item.courseTitle,
+        marks,
+      });
+      setAiSolutions(prev => ({ ...prev, [key]: solution }));
+    } catch (err: any) {
+      setAiErrors(prev => ({ ...prev, [key]: err.message || 'Could not generate solution' }));
+    } finally {
+      setAiLoading(prev => ({ ...prev, [key]: false }));
+    }
+  };
+
+  const handleAnalyzeText = async () => {
+    const key = 'text-critique';
+    setShowAiSolution(prev => ({ ...prev, [key]: !prev[key] }));
+    if (aiSolutions[key]) return;
+
+    setAiLoading(prev => ({ ...prev, [key]: true }));
+    setAiErrors(prev => ({ ...prev, [key]: '' }));
+    try {
+      const analysis = await api.aiAnalyzeText({
+        title: item.title,
+        author: item.author,
+        passage: item.bookDetails?.synopsis || item.description,
+      });
+      setAiSolutions(prev => ({ ...prev, [key]: analysis }));
+    } catch (err: any) {
+      setAiErrors(prev => ({ ...prev, [key]: err.message || 'Could not generate critique' }));
+    } finally {
+      setAiLoading(prev => ({ ...prev, [key]: false }));
+    }
+  };
+
+  const handleSummarizeNotes = async () => {
+    const key = 'notes-summary';
+    setShowAiSolution(prev => ({ ...prev, [key]: !prev[key] }));
+    if (aiSolutions[key]) return;
+
+    setAiLoading(prev => ({ ...prev, [key]: true }));
+    setAiErrors(prev => ({ ...prev, [key]: '' }));
+    try {
+      const summary = await api.aiSummarizeNotes({
+        content: item.summaryOrContent,
+        courseCode: item.courseCode,
+        courseTitle: item.courseTitle,
+      });
+      setAiSolutions(prev => ({ ...prev, [key]: summary }));
+    } catch (err: any) {
+      setAiErrors(prev => ({ ...prev, [key]: err.message || 'Could not summarize notes' }));
+    } finally {
+      setAiLoading(prev => ({ ...prev, [key]: false }));
+    }
   };
 
   const handlePrint = () => {
@@ -106,6 +181,7 @@ export const DocumentViewerModal: React.FC<DocumentViewerModalProps> = ({
     URL.revokeObjectURL(url);
 
     setDownloadSuccess(true);
+    api.trackDownload(item.id);
     setTimeout(() => setDownloadSuccess(false), 2500);
   };
 
@@ -335,9 +411,9 @@ export const DocumentViewerModal: React.FC<DocumentViewerModalProps> = ({
                       {q.text}
                     </div>
 
-                    {/* Model Answer Hint Toggle */}
-                    {q.modelAnswerHint && (
-                      <div className="pt-2 border-t border-[#F0EAD6] no-print">
+                    {/* Action Bar: Hints + Gemini AI Assistant */}
+                    <div className="pt-2 border-t border-[#F0EAD6] flex flex-wrap items-center justify-between gap-2 no-print">
+                      {q.modelAnswerHint && (
                         <button
                           onClick={() => toggleHint(q.number)}
                           className="flex items-center gap-1.5 text-xs font-semibold text-[#0E5C36] hover:text-[#147B4A] transition-colors cursor-pointer"
@@ -354,16 +430,67 @@ export const DocumentViewerModal: React.FC<DocumentViewerModalProps> = ({
                             </>
                           )}
                         </button>
+                      )}
 
-                        {showAnswerHints[q.number] && (
-                          <div className="mt-2.5 p-4 rounded-lg bg-[#FAF7EE] text-[#141A16] text-xs leading-relaxed border border-[#F0EAD6] animate-in fade-in duration-100 font-sans">
-                            <div className="font-bold text-[#0E5C36] mb-1.5 text-xs uppercase tracking-wider flex items-center gap-1.5">
-                              <Award className="w-3.5 h-3.5 text-[#0E5C36]" />
-                              Examiner’s Key Points & Model Architecture:
-                            </div>
-                            <div className="whitespace-pre-line text-[#525D56] text-xs font-sans">
-                              {q.modelAnswerHint}
-                            </div>
+                      {/* Gemini AI Solver Button */}
+                      <button
+                        onClick={() => handleSolveQuestion(q.number, q.text, q.marks)}
+                        disabled={aiLoading[`q-${q.number}`]}
+                        className="flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-[6px] bg-[#E7F3EC] text-[#0E5C36] hover:bg-[#0E5C36] hover:text-white transition-all cursor-pointer border border-[#0E5C36]/20"
+                      >
+                        {aiLoading[`q-${q.number}`] ? (
+                          <>
+                            <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                            <span>Consulting Gemini Scholastic AI...</span>
+                          </>
+                        ) : (
+                          <>
+                            <Sparkles className="w-3.5 h-3.5" />
+                            <span>{showAiSolution[`q-${q.number}`] ? 'Hide Gemini Solution' : 'Solve with Gemini AI'}</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+
+                    {/* Hints Display */}
+                    {showAnswerHints[q.number] && (
+                      <div className="mt-2.5 p-4 rounded-lg bg-[#FAF7EE] text-[#141A16] text-xs leading-relaxed border border-[#F0EAD6] animate-in fade-in duration-100 font-sans">
+                        <div className="font-bold text-[#0E5C36] mb-1.5 text-xs uppercase tracking-wider flex items-center gap-1.5">
+                          <Award className="w-3.5 h-3.5 text-[#0E5C36]" />
+                          Examiner’s Key Points & Model Architecture:
+                        </div>
+                        <div className="whitespace-pre-line text-[#525D56] text-xs font-sans">
+                          {q.modelAnswerHint}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Gemini AI Generated Solution Display */}
+                    {showAiSolution[`q-${q.number}`] && (
+                      <div className="mt-2.5 p-4 rounded-xl bg-[#0A1D13] text-[#FAF7EE] border border-[#0E5C36]/40 text-xs shadow-md animate-in fade-in duration-150 font-sans">
+                        <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#0E5C36]/40">
+                          <div className="flex items-center gap-2 text-[#FAF7EE] font-bold">
+                            <Bot className="w-4 h-4 text-[#FAF7EE]" />
+                            <span className="font-editorial text-sm">NASELS Scholastic AI • Gemini Model Answer</span>
+                          </div>
+                          <span className="text-[10px] px-2 py-0.5 rounded bg-[#0E5C36] text-white font-mono">
+                            UNIZIK Criteria
+                          </span>
+                        </div>
+
+                        {aiErrors[`q-${q.number}`] ? (
+                          <div className="flex items-start gap-2 text-amber-200 py-1">
+                            <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                            <span>{aiErrors[`q-${q.number}`]}</span>
+                          </div>
+                        ) : aiLoading[`q-${q.number}`] ? (
+                          <div className="flex items-center gap-2 py-3 text-[#FAF7EE]/75">
+                            <Loader2 className="w-4 h-4 animate-spin text-[#0E5C36]" />
+                            <span>Generating structured essay outline, thesis statement, and marking points...</span>
+                          </div>
+                        ) : (
+                          <div className="whitespace-pre-line text-[#FAF7EE]/90 leading-relaxed font-editorial text-sm">
+                            {aiSolutions[`q-${q.number}`]}
                           </div>
                         )}
                       </div>
@@ -377,6 +504,72 @@ export const DocumentViewerModal: React.FC<DocumentViewerModalProps> = ({
           {/* RECOMMENDED TEXT DETAILED BREAKDOWN */}
           {item.category === 'text' && item.bookDetails && (
             <div className="space-y-6 font-sans">
+              {/* Gemini AI Literary Critique Banner */}
+              <div className="bg-[#FAF7EE] p-4 rounded-xl border border-[#F0EAD6] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs no-print">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-[#6B2361] text-white flex items-center justify-center shrink-0">
+                    <Sparkles className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold text-[#141A16]">
+                      NASELS AI Literary Critique & MLA Citation
+                    </h4>
+                    <p className="text-[11px] text-[#525D56]">
+                      Generate deep thematic analysis, stylistic breakdown, and MLA 9th format with Gemini.
+                    </p>
+                  </div>
+                </div>
+
+                <button
+                  onClick={handleAnalyzeText}
+                  disabled={aiLoading['text-critique']}
+                  className="px-3.5 py-1.5 rounded-[6px] bg-[#6B2361] hover:bg-[#521949] text-white text-xs font-semibold flex items-center gap-1.5 shrink-0 transition-colors cursor-pointer"
+                >
+                  {aiLoading['text-critique'] ? (
+                    <>
+                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                      <span>Analyzing text...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Bot className="w-3.5 h-3.5" />
+                      <span>{showAiSolution['text-critique'] ? 'Hide Critique' : 'Generate Critique with AI'}</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
+              {/* Gemini AI Literary Critique Output */}
+              {showAiSolution['text-critique'] && (
+                <div className="p-5 rounded-xl bg-[#0A1D13] text-[#FAF7EE] border border-[#6B2361]/40 text-xs shadow-md animate-in fade-in duration-150">
+                  <div className="flex items-center justify-between pb-2 mb-3 border-b border-[#6B2361]/40">
+                    <div className="flex items-center gap-2 font-bold text-[#FAF7EE]">
+                      <Bot className="w-4 h-4" />
+                      <span className="font-editorial text-sm">Gemini Scholastic Literary Critique</span>
+                    </div>
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-[#6B2361] text-white font-mono">
+                      MLA 9th Edition
+                    </span>
+                  </div>
+
+                  {aiErrors['text-critique'] ? (
+                    <div className="flex items-start gap-2 text-amber-200 py-1">
+                      <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                      <span>{aiErrors['text-critique']}</span>
+                    </div>
+                  ) : aiLoading['text-critique'] ? (
+                    <div className="flex items-center gap-2 py-3 text-[#FAF7EE]/75">
+                      <Loader2 className="w-4 h-4 animate-spin text-[#0E5C36]" />
+                      <span>Consulting critical frameworks and generating scholarly critique...</span>
+                    </div>
+                  ) : (
+                    <div className="whitespace-pre-line text-[#FAF7EE]/90 leading-relaxed font-editorial text-sm">
+                      {aiSolutions['text-critique']}
+                    </div>
+                  )}
+                </div>
+              )}
+
               {/* Literary Metadata Quick Specs */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-white p-4 rounded-xl border border-[#F0EAD6] text-xs shadow-2xs">
                 <div>
@@ -459,9 +652,63 @@ export const DocumentViewerModal: React.FC<DocumentViewerModalProps> = ({
 
           {/* MAIN TEXT BODY / LECTURE NOTES BODY */}
           <div className="mt-6 bg-white p-6 sm:p-8 rounded-xl border border-[#F0EAD6] shadow-2xs">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-[#141A16] font-editorial mb-4 pb-2 border-b border-[#F0EAD6]">
-              {item.category === 'notes' ? 'Complete Lecture & Syllabus Text' : 'Academic Text Transcript / Summary'}
-            </h3>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-3 mb-4 border-b border-[#F0EAD6] gap-3">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-[#141A16] font-editorial">
+                {item.category === 'notes' ? 'Complete Lecture & Syllabus Text' : 'Academic Text Transcript / Summary'}
+              </h3>
+
+              {item.category === 'notes' && (
+                <button
+                  onClick={handleSummarizeNotes}
+                  disabled={aiLoading['notes-summary']}
+                  className="px-3 py-1 rounded-[6px] bg-[#E7F3EC] hover:bg-[#0E5C36] text-[#0E5C36] hover:text-white border border-[#0E5C36]/20 text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer no-print"
+                >
+                  {aiLoading['notes-summary'] ? (
+                    <>
+                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                      <span>Synthesizing notes...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-3.5 h-3.5" />
+                      <span>{showAiSolution['notes-summary'] ? 'Hide AI Summary' : 'Generate Revision & Practice Qs'}</span>
+                    </>
+                  )}
+                </button>
+              )}
+            </div>
+
+            {/* Gemini AI Notes Summary & Practice Questions */}
+            {showAiSolution['notes-summary'] && (
+              <div className="mb-6 p-5 rounded-xl bg-[#0A1D13] text-[#FAF7EE] border border-[#0E5C36]/40 text-xs shadow-md animate-in fade-in duration-150">
+                <div className="flex items-center justify-between pb-2 mb-3 border-b border-[#0E5C36]/40">
+                  <div className="flex items-center gap-2 font-bold text-[#FAF7EE]">
+                    <Bot className="w-4 h-4 text-[#FAF7EE]" />
+                    <span className="font-editorial text-sm">NASELS Scholastic AI • Exam Revision & Practice Questions</span>
+                  </div>
+                  <span className="text-[10px] px-2 py-0.5 rounded bg-[#0E5C36] text-white font-mono">
+                    UNIZIK Format
+                  </span>
+                </div>
+
+                {aiErrors['notes-summary'] ? (
+                  <div className="flex items-start gap-2 text-amber-200 py-1">
+                    <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                    <span>{aiErrors['notes-summary']}</span>
+                  </div>
+                ) : aiLoading['notes-summary'] ? (
+                  <div className="flex items-center gap-2 py-3 text-[#FAF7EE]/75">
+                    <Loader2 className="w-4 h-4 animate-spin text-[#0E5C36]" />
+                    <span>Generating executive summary, conceptual maps, and 5 practice questions...</span>
+                  </div>
+                ) : (
+                  <div className="whitespace-pre-line text-[#FAF7EE]/90 leading-relaxed font-editorial text-sm">
+                    {aiSolutions['notes-summary']}
+                  </div>
+                )}
+              </div>
+            )}
+
             <div className={`prose max-w-none text-[#141A16] font-editorial ${fontSizeClass} leading-relaxed whitespace-pre-line space-y-4`}>
               {item.summaryOrContent}
             </div>

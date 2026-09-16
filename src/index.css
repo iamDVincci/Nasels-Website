@@ -2,15 +2,20 @@
 
 :root {
   /* Brand Core */
+  --nasels-green-950: #052414;
   --nasels-green-900: #083820;
   --nasels-green-800: #0E5C36; /* Brand Green */
   --nasels-green-700: #147B4A;
+  --nasels-green-600: #1D9A5E;
   --nasels-green-100: #E7F3EC;
+  --nasels-green-50:  #F2F8F4;
 
   /* Secondary Literature Accent */
+  --nasels-purple-800: #42133B;
   --nasels-purple-700: #521949;
   --nasels-purple-600: #6B2361; /* Crest Ribbon Purple */
   --nasels-purple-100: #F6EAF4;
+  --nasels-purple-50:  #FAF2F9;
 
   /* Surfaces & Canvas */
   --nasels-cream-50: #FDFCFA;
@@ -21,6 +26,7 @@
   --nasels-ink-900: #141A16;   /* Headings */
   --nasels-ink-700: #2C3530;   /* Body */
   --nasels-ink-500: #606C64;   /* Captions & Meta */
+  --nasels-ink-400: #8E9991;
 
   /* Semantic Aliases */
   --bg-app: var(--nasels-cream-100);
@@ -36,14 +42,19 @@
 }
 
 @theme {
+  --color-nasels-green-950: #052414;
   --color-nasels-green-900: #083820;
   --color-nasels-green-800: #0E5C36;
   --color-nasels-green-700: #147B4A;
+  --color-nasels-green-600: #1D9A5E;
   --color-nasels-green-100: #E7F3EC;
+  --color-nasels-green-50:  #F2F8F4;
 
+  --color-nasels-purple-800: #42133B;
   --color-nasels-purple-700: #521949;
   --color-nasels-purple-600: #6B2361;
   --color-nasels-purple-100: #F6EAF4;
+  --color-nasels-purple-50:  #FAF2F9;
 
   --color-nasels-cream-50: #FDFCFA;
   --color-nasels-cream-100: #FAF7EE;
@@ -52,6 +63,7 @@
   --color-nasels-ink-900: #141A16;
   --color-nasels-ink-700: #2C3530;
   --color-nasels-ink-500: #606C64;
+  --color-nasels-ink-400: #8E9991;
 
   /* Backward compatible semantic aliases */
   --color-natural-canvas: #FAF7EE;
@@ -69,11 +81,12 @@ body {
   background-color: var(--nasels-cream-100);
   color: var(--nasels-ink-700);
   font-family: var(--font-sans);
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, .font-editorial {
   font-family: var(--font-serif);
-  letter-spacing: -0.015em;
+  letter-spacing: -0.018em;
 }
 
 button, input, select, textarea, .font-ui {
@@ -83,4 +96,42 @@ button, input, select, textarea, .font-ui {
 ::selection {
   background-color: var(--nasels-green-100);
   color: var(--nasels-green-800);
+}
+
+/* Framer-inspired Glass & Bento Utility Classes */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(240, 234, 214, 0.85);
+  box-shadow: 0 4px 20px -2px rgba(14, 92, 54, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+.bento-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(240, 234, 214, 0.9);
+  border-radius: 1.25rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 6px 16px -4px rgba(14, 92, 54, 0.03);
+}
+
+.bento-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(14, 92, 54, 0.25);
+  box-shadow: 0 8px 30px -4px rgba(14, 92, 54, 0.08);
+}
+
+.hero-glow {
+  background: radial-gradient(circle at 50% 0%, rgba(14, 92, 54, 0.08) 0%, rgba(107, 35, 97, 0.03) 40%, transparent 70%);
+}
+
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }

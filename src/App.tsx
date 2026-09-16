@@ -2,6 +2,11 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { ArchiveItem, AcademicLevel, ResourceCategory, AcademicTrack, Semester } from './types';
 import { INITIAL_ARCHIVE_ITEMS } from './data/archiveData';
 import { Navbar } from './components/Navbar';
+import { HeroShowcase } from './components/HeroShowcase';
+import { BentoFeatures } from './components/BentoFeatures';
+import { HowItWorks } from './components/HowItWorks';
+import { ScholarTestimonials } from './components/ScholarTestimonials';
+import { FaqSection } from './components/FaqSection';
 import { DepartmentNoticeBanner } from './components/DepartmentNoticeBanner';
 import { ArchiveGrid } from './components/ArchiveGrid';
 import { CourseDirectory } from './components/CourseDirectory';
@@ -22,20 +27,20 @@ import {
   Heart
 } from 'lucide-react';
 
+import { api } from './services/api';
+
 export default function App() {
-  // Archive Items state with localStorage persistence for custom contributions
-  const [archiveItems, setArchiveItems] = useState<ArchiveItem[]>(() => {
-    try {
-      const saved = localStorage.getItem('nasels_unizik_custom_items');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        return [...parsed, ...INITIAL_ARCHIVE_ITEMS];
+  // Archive Items state with API fetch and fallback
+  const [archiveItems, setArchiveItems] = useState<ArchiveItem[]>(INITIAL_ARCHIVE_ITEMS);
+
+  // Fetch from backend API on mount
+  useEffect(() => {
+    api.getArchiveItems().then(items => {
+      if (items && items.length > 0) {
+        setArchiveItems(items);
       }
-    } catch (e) {
-      console.error('Failed to parse custom items from storage', e);
-    }
-    return INITIAL_ARCHIVE_ITEMS;
-  });
+    }).catch(err => console.warn('Using default archive items', err));
+  }, []);
 
   // Bookmarked IDs state
   const [bookmarkedIds, setBookmarkedIds] = useState<string[]>(() => {
@@ -82,21 +87,15 @@ export default function App() {
     );
   };
 
-  const handleAddMaterial = (newItem: ArchiveItem) => {
-    setArchiveItems(prev => {
-      const updated = [newItem, ...prev];
-      // Save custom ones to localStorage
-      try {
-        const customItems = updated.filter(item => item.isCustomUpload);
-        localStorage.setItem('nasels_unizik_custom_items', JSON.stringify(customItems));
-      } catch (e) {
-        console.error('Error persisting custom item', e);
-      }
-      return updated;
-    });
-
-    // Also auto-open the newly created item
-    setSelectedItem(newItem);
+  const handleAddMaterial = async (newItem: ArchiveItem) => {
+    try {
+      const saved = await api.contributeMaterial(newItem);
+      setArchiveItems(prev => [saved, ...prev.filter(i => i.id !== saved.id)]);
+      setSelectedItem(saved);
+    } catch {
+      setArchiveItems(prev => [newItem, ...prev]);
+      setSelectedItem(newItem);
+    }
   };
 
   const handleSelectCourseFilter = (courseCode: string) => {
@@ -213,39 +212,134 @@ export default function App() {
       />
 
       {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-8">
-        {/* Department Banner (Only visible on primary tabs) */}
-        {activeTab !== 'courses' && (
-          <DepartmentNoticeBanner
-            totalItems={archiveItems.length}
-            totalTexts={totalTexts}
-            totalNotes={totalNotes}
-            totalPQs={totalPQs}
-            onSelectLevel={(lvl) => {
-              setSelectedLevel(lvl);
-              setActiveTab('archive');
-            }}
-            onOpenStudyGuide={() => setIsStudyGuideOpen(true)}
-          />
+      <main className="flex-1 w-full space-y-12 sm:space-y-16">
+        {/* Full Archive Landing View (Hero + Bento + How It Works + Archive + Testimonials + FAQ) */}
+        {activeTab === 'archive' && (
+          <>
+            {/* Hero Showcase with Interactive Preview Card */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+              <HeroShowcase
+                totalItems={archiveItems.length}
+                totalPQs={totalPQs}
+                totalTexts={totalTexts}
+                totalNotes={totalNotes}
+                onSelectLevel={(lvl) => {
+                  setSelectedLevel(lvl);
+                  const el = document.getElementById('archive-section');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+                onExploreArchive={() => {
+                  const el = document.getElementById('archive-section');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+                onBrowseCourses={() => {
+                  handleTabChange('courses');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                onOpenStudyGuide={() => setIsStudyGuideOpen(true)}
+                onSelectItem={(item) => setSelectedItem(item)}
+              />
+            </div>
+
+            {/* Bento Grid Feature Highlights */}
+            <BentoFeatures
+              onOpenStudyGuide={() => setIsStudyGuideOpen(true)}
+              onExplorePQs={() => {
+                handleTabChange('past_questions');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              onExploreTexts={() => {
+                handleTabChange('texts');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              onBrowseCourses={() => {
+                handleTabChange('courses');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            />
+
+            {/* How It Works (3-Step Modern Guide) */}
+            <HowItWorks
+              onSelectLevel={(lvl) => {
+                setSelectedLevel(lvl);
+                const el = document.getElementById('archive-section');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              onExploreArchive={() => {
+                const el = document.getElementById('archive-section');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+            />
+
+            {/* Interactive Archive Repository Section */}
+            <section id="archive-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 pt-4">
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-[#EBE5D8] pb-4">
+                <div>
+                  <div className="badge-pill bg-[#E7F3EC] text-[#0E5C36] border border-[#0E5C36]/20 mb-2">
+                    Repository Catalog
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl font-bold font-editorial text-[#141A16]">
+                    Departmental Archive Vault
+                  </h2>
+                </div>
+                <p className="text-xs text-[#525D56] font-sans">
+                  Filtered for academic year 2018/2019 through 2023/2024
+                </p>
+              </div>
+
+              <ArchiveGrid
+                items={filteredItems}
+                selectedLevel={selectedLevel}
+                setSelectedLevel={setSelectedLevel}
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+                selectedTrack={selectedTrack}
+                setSelectedTrack={setSelectedTrack}
+                selectedSemester={selectedSemester}
+                setSelectedSemester={setSelectedSemester}
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+                onSelectItem={(item) => setSelectedItem(item)}
+                bookmarkedIds={bookmarkedIds}
+                onToggleBookmark={handleToggleBookmark}
+                onResetFilters={handleResetFilters}
+                onOpenContributeWithCourse={(code, title, lvl) => {
+                  setContributePreset({ code, title, level: lvl });
+                  setIsContributeOpen(true);
+                }}
+              />
+            </section>
+
+            {/* Scholar Testimonials */}
+            <ScholarTestimonials />
+
+            {/* Frequently Asked Questions */}
+            <FaqSection />
+          </>
         )}
 
-        {/* View Switcher: Course Directory vs Archive Grid */}
-        {activeTab === 'courses' ? (
-          <CourseDirectory onSelectCourseFilter={handleSelectCourseFilter} />
-        ) : (
-          <div>
+        {/* View Switcher: Course Directory */}
+        {activeTab === 'courses' && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+            <CourseDirectory onSelectCourseFilter={handleSelectCourseFilter} />
+          </div>
+        )}
+
+        {/* Specialized Tab: Past Questions, Texts, or Saved */}
+        {(activeTab === 'past_questions' || activeTab === 'texts' || activeTab === 'saved') && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
             {/* Header if in Saved Tab */}
             {activeTab === 'saved' && (
-              <div className="mb-6 p-4 rounded-xl bg-[#FAF7EE] border border-[#F0EAD6] flex items-center justify-between text-[#141A16] shadow-2xs font-sans">
-                <div className="flex items-center gap-2 text-xs font-medium">
-                  <Bookmark className="w-4 h-4 fill-[#0E5C36] text-[#0E5C36]" />
+              <div className="p-4 sm:p-5 rounded-2xl bg-white/80 backdrop-blur-md border border-[#EBE5D8] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[#141A16] shadow-xs font-sans">
+                <div className="flex items-center gap-2.5 text-xs font-medium">
+                  <Bookmark className="w-4 h-4 fill-[#0E5C36] text-[#0E5C36] shrink-0" />
                   <span>
-                    Viewing your <strong>Saved Bookmarks</strong> ({filteredItems.length} item{filteredItems.length === 1 ? '' : 's'}). These remain stored locally for fast offline access.
+                    Viewing your <strong>Saved Bookmarks</strong> ({filteredItems.length} item{filteredItems.length === 1 ? '' : 's'}). Stored locally in your browser for offline revision on campus.
                   </span>
                 </div>
                 <button
-                  onClick={() => setActiveTab('archive')}
-                  className="text-xs font-bold text-[#0E5C36] hover:text-[#083820] underline cursor-pointer"
+                  onClick={() => handleTabChange('archive')}
+                  className="text-xs font-bold text-[#0E5C36] hover:text-[#083820] underline cursor-pointer shrink-0"
                 >
                   Return to Full Archive
                 </button>
@@ -254,29 +348,29 @@ export default function App() {
 
             {/* Header if in Past Questions Tab */}
             {activeTab === 'past_questions' && (
-              <div className="mb-6 p-4 rounded-xl bg-[#FAF7EE] border border-[#F0EAD6] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[#141A16] shadow-2xs font-sans">
+              <div className="p-4 sm:p-5 rounded-2xl bg-white/80 backdrop-blur-md border border-[#EBE5D8] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[#141A16] shadow-xs font-sans">
                 <div className="flex items-center gap-2.5 text-xs font-medium">
-                  <span className="p-1 rounded-[4px] bg-[#0E5C36] text-white shrink-0">
+                  <span className="p-1.5 rounded-full bg-[#0E5C36] text-white shrink-0">
                     <Award className="w-3.5 h-3.5 text-white" />
                   </span>
                   <span>
-                    <strong className="text-[#141A16]">UNIZIK Past Questions Bank:</strong> Authentic semester examination papers with marking guidelines and compulsory question analyses.
+                    <strong className="text-[#141A16]">UNIZIK Past Questions Bank:</strong> Authentic semester examination papers with marking guidelines, compulsory question analyses, and Gemini AI solution generation.
                   </span>
                 </div>
                 <button
                   onClick={() => setIsStudyGuideOpen(true)}
-                  className="text-xs font-bold text-[#0E5C36] hover:text-[#083820] underline shrink-0 font-sans"
+                  className="text-xs font-bold text-[#0E5C36] hover:text-[#083820] underline shrink-0 font-sans cursor-pointer"
                 >
-                  View Exam Strategy Guide
+                  Exam Strategy Guide
                 </button>
               </div>
             )}
 
             {/* Header if in Texts Tab */}
             {activeTab === 'texts' && (
-              <div className="mb-6 p-4 rounded-xl bg-[#FAF7EE] border border-[#F0EAD6] flex items-center justify-between text-[#141A16] shadow-2xs font-sans">
+              <div className="p-4 sm:p-5 rounded-2xl bg-white/80 backdrop-blur-md border border-[#EBE5D8] flex items-center justify-between text-[#141A16] shadow-xs font-sans">
                 <div className="flex items-center gap-2.5 text-xs font-medium">
-                  <span className="p-1 rounded-[4px] bg-[#6B2361] text-white shrink-0">
+                  <span className="p-1.5 rounded-full bg-[#6B2361] text-white shrink-0">
                     <BookOpen className="w-3.5 h-3.5 text-white" />
                   </span>
                   <span>
@@ -286,7 +380,7 @@ export default function App() {
               </div>
             )}
 
-            {/* Archive Grid */}
+            {/* Archive Grid for Filtered View */}
             <ArchiveGrid
               items={filteredItems}
               selectedLevel={selectedLevel}
@@ -402,14 +496,12 @@ export default function App() {
                   <Mail className="w-3.5 h-3.5 text-[#0E5C36] shrink-0" />
                   <span>nasels.unizik@unizik.edu.ng</span>
                 </div>
-                <div className="pt-2">
                   <button
                     onClick={() => setIsContributeOpen(true)}
-                    className="w-full py-2 px-4 bg-[#0E5C36] hover:bg-[#147B4A] text-white rounded-[6px] text-xs font-semibold transition-colors"
+                    className="w-full py-2.5 px-4 bg-[#0E5C36] hover:bg-[#147B4A] text-white rounded-full text-xs font-semibold transition-colors shadow-xs"
                   >
                     Submit Material to Archive
                   </button>
-                </div>
               </div>
             </div>
           </div>
