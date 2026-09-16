@@ -82,7 +82,7 @@ export const HeroShowcase: React.FC<HeroShowcaseProps> = ({
 
   return (
     <section className="relative pt-6 pb-12 sm:pt-10 sm:pb-16 overflow-hidden">
-      {/* Background Subtle Radial Gradient (Inspired by Framer Zova) */}
+      {/* Background Subtle Radial Gradient */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] pointer-events-none hero-glow -z-10 select-none"></div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -91,20 +91,20 @@ export const HeroShowcase: React.FC<HeroShowcaseProps> = ({
         <div className="text-center max-w-3xl mx-auto space-y-4 sm:space-y-5">
           
           {/* Announcement Pill Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-[#0E5C36]/20 text-xs font-semibold text-[#0E5C36] shadow-xs animate-in fade-in slide-in-from-bottom-2 duration-200">
-            <span className="w-2 h-2 rounded-full bg-[#0E5C36] animate-pulse"></span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-800 shadow-2xs">
+            <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
             <span>NASELS UNIZIK Academic Archive & Past Questions Bank</span>
-            <ChevronRight className="w-3.5 h-3.5 text-[#0E5C36]/60" />
+            <ChevronRight className="w-3.5 h-3.5 text-emerald-600" />
           </div>
 
           {/* Primary Punchy Headline */}
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold font-editorial text-[#141A16] tracking-tight leading-[1.12]">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold font-editorial text-slate-900 tracking-tight leading-[1.12]">
             Academic insight for modern <br className="hidden sm:inline" />
             <span className="italic text-[#0E5C36]">literary scholarship.</span>
           </h1>
 
           {/* Subtitle description */}
-          <p className="text-sm sm:text-base text-[#525D56] font-sans leading-relaxed max-w-2xl mx-auto font-normal">
+          <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed max-w-2xl mx-auto font-normal">
             The official academic repository of the Department of English Language & Literature, 
             Nnamdi Azikiwe University, Awka. Access authenticated course outlines, past examination papers 
             with examiner marking schemes, and Gemini AI study breakdowns.
@@ -122,53 +122,50 @@ export const HeroShowcase: React.FC<HeroShowcaseProps> = ({
 
             <button
               onClick={onBrowseCourses}
-              className="px-5 py-3 rounded-full bg-white hover:bg-[#FAF7EE] text-[#141A16] border border-[#F0EAD6] font-semibold text-xs sm:text-sm transition-all shadow-xs inline-flex items-center gap-2 cursor-pointer"
+              className="px-5 py-3 rounded-full bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 font-semibold text-xs sm:text-sm transition-all shadow-xs inline-flex items-center gap-2 cursor-pointer"
             >
-              <GraduationCap className="w-4 h-4 text-[#0E5C36]" />
+              <GraduationCap className="w-4 h-4 text-emerald-700" />
               <span>Browse Course Outlines</span>
             </button>
           </div>
 
           {/* Trust Metric Row */}
-          <div className="pt-4 flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-xs text-[#525D56] font-sans">
+          <div className="pt-4 flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-xs text-slate-600 font-sans">
             <div className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-[#0E5C36]" />
-              <span className="font-semibold text-[#141A16]">Faculty Verified</span> Syllabus
+              <ShieldCheck className="w-4 h-4 text-emerald-700" />
+              <span className="font-semibold text-slate-900">Faculty Verified</span> Syllabus
             </div>
             <div className="flex items-center gap-1.5">
-              <Users className="w-4 h-4 text-[#0E5C36]" />
-              <span className="font-semibold text-[#141A16]">1,200+</span> Scholars Supported
+              <Users className="w-4 h-4 text-emerald-700" />
+              <span className="font-semibold text-slate-900">1,200+</span> Scholars Supported
             </div>
             <div className="flex items-center gap-1.5">
               <Sparkles className="w-4 h-4 text-[#6B2361]" />
-              <span className="font-semibold text-[#141A16]">Gemini AI</span> Model Answers
+              <span className="font-semibold text-slate-900">Gemini AI</span> Model Answers
             </div>
           </div>
         </div>
 
-        {/* Centerpiece Showcase: Floating Interactive Mockup Card (Inspired by Zova dashboard) */}
+        {/* Centerpiece Showcase: Floating Interactive Mockup Card */}
         <div className="mt-10 sm:mt-14 relative">
           
-          {/* Subtle decorative glow ring under card */}
-          <div className="absolute -inset-1.5 bg-gradient-to-r from-[#0E5C36]/15 via-[#6B2361]/10 to-[#0E5C36]/15 rounded-3xl blur-xl opacity-70 pointer-events-none"></div>
-
           {/* Main Floating Mockup Card */}
-          <div className="relative bg-white rounded-2xl sm:rounded-3xl border border-[#F0EAD6] shadow-xl overflow-hidden transition-all">
+          <div className="relative bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-xl overflow-hidden transition-all">
             
             {/* Top Bar of the Mockup: Level Switcher Tabs */}
-            <div className="bg-[#FAF7EE]/90 border-b border-[#F0EAD6] px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+            <div className="bg-slate-50/90 border-b border-slate-200 px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-center gap-2.5">
                 <NaselsCrest size={28} className="shrink-0" />
-                <span className="text-xs font-bold font-editorial text-[#141A16]">
+                <span className="text-xs font-bold font-editorial text-slate-900">
                   NASELS Interactive Vault
                 </span>
-                <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-[#E7F3EC] text-[#0E5C36] border border-[#0E5C36]/20">
+                <span className="text-[10px] uppercase font-bold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
                   {current.badge}
                 </span>
               </div>
 
               {/* Level Segmented Controls */}
-              <div className="flex items-center bg-white p-1 rounded-full border border-[#F0EAD6] shadow-2xs text-xs font-sans">
+              <div className="flex items-center bg-white p-1 rounded-full border border-slate-200 shadow-xs text-xs font-sans">
                 {(['100', '200', '300', '400'] as const).map((lvl) => (
                   <button
                     key={lvl}
@@ -176,10 +173,10 @@ export const HeroShowcase: React.FC<HeroShowcaseProps> = ({
                       setActiveLevelTab(lvl);
                       onSelectLevel(lvl);
                     }}
-                    className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                    className={`px-3.5 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
                       activeLevelTab === lvl
-                        ? 'bg-[#0E5C36] text-white shadow-xs'
-                        : 'text-[#525D56] hover:text-[#141A16]'
+                        ? 'bg-slate-900 text-white shadow-xs'
+                        : 'text-slate-600 hover:text-slate-900'
                     }`}
                   >
                     {lvl}L
@@ -193,68 +190,68 @@ export const HeroShowcase: React.FC<HeroShowcaseProps> = ({
               
               {/* Stat Pillars Grid */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-                <div className="p-4 rounded-xl bg-[#FAF7EE] border border-[#F0EAD6] space-y-1">
-                  <div className="flex items-center justify-between text-[#525D56] text-xs">
+                <div className="p-4 rounded-2xl bg-slate-50/80 border border-slate-200/80 space-y-1">
+                  <div className="flex items-center justify-between text-slate-500 text-xs">
                     <span>Verified Items</span>
-                    <Library className="w-3.5 h-3.5 text-[#0E5C36]" />
+                    <Library className="w-3.5 h-3.5 text-emerald-700" />
                   </div>
-                  <div className="text-xl sm:text-2xl font-bold font-editorial text-[#141A16]">
+                  <div className="text-xl sm:text-2xl font-bold font-editorial text-slate-900">
                     {totalItems}+
                   </div>
-                  <div className="text-[11px] text-[#0E5C36] font-medium">100% Course Outlines</div>
+                  <div className="text-[11px] text-emerald-700 font-medium">100% Course Outlines</div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#FAF7EE] border border-[#F0EAD6] space-y-1">
-                  <div className="flex items-center justify-between text-[#525D56] text-xs">
+                <div className="p-4 rounded-2xl bg-slate-50/80 border border-slate-200/80 space-y-1">
+                  <div className="flex items-center justify-between text-slate-500 text-xs">
                     <span>Past Exam Papers</span>
-                    <Award className="w-3.5 h-3.5 text-[#334155]" />
+                    <Award className="w-3.5 h-3.5 text-slate-600" />
                   </div>
-                  <div className="text-xl sm:text-2xl font-bold font-editorial text-[#141A16]">
+                  <div className="text-xl sm:text-2xl font-bold font-editorial text-slate-900">
                     {totalPQs} Papers
                   </div>
-                  <div className="text-[11px] text-[#0E5C36] font-medium">With Mark Schemes</div>
+                  <div className="text-[11px] text-emerald-700 font-medium">With Mark Schemes</div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#FAF7EE] border border-[#F0EAD6] space-y-1">
-                  <div className="flex items-center justify-between text-[#525D56] text-xs">
+                <div className="p-4 rounded-2xl bg-slate-50/80 border border-slate-200/80 space-y-1">
+                  <div className="flex items-center justify-between text-slate-500 text-xs">
                     <span>Prescribed Texts</span>
                     <BookOpen className="w-3.5 h-3.5 text-[#6B2361]" />
                   </div>
-                  <div className="text-xl sm:text-2xl font-bold font-editorial text-[#141A16]">
+                  <div className="text-xl sm:text-2xl font-bold font-editorial text-slate-900">
                     {totalTexts} Works
                   </div>
                   <div className="text-[11px] text-[#6B2361] font-medium">Thematic Matrices</div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#FAF7EE] border border-[#F0EAD6] space-y-1">
-                  <div className="flex items-center justify-between text-[#525D56] text-xs">
+                <div className="p-4 rounded-2xl bg-slate-50/80 border border-slate-200/80 space-y-1">
+                  <div className="flex items-center justify-between text-slate-500 text-xs">
                     <span>Gemini AI Tutor</span>
                     <Zap className="w-3.5 h-3.5 text-amber-500" />
                   </div>
-                  <div className="text-xl sm:text-2xl font-bold font-editorial text-[#141A16]">
+                  <div className="text-xl sm:text-2xl font-bold font-editorial text-slate-900">
                     Available
                   </div>
-                  <div className="text-[11px] text-[#0E5C36] font-medium">Server-Side Integration</div>
+                  <div className="text-[11px] text-emerald-700 font-medium">Model Solutions</div>
                 </div>
               </div>
 
               {/* Active Level Course Showcase Preview */}
-              <div className="p-5 rounded-2xl bg-[#FAF7EE]/60 border border-[#F0EAD6] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <div className="p-5 rounded-2xl bg-slate-50/70 border border-slate-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <div className="space-y-1.5">
                   <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#0E5C36]"></span>
-                    <h3 className="text-sm font-bold font-editorial text-[#141A16]">
+                    <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
+                    <h3 className="text-sm font-bold font-editorial text-slate-900">
                       {current.title}
                     </h3>
                   </div>
-                  <p className="text-xs text-[#525D56]">
-                    Curriculum Focus: <strong className="text-[#141A16]">{current.focus}</strong>
+                  <p className="text-xs text-slate-600">
+                    Curriculum Focus: <strong className="text-slate-900">{current.focus}</strong>
                   </p>
                   <div className="flex flex-wrap gap-1.5 pt-1">
                     {current.courses.map((course, idx) => (
                       <span 
                         key={idx}
-                        className="px-2.5 py-0.5 rounded-full bg-white text-[#2C3530] border border-[#F0EAD6] text-[11px] font-medium"
+                        className="px-2.5 py-0.5 rounded-full bg-white text-slate-700 border border-slate-200 text-[11px] font-medium shadow-2xs"
                       >
                         {course}
                       </span>

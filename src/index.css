@@ -17,69 +17,25 @@
   --nasels-purple-100: #F6EAF4;
   --nasels-purple-50:  #FAF2F9;
 
-  /* Surfaces & Canvas */
-  --nasels-cream-50: #FDFCFA;
-  --nasels-cream-100: #FAF7EE; /* Page Canvas */
-  --nasels-cream-200: #F0EAD6; /* Card Borders */
+  /* Surfaces & Canvas - Modern Crisp Framer Scale */
+  --nasels-canvas: #FFFFFF;
+  --nasels-canvas-subtle: #F8FAFC;
+  --nasels-border: #E2E8F0;
+  --nasels-border-subtle: #F1F5F9;
 
-  /* Neutral Typography */
-  --nasels-ink-900: #141A16;   /* Headings */
-  --nasels-ink-700: #2C3530;   /* Body */
-  --nasels-ink-500: #606C64;   /* Captions & Meta */
-  --nasels-ink-400: #8E9991;
-
-  /* Semantic Aliases */
-  --bg-app: var(--nasels-cream-100);
-  --surface-card: #FFFFFF;
-  --border-default: var(--nasels-cream-200);
-  --text-primary: var(--nasels-ink-900);
-  --text-secondary: var(--nasels-ink-500);
-  --action-primary: var(--nasels-green-800);
-  --action-hover: var(--nasels-green-900);
+  /* Neutral Typography - High Contrast */
+  --nasels-ink-900: #0F172A;   /* Headings */
+  --nasels-ink-700: #334155;   /* Body */
+  --nasels-ink-500: #64748B;   /* Captions & Meta */
+  --nasels-ink-400: #94A3B8;
 
   --font-serif: 'Newsreader', 'Playfair Display', Georgia, Cambria, serif;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-@theme {
-  --color-nasels-green-950: #052414;
-  --color-nasels-green-900: #083820;
-  --color-nasels-green-800: #0E5C36;
-  --color-nasels-green-700: #147B4A;
-  --color-nasels-green-600: #1D9A5E;
-  --color-nasels-green-100: #E7F3EC;
-  --color-nasels-green-50:  #F2F8F4;
-
-  --color-nasels-purple-800: #42133B;
-  --color-nasels-purple-700: #521949;
-  --color-nasels-purple-600: #6B2361;
-  --color-nasels-purple-100: #F6EAF4;
-  --color-nasels-purple-50:  #FAF2F9;
-
-  --color-nasels-cream-50: #FDFCFA;
-  --color-nasels-cream-100: #FAF7EE;
-  --color-nasels-cream-200: #F0EAD6;
-
-  --color-nasels-ink-900: #141A16;
-  --color-nasels-ink-700: #2C3530;
-  --color-nasels-ink-500: #606C64;
-  --color-nasels-ink-400: #8E9991;
-
-  /* Backward compatible semantic aliases */
-  --color-natural-canvas: #FAF7EE;
-  --color-natural-card: #FFFFFF;
-  --color-natural-soft: #F0EAD6;
-  --color-natural-border: #F0EAD6;
-  --color-natural-primary: #141A16;
-  --color-natural-body: #2C3530;
-  --color-natural-accent: #0E5C36;
-  --color-natural-accent-hover: #083820;
-  --color-natural-dark: #0A1D13;
-}
-
 body {
-  background-color: var(--nasels-cream-100);
-  color: var(--nasels-ink-700);
+  background-color: #FFFFFF;
+  color: #334155;
   font-family: var(--font-sans);
   overflow-x: hidden;
 }
@@ -94,35 +50,35 @@ button, input, select, textarea, .font-ui {
 }
 
 ::selection {
-  background-color: var(--nasels-green-100);
-  color: var(--nasels-green-800);
+  background-color: #E7F3EC;
+  color: #0E5C36;
 }
 
 /* Framer-inspired Glass & Bento Utility Classes */
 .glass-nav {
   background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(240, 234, 214, 0.85);
-  box-shadow: 0 4px 20px -2px rgba(14, 92, 54, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
 }
 
 .bento-card {
   background: #FFFFFF;
-  border: 1px solid rgba(240, 234, 214, 0.9);
-  border-radius: 1.25rem;
+  border: 1px solid #E2E8F0;
+  border-radius: 1rem;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 6px 16px -4px rgba(14, 92, 54, 0.03);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
 }
 
 .bento-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(14, 92, 54, 0.25);
-  box-shadow: 0 8px 30px -4px rgba(14, 92, 54, 0.08);
+  border-color: rgba(14, 92, 54, 0.35);
+  box-shadow: 0 12px 30px -4px rgba(14, 92, 54, 0.08);
 }
 
 .hero-glow {
-  background: radial-gradient(circle at 50% 0%, rgba(14, 92, 54, 0.08) 0%, rgba(107, 35, 97, 0.03) 40%, transparent 70%);
+  background: radial-gradient(circle at 50% 0%, rgba(14, 92, 54, 0.06) 0%, rgba(107, 35, 97, 0.02) 40%, transparent 70%);
 }
 
 .badge-pill {

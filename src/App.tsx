@@ -199,7 +199,7 @@ export default function App() {
   const totalPQs = archiveItems.filter(i => i.category === 'past_question').length;
 
   return (
-    <div className="min-h-screen bg-[#FAF7EE] flex flex-col selection:bg-[#E7F3EC] selection:text-[#0E5C36] font-sans text-[#141A16]">
+    <div className="min-h-screen bg-white flex flex-col selection:bg-emerald-100 selection:text-emerald-900 font-sans text-slate-900">
       {/* Navigation Header */}
       <Navbar
         searchQuery={searchQuery}
@@ -273,16 +273,16 @@ export default function App() {
 
             {/* Interactive Archive Repository Section */}
             <section id="archive-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 pt-4">
-              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-[#EBE5D8] pb-4">
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-slate-200 pb-4">
                 <div>
-                  <div className="badge-pill bg-[#E7F3EC] text-[#0E5C36] border border-[#0E5C36]/20 mb-2">
+                  <div className="badge-pill bg-emerald-50 text-emerald-800 border border-emerald-200 mb-2">
                     Repository Catalog
                   </div>
-                  <h2 className="text-2xl sm:text-3xl font-bold font-editorial text-[#141A16]">
+                  <h2 className="text-2xl sm:text-3xl font-bold font-editorial text-slate-900">
                     Departmental Archive Vault
                   </h2>
                 </div>
-                <p className="text-xs text-[#525D56] font-sans">
+                <p className="text-xs text-slate-500 font-sans">
                   Filtered for academic year 2018/2019 through 2023/2024
                 </p>
               </div>
@@ -330,7 +330,7 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
             {/* Header if in Saved Tab */}
             {activeTab === 'saved' && (
-              <div className="p-4 sm:p-5 rounded-2xl bg-white/80 backdrop-blur-md border border-[#EBE5D8] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[#141A16] shadow-xs font-sans">
+              <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-slate-900 shadow-xs font-sans">
                 <div className="flex items-center gap-2.5 text-xs font-medium">
                   <Bookmark className="w-4 h-4 fill-[#0E5C36] text-[#0E5C36] shrink-0" />
                   <span>
@@ -348,13 +348,13 @@ export default function App() {
 
             {/* Header if in Past Questions Tab */}
             {activeTab === 'past_questions' && (
-              <div className="p-4 sm:p-5 rounded-2xl bg-white/80 backdrop-blur-md border border-[#EBE5D8] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[#141A16] shadow-xs font-sans">
+              <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-slate-900 shadow-xs font-sans">
                 <div className="flex items-center gap-2.5 text-xs font-medium">
                   <span className="p-1.5 rounded-full bg-[#0E5C36] text-white shrink-0">
                     <Award className="w-3.5 h-3.5 text-white" />
                   </span>
                   <span>
-                    <strong className="text-[#141A16]">UNIZIK Past Questions Bank:</strong> Authentic semester examination papers with marking guidelines, compulsory question analyses, and Gemini AI solution generation.
+                    <strong className="text-slate-900">UNIZIK Past Questions Bank:</strong> Authentic semester examination papers with marking guidelines, compulsory question analyses, and Gemini AI solution generation.
                   </span>
                 </div>
                 <button
@@ -368,13 +368,13 @@ export default function App() {
 
             {/* Header if in Texts Tab */}
             {activeTab === 'texts' && (
-              <div className="p-4 sm:p-5 rounded-2xl bg-white/80 backdrop-blur-md border border-[#EBE5D8] flex items-center justify-between text-[#141A16] shadow-xs font-sans">
+              <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 flex items-center justify-between text-slate-900 shadow-xs font-sans">
                 <div className="flex items-center gap-2.5 text-xs font-medium">
                   <span className="p-1.5 rounded-full bg-[#6B2361] text-white shrink-0">
                     <BookOpen className="w-3.5 h-3.5 text-white" />
                   </span>
                   <span>
-                    <strong className="text-[#141A16]">Recommended Texts & Critical Companions:</strong> Character indexes, thematic matrices, and examination quotes for prescribed African and World literature.
+                    <strong className="text-slate-900">Recommended Texts & Critical Companions:</strong> Character indexes, thematic matrices, and examination quotes for prescribed African and World literature.
                   </span>
                 </div>
               </div>

@@ -61,18 +61,18 @@ export function getTagType(tag: string): 'course' | 'year' | 'category' | 'level
 export function getTagStyles(type: 'course' | 'year' | 'category' | 'level' | 'track' | 'topic') {
   switch (type) {
     case 'course':
-      return 'bg-[#141A16] text-[#FFFFFF] border-[#141A16] font-mono font-bold';
+      return 'bg-slate-900 text-white border-slate-900 font-mono font-bold';
     case 'year':
-      return 'bg-[#FAF7EE] text-[#525D56] border-[#F0EAD6] font-semibold';
+      return 'bg-slate-50 text-slate-600 border-slate-200 font-medium';
     case 'category':
-      return 'bg-[#E7F3EC] text-[#0E5C36] border-[#0E5C36]/30 font-semibold';
+      return 'bg-emerald-50 text-emerald-800 border-emerald-200 font-semibold';
     case 'level':
-      return 'bg-[#E7F3EC] text-[#0E5C36] border-[#0E5C36]/20 font-bold';
+      return 'bg-slate-100 text-slate-700 border-slate-200 font-bold';
     case 'track':
-      return 'bg-[#F6EAF4] text-[#6B2361] border-[#6B2361]/20 font-medium';
+      return 'bg-purple-50 text-purple-800 border-purple-200 font-medium';
     case 'topic':
     default:
-      return 'bg-white text-[#2C3530] border-[#F0EAD6] hover:border-[#0E5C36] hover:text-[#0E5C36]';
+      return 'bg-white text-slate-600 border-slate-200 hover:border-emerald-600 hover:text-emerald-700';
   }
 }
 

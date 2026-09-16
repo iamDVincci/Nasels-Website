@@ -37,17 +37,17 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
 
-  const navItems: { id: 'archive' | 'courses' | 'past_questions' | 'texts'; label: string; icon: any }[] = [
-    { id: 'archive', label: 'Archive Vault', icon: Library },
-    { id: 'courses', label: 'Course Directory', icon: GraduationCap },
-    { id: 'past_questions', label: 'Past Questions', icon: Award },
-    { id: 'texts', label: 'Literary Texts', icon: BookOpen },
+  const navItems: { id: 'archive' | 'courses' | 'past_questions' | 'texts'; label: string }[] = [
+    { id: 'archive', label: 'Archive' },
+    { id: 'past_questions', label: 'Past Questions' },
+    { id: 'texts', label: 'Literature' },
+    { id: 'courses', label: 'Courses' },
   ];
 
   return (
-    <header className="sticky top-2 sm:top-4 z-50 max-w-6xl w-full mx-auto px-3 sm:px-6">
+    <header className="sticky top-2 sm:top-4 z-50 max-w-5xl w-full mx-auto px-3 sm:px-4">
       {/* Floating Island Navigation Pill */}
-      <div className="glass-nav rounded-full px-3 sm:px-4 py-2 sm:py-2.5 flex items-center justify-between gap-2 sm:gap-4 transition-all duration-200">
+      <div className="glass-nav rounded-full px-3.5 sm:px-5 py-2 sm:py-2.5 flex items-center justify-between gap-3 sm:gap-4 transition-all duration-200">
         
         {/* Left: Brand Identity with Crest */}
         <div 
@@ -58,68 +58,61 @@ export const Navbar: React.FC<NavbarProps> = ({
           className="flex items-center gap-2.5 cursor-pointer select-none shrink-0 group"
         >
           <div className="relative">
-            <NaselsCrest size={38} className="group-hover:scale-105 transition-transform duration-200" />
+            <NaselsCrest size={34} className="group-hover:scale-105 transition-transform duration-200" />
             <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-[#0E5C36] ring-2 ring-white"></span>
           </div>
-          <div className="hidden sm:block">
-            <div className="flex items-center gap-1.5">
-              <span className="text-base font-bold font-editorial text-[#141A16] tracking-tight leading-none">
-                NASELS
-              </span>
-              <span className="text-[10px] uppercase font-bold tracking-widest px-1.5 py-0.5 rounded-full bg-[#E7F3EC] text-[#0E5C36] font-sans">
-                UNIZIK
-              </span>
-            </div>
-            <p className="text-[10px] text-[#525D56] font-sans font-medium tracking-wide">
-              Academic Archive
-            </p>
+          <div className="flex items-center gap-1.5">
+            <span className="text-sm sm:text-base font-bold font-editorial text-slate-900 tracking-tight leading-none">
+              NASELS
+            </span>
+            <span className="text-[10px] uppercase font-bold tracking-widest px-1.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-sans">
+              UNIZIK
+            </span>
           </div>
         </div>
 
-        {/* Center: Desktop Navigation Tabs */}
-        <nav className="hidden md:flex items-center gap-1 bg-[#FAF7EE]/80 p-1 rounded-full border border-[#F0EAD6]">
+        {/* Center: Desktop Navigation Tabs (Minimal & High Contrast) */}
+        <nav className="hidden md:flex items-center gap-0.5 bg-slate-100/80 p-1 rounded-full border border-slate-200/60">
           {navItems.map((tab) => {
-            const Icon = tab.icon;
             const isActive = activeTab === tab.id;
             return (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-150 cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-150 cursor-pointer ${
                   isActive
-                    ? 'bg-white text-[#0E5C36] shadow-xs font-bold border border-[#0E5C36]/15'
-                    : 'text-[#525D56] hover:text-[#141A16] hover:bg-white/60'
+                    ? 'bg-white text-slate-900 shadow-xs font-bold'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#0E5C36]' : 'text-[#525D56]'}`} />
                 <span>{tab.label}</span>
               </button>
             );
           })}
         </nav>
 
-        {/* Right: Actions (Search, Saved, Study Guide, Upload) */}
+        {/* Right: Actions (Search, Saved, Contribute) */}
         <div className="flex items-center gap-1.5 sm:gap-2">
           
           {/* Quick Search Toggle / Input */}
           <div className="relative">
             {searchOpen ? (
-              <div className="flex items-center bg-white rounded-full border border-[#0E5C36] px-2.5 py-1 shadow-sm w-44 sm:w-56 animate-in fade-in zoom-in-95 duration-150">
-                <Search className="w-3.5 h-3.5 text-[#0E5C36] shrink-0" />
+              <div className="flex items-center bg-white rounded-full border border-emerald-600 px-3 py-1 shadow-xs w-48 sm:w-60 animate-in fade-in zoom-in-95 duration-150">
+                <Search className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
                 <input
                   autoFocus
                   type="text"
-                  placeholder="Search ENG code, Achebe..."
+                  placeholder="Search code, title, Achebe..."
                   value={searchQuery}
                   onChange={(e) => onSearchChange(e.target.value)}
-                  className="w-full bg-transparent pl-2 pr-1 text-xs text-[#141A16] focus:outline-none font-sans"
+                  className="w-full bg-transparent pl-2 pr-1 text-xs text-slate-900 focus:outline-none font-sans"
                 />
                 <button 
                   onClick={() => {
                     onSearchChange('');
                     setSearchOpen(false);
                   }}
-                  className="text-xs text-[#525D56] hover:text-[#141A16] p-0.5"
+                  className="text-xs text-slate-400 hover:text-slate-700 p-0.5"
                 >
                   <X className="w-3 h-3" />
                 </button>
@@ -127,7 +120,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             ) : (
               <button
                 onClick={() => setSearchOpen(true)}
-                className="p-2 rounded-full text-[#525D56] hover:text-[#141A16] hover:bg-[#FAF7EE] transition-colors cursor-pointer"
+                className="p-2 rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
                 title="Search archive"
               >
                 <Search className="w-4 h-4" />
@@ -138,44 +131,34 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Saved Bookmarks Pill */}
           <button
             onClick={() => setActiveTab('saved')}
-            className={`hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer border ${
+            className={`p-2 rounded-full transition-colors cursor-pointer relative ${
               activeTab === 'saved'
-                ? 'bg-[#E7F3EC] text-[#0E5C36] border-[#0E5C36] font-bold shadow-2xs'
-                : 'text-[#2C3530] border-[#F0EAD6] bg-white hover:bg-[#FAF7EE]'
+                ? 'bg-emerald-50 text-[#0E5C36] ring-1 ring-emerald-300'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
             }`}
+            title={`Saved items (${savedCount})`}
           >
-            <Bookmark className="w-3.5 h-3.5 text-[#0E5C36]" />
-            <span>Saved</span>
+            <Bookmark className="w-4 h-4" />
             {savedCount > 0 && (
-              <span className="ml-0.5 px-1.5 py-0.2 text-[10px] font-bold rounded-full bg-[#0E5C36] text-white">
+              <span className="absolute -top-1 -right-1 w-4 h-4 text-[9px] font-bold rounded-full bg-[#0E5C36] text-white flex items-center justify-center">
                 {savedCount}
               </span>
             )}
           </button>
 
-          {/* Study Guide Link */}
-          <button
-            onClick={onOpenStudyGuide}
-            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-[#2C3530] hover:text-[#0E5C36] hover:bg-[#E7F3EC] transition-colors cursor-pointer font-sans"
-          >
-            <HelpCircle className="w-3.5 h-3.5 text-[#0E5C36]" />
-            <span>Guide</span>
-          </button>
-
-          {/* Primary CTA: Upload / Contribute */}
+          {/* Primary CTA: Contribute */}
           <button
             onClick={onOpenContribute}
-            className="flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-semibold bg-[#0E5C36] text-white hover:bg-[#083820] transition-all shadow-sm hover:shadow-md cursor-pointer font-sans"
+            className="flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-semibold bg-[#0E5C36] text-white hover:bg-[#083820] transition-all shadow-xs hover:shadow-md cursor-pointer font-sans"
           >
             <Upload className="w-3.5 h-3.5 text-white shrink-0" />
-            <span className="hidden sm:inline">Contribute</span>
-            <span className="sm:hidden">Upload</span>
+            <span>Contribute</span>
           </button>
 
           {/* Mobile Menu Trigger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-full text-[#525D56] hover:text-[#141A16] hover:bg-[#FAF7EE] transition-colors cursor-pointer"
+            className="md:hidden p-2 rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
           >
             {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </button>

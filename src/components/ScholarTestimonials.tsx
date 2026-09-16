@@ -52,12 +52,12 @@ export const ScholarTestimonials: React.FC = () => {
               </p>
             </div>
 
-            <div className="pt-4 border-t border-[#F0EAD6] flex items-center justify-between">
+            <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
               <div>
-                <h4 className="text-xs font-bold text-[#141A16] font-sans">{t.author}</h4>
-                <p className="text-[10px] text-[#525D56] font-sans">{t.role}</p>
+                <h4 className="text-xs font-bold text-slate-900 font-sans">{t.author}</h4>
+                <p className="text-[10px] text-slate-500 font-sans">{t.role}</p>
               </div>
-              <span className="px-2 py-0.5 rounded-full bg-[#FAF7EE] border border-[#F0EAD6] text-[10px] font-bold text-[#0E5C36] font-mono">
+              <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-[10px] font-bold text-emerald-800 font-mono">
                 {t.level}
               </span>
             </div>

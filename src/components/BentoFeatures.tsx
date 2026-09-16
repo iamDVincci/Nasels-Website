@@ -50,35 +50,35 @@ export const BentoFeatures: React.FC<BentoFeaturesProps> = ({
         {/* Bento 1: Authentic Past Question Bank (Col 7) */}
         <div className="md:col-span-7 bento-card p-6 sm:p-8 flex flex-col justify-between space-y-6">
           <div className="space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-[#0E5C36] text-white flex items-center justify-center shadow-xs">
+            <div className="w-10 h-10 rounded-2xl bg-[#0E5C36] text-white flex items-center justify-center shadow-xs">
               <Award className="w-5 h-5" />
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold font-editorial text-[#141A16]">
+            <h3 className="text-xl sm:text-2xl font-bold font-editorial text-slate-900">
               Authentic Examination Papers
             </h3>
-            <p className="text-xs sm:text-sm text-[#525D56] leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               Access genuine UNIZIK semester examination papers across all levels. Each paper includes 
               full instructions, time allowances, compulsory question breakdowns, and examiner's marking criteria.
             </p>
           </div>
 
           {/* Micro-UI Preview Card */}
-          <div className="bg-[#FAF7EE] p-4 rounded-xl border border-[#F0EAD6] space-y-2.5 text-xs font-sans">
+          <div className="bg-slate-50/80 p-4 rounded-2xl border border-slate-200/80 space-y-2.5 text-xs font-sans">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="px-2 py-0.5 rounded bg-[#0E5C36] text-white font-mono text-[10px] font-bold">
+                <span className="px-2.5 py-0.5 rounded-full bg-slate-900 text-white font-mono text-[10px] font-bold">
                   ENG 101
                 </span>
-                <span className="font-semibold text-[#141A16]">Practical English Grammar</span>
+                <span className="font-semibold text-slate-900">Practical English Grammar</span>
               </div>
-              <span className="px-2 py-0.5 rounded-full bg-white text-[#0E5C36] border border-[#0E5C36]/20 text-[10px] font-bold">
+              <span className="px-2.5 py-0.5 rounded-full bg-white text-emerald-800 border border-emerald-200 text-[10px] font-bold shadow-2xs">
                 COMPULSORY • 30M
               </span>
             </div>
-            <p className="text-[#525D56] text-[11px] italic font-editorial">
+            <p className="text-slate-600 text-[11px] italic font-editorial">
               "(a) Define Subject-Verb Concord and explain five distinct types of concord in English..."
             </p>
-            <div className="pt-1 flex items-center gap-2 text-[11px] text-[#0E5C36] font-semibold">
+            <div className="pt-1 flex items-center gap-2 text-[11px] text-emerald-700 font-semibold">
               <Eye className="w-3.5 h-3.5" />
               <span>Model Answer & Marking Points Available</span>
             </div>
@@ -96,32 +96,32 @@ export const BentoFeatures: React.FC<BentoFeaturesProps> = ({
         </div>
 
         {/* Bento 2: Gemini AI Scholastic Assistant (Col 5) */}
-        <div className="md:col-span-5 bento-card p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-gradient-to-br from-white via-white to-[#E7F3EC]/30">
+        <div className="md:col-span-5 bento-card p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-gradient-to-br from-white via-white to-emerald-50/40">
           <div className="space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-[#0A1D13] text-[#FAF7EE] flex items-center justify-center shadow-xs">
+            <div className="w-10 h-10 rounded-2xl bg-slate-900 text-white flex items-center justify-center shadow-xs">
               <Bot className="w-5 h-5 text-emerald-400" />
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold font-editorial text-[#141A16]">
+            <h3 className="text-xl sm:text-2xl font-bold font-editorial text-slate-900">
               Gemini AI Study Companion
             </h3>
-            <p className="text-xs sm:text-sm text-[#525D56] leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               Server-side Gemini AI integration tuned to UNIZIK marking standards. Solves past questions, 
               constructs essay thesis statements, and extracts high-yield revision practice questions.
             </p>
           </div>
 
           {/* Micro-UI Preview Card */}
-          <div className="bg-[#0A1D13] text-[#FAF7EE] p-4 rounded-xl border border-[#0E5C36]/40 space-y-2 text-xs font-sans">
+          <div className="bg-slate-900 text-white p-4 rounded-2xl border border-slate-800 space-y-2 text-xs font-sans shadow-md">
             <div className="flex items-center justify-between text-[11px] text-emerald-300">
               <span className="flex items-center gap-1">
                 <Sparkles className="w-3 h-3" />
-                <span>NASELS Scholastic AI</span>
+                <span className="font-semibold">NASELS Scholastic AI</span>
               </span>
-              <span className="font-mono text-[9px] px-1.5 py-0.5 rounded bg-[#0E5C36] text-white">
+              <span className="font-mono text-[9px] px-2 py-0.5 rounded-full bg-emerald-800 text-emerald-100">
                 gemini-2.5-flash
               </span>
             </div>
-            <p className="text-[11px] text-[#FAF7EE]/90 leading-relaxed font-editorial">
+            <p className="text-[11px] text-slate-300 leading-relaxed font-editorial">
               "Thesis: Achebe constructs Okonkwo's downfall as the tragic collision between rigid hyper-masculinity and historical inevitability..."
             </p>
           </div>
@@ -140,31 +140,31 @@ export const BentoFeatures: React.FC<BentoFeaturesProps> = ({
         {/* Bento 3: Prescribed African & World Literature (Col 5) */}
         <div className="md:col-span-5 bento-card p-6 sm:p-8 flex flex-col justify-between space-y-6">
           <div className="space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-[#6B2361] text-white flex items-center justify-center shadow-xs">
+            <div className="w-10 h-10 rounded-2xl bg-[#6B2361] text-white flex items-center justify-center shadow-xs">
               <BookOpen className="w-5 h-5" />
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold font-editorial text-[#141A16]">
+            <h3 className="text-xl sm:text-2xl font-bold font-editorial text-slate-900">
               Recommended Literature Companion
             </h3>
-            <p className="text-xs sm:text-sm text-[#525D56] leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               Detailed character indices, thematic matrices, and key examination quotes for Achebe, Soyinka, 
               Clark, Adichie, and prescribed European classics.
             </p>
           </div>
 
           {/* Micro-UI Chips */}
-          <div className="bg-[#FAF7EE] p-4 rounded-xl border border-[#F0EAD6] space-y-2 text-xs">
+          <div className="bg-slate-50/80 p-4 rounded-2xl border border-slate-200/80 space-y-2 text-xs">
             <div className="text-[11px] font-bold uppercase tracking-wider text-[#6B2361]">
               Featured Analyses:
             </div>
             <div className="flex flex-wrap gap-1.5">
-              <span className="px-2 py-0.5 rounded-full bg-white text-[#6B2361] border border-[#6B2361]/20 text-[10px] font-medium">
+              <span className="px-2.5 py-0.5 rounded-full bg-white text-[#6B2361] border border-purple-200 text-[10px] font-medium shadow-2xs">
                 Things Fall Apart
               </span>
-              <span className="px-2 py-0.5 rounded-full bg-white text-[#6B2361] border border-[#6B2361]/20 text-[10px] font-medium">
+              <span className="px-2.5 py-0.5 rounded-full bg-white text-[#6B2361] border border-purple-200 text-[10px] font-medium shadow-2xs">
                 Death & The King's Horseman
               </span>
-              <span className="px-2 py-0.5 rounded-full bg-white text-[#6B2361] border border-[#6B2361]/20 text-[10px] font-medium">
+              <span className="px-2.5 py-0.5 rounded-full bg-white text-[#6B2361] border border-purple-200 text-[10px] font-medium shadow-2xs">
                 Purple Hibiscus
               </span>
             </div>
@@ -184,35 +184,35 @@ export const BentoFeatures: React.FC<BentoFeaturesProps> = ({
         {/* Bento 4: Faculty of Arts Course Directory (Col 7) */}
         <div className="md:col-span-7 bento-card p-6 sm:p-8 flex flex-col justify-between space-y-6">
           <div className="space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-[#FAF7EE] text-[#0E5C36] border border-[#F0EAD6] flex items-center justify-center shadow-xs">
+            <div className="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center justify-center shadow-xs">
               <GraduationCap className="w-5 h-5" />
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold font-editorial text-[#141A16]">
+            <h3 className="text-xl sm:text-2xl font-bold font-editorial text-slate-900">
               Complete Faculty Course Directory
             </h3>
-            <p className="text-xs sm:text-sm text-[#525D56] leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               Every course outline from 100 Level to 400 Level with credit units, lecturers in charge, 
               core weekly topics, and prescribed reading lists.
             </p>
           </div>
 
           {/* Micro-UI Course Pillars */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs font-sans">
-            <div className="p-2.5 rounded-lg bg-[#FAF7EE] border border-[#F0EAD6]">
-              <div className="font-bold text-[#0E5C36]">100 Level</div>
-              <div className="text-[10px] text-[#525D56]">14 Courses</div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center text-xs font-sans">
+            <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
+              <div className="font-bold text-slate-900">100 Level</div>
+              <div className="text-[10px] text-slate-500">14 Courses</div>
             </div>
-            <div className="p-2.5 rounded-lg bg-[#FAF7EE] border border-[#F0EAD6]">
-              <div className="font-bold text-[#0E5C36]">200 Level</div>
-              <div className="text-[10px] text-[#525D56]">10 Courses</div>
+            <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
+              <div className="font-bold text-slate-900">200 Level</div>
+              <div className="text-[10px] text-slate-500">10 Courses</div>
             </div>
-            <div className="p-2.5 rounded-lg bg-[#FAF7EE] border border-[#F0EAD6]">
-              <div className="font-bold text-[#0E5C36]">300 Level</div>
-              <div className="text-[10px] text-[#525D56]">9 Courses</div>
+            <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
+              <div className="font-bold text-slate-900">300 Level</div>
+              <div className="text-[10px] text-slate-500">9 Courses</div>
             </div>
-            <div className="p-2.5 rounded-lg bg-[#FAF7EE] border border-[#F0EAD6]">
-              <div className="font-bold text-[#0E5C36]">400 Level</div>
-              <div className="text-[10px] text-[#525D56]">7 Courses</div>
+            <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
+              <div className="font-bold text-slate-900">400 Level</div>
+              <div className="text-[10px] text-slate-500">7 Courses</div>
             </div>
           </div>
 
