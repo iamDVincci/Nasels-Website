@@ -4,7 +4,7 @@
   /* Brand Core */
   --nasels-green-950: #052414;
   --nasels-green-900: #083820;
-  --nasels-green-800: #0E5C36; /* Brand Green */
+  --nasels-green-800: #0E5C36; /* Official Brand Forest Green */
   --nasels-green-700: #147B4A;
   --nasels-green-600: #1D9A5E;
   --nasels-green-100: #E7F3EC;
@@ -17,32 +17,34 @@
   --nasels-purple-100: #F6EAF4;
   --nasels-purple-50:  #FAF2F9;
 
-  /* Surfaces & Canvas - Modern Crisp Framer Scale */
-  --nasels-canvas: #FFFFFF;
-  --nasels-canvas-subtle: #F8FAFC;
-  --nasels-border: #E2E8F0;
-  --nasels-border-subtle: #F1F5F9;
+  /* Warm Milk / Cream Page Canvas */
+  --nasels-canvas: #FAF7EE;        /* Authentic Off-White / Milk */
+  --nasels-card: #FFFFFF;          /* Pure White for crisp contrast */
+  --nasels-border: #EAE5D9;        /* Warm Stone Border */
+  --nasels-border-subtle: #F2EDE2;
 
-  /* Neutral Typography - High Contrast */
-  --nasels-ink-900: #0F172A;   /* Headings */
-  --nasels-ink-700: #334155;   /* Body */
-  --nasels-ink-500: #64748B;   /* Captions & Meta */
-  --nasels-ink-400: #94A3B8;
+  /* High Contrast Charcoal Typography */
+  --nasels-ink-900: #141A16;       /* Headings - deep, authoritative */
+  --nasels-ink-700: #2E3A33;       /* Body - crisp readability */
+  --nasels-ink-500: #5A6860;       /* Metadata & secondary */
+  --nasels-ink-400: #8A9790;
 
   --font-serif: 'Newsreader', 'Playfair Display', Georgia, Cambria, serif;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-body {
-  background-color: #FFFFFF;
-  color: #334155;
+html, body, #root {
+  background-color: #FAF7EE;
+  color: #2E3A33;
   font-family: var(--font-sans);
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 h1, h2, h3, h4, .font-editorial {
   font-family: var(--font-serif);
   letter-spacing: -0.018em;
+  color: var(--nasels-ink-900);
 }
 
 button, input, select, textarea, .font-ui {
@@ -54,31 +56,31 @@ button, input, select, textarea, .font-ui {
   color: #0E5C36;
 }
 
-/* Framer-inspired Glass & Bento Utility Classes */
+/* Framer-grade Glass Navigation & Bento Cards */
 .glass-nav {
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+  border: 1px solid #EAE5D9;
+  box-shadow: 0 4px 20px -2px rgba(20, 26, 22, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
 }
 
 .bento-card {
   background: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-radius: 1rem;
+  border: 1px solid #EAE5D9;
+  border-radius: 1.25rem;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+  box-shadow: 0 2px 8px -2px rgba(20, 26, 22, 0.04), 0 1px 2px rgba(20, 26, 22, 0.02);
 }
 
 .bento-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(14, 92, 54, 0.35);
-  box-shadow: 0 12px 30px -4px rgba(14, 92, 54, 0.08);
+  border-color: rgba(14, 92, 54, 0.4);
+  box-shadow: 0 12px 32px -4px rgba(14, 92, 54, 0.1);
 }
 
 .hero-glow {
-  background: radial-gradient(circle at 50% 0%, rgba(14, 92, 54, 0.06) 0%, rgba(107, 35, 97, 0.02) 40%, transparent 70%);
+  background: radial-gradient(circle at 50% 0%, rgba(14, 92, 54, 0.07) 0%, rgba(107, 35, 97, 0.03) 40%, transparent 70%);
 }
 
 .badge-pill {

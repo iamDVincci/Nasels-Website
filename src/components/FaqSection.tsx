@@ -30,13 +30,13 @@ export const FaqSection: React.FC = () => {
   return (
     <section className="py-12 sm:py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-10 space-y-2.5">
-        <div className="badge-pill bg-emerald-50 text-emerald-800 border border-emerald-200">
+        <div className="badge-pill bg-[#E7F3EC] text-[#0E5C36] border border-[#0E5C36]/20">
           Academic Support
         </div>
-        <h2 className="text-2xl sm:text-4xl font-bold font-editorial text-slate-900 tracking-tight">
+        <h2 className="text-2xl sm:text-4xl font-bold font-editorial text-[#141A16] tracking-tight">
           Frequently asked questions
         </h2>
-        <p className="text-xs sm:text-sm text-slate-600 font-sans">
+        <p className="text-xs sm:text-sm text-[#5A6860] font-sans">
           Everything you need to know about the NASELS UNIZIK Archive platform.
         </p>
       </div>
@@ -53,16 +53,16 @@ export const FaqSection: React.FC = () => {
                 onClick={() => setOpenIndex(isOpen ? null : idx)}
                 className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer"
               >
-                <span className="text-sm sm:text-base font-bold font-editorial text-slate-900">
+                <span className="text-sm sm:text-base font-bold font-editorial text-[#141A16]">
                   {faq.q}
                 </span>
-                <span className="p-1 rounded-full bg-slate-100 text-slate-700 shrink-0">
-                  {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                <span className="p-1 rounded-full bg-[#FAF7EE] border border-[#EAE5D9] text-[#141A16] shrink-0">
+                  {isOpen ? <Minus className="w-4 h-4 text-[#0E5C36]" /> : <Plus className="w-4 h-4" />}
                 </span>
               </button>
 
               {isOpen && (
-                <div className="px-5 sm:px-6 pb-6 text-xs sm:text-sm text-slate-600 leading-relaxed font-sans border-t border-slate-100 pt-3 animate-in fade-in duration-150">
+                <div className="px-5 sm:px-6 pb-6 text-xs sm:text-sm text-[#2E3A33] leading-relaxed font-sans border-t border-[#EAE5D9] pt-3 animate-in fade-in duration-150">
                   {faq.a}
                 </div>
               )}

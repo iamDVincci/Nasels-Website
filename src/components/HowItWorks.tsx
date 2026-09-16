@@ -35,57 +35,53 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({
   ];
 
   return (
-    <section className="py-12 sm:py-16 bg-slate-50/70 border-y border-slate-200">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-xl mx-auto space-y-2.5">
-          <div className="badge-pill bg-white text-emerald-800 border border-slate-200 shadow-2xs">
-            Academic Workflow
-          </div>
-          <h2 className="text-2xl sm:text-4xl font-bold font-editorial text-slate-900 tracking-tight">
-            Excel in your studies in <span className="italic text-[#0E5C36]">3 simple steps</span>
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 font-sans">
-            Designed for seamless revision, exam preparation, and departmental research.
-          </p>
+    <section className="py-12 sm:py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
+      {/* Section Header */}
+      <div className="text-center max-w-xl mx-auto space-y-2.5">
+        <div className="badge-pill bg-[#E7F3EC] text-[#0E5C36] border border-[#0E5C36]/20 shadow-2xs">
+          Academic Workflow
         </div>
+        <h2 className="text-2xl sm:text-4xl font-bold font-editorial text-[#141A16] tracking-tight">
+          Excel in your studies in <span className="italic text-[#0E5C36]">3 simple steps</span>
+        </h2>
+        <p className="text-xs sm:text-sm text-[#5A6860] font-sans">
+          Designed for seamless revision, exam preparation, and departmental research.
+        </p>
+      </div>
 
-        {/* 3 Step Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {steps.map((step) => {
-            const Icon = step.icon;
-            return (
-              <div 
-                key={step.number}
-                className="bento-card p-6 sm:p-7 flex flex-col justify-between space-y-6 relative overflow-hidden group"
-              >
-                {/* Step Number Watermark */}
-                <span className="absolute top-4 right-5 text-4xl font-bold font-editorial text-slate-100 group-hover:text-emerald-100 transition-colors select-none">
-                  {step.number}
-                </span>
+      {/* 3 Step Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {steps.map((step) => {
+          const Icon = step.icon;
+          return (
+            <div 
+              key={step.number}
+              className="bento-card p-6 sm:p-7 flex flex-col justify-between space-y-6 relative overflow-hidden group"
+            >
+              {/* Step Number Watermark */}
+              <span className="absolute top-4 right-5 text-4xl font-bold font-editorial text-[#FAF7EE] group-hover:text-[#E7F3EC] transition-colors select-none">
+                {step.number}
+              </span>
 
-                <div className="space-y-3 relative z-10">
-                  <div className="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center justify-center font-mono font-bold text-sm shadow-2xs">
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <h3 className="text-lg font-bold font-editorial text-slate-900">
-                    {step.title}
-                  </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    {step.desc}
-                  </p>
+              <div className="space-y-3 relative z-10">
+                <div className="w-10 h-10 rounded-2xl bg-[#E7F3EC] text-[#0E5C36] border border-[#0E5C36]/20 flex items-center justify-center font-mono font-bold text-sm shadow-2xs">
+                  <Icon className="w-5 h-5" />
                 </div>
-
-                <div className="pt-3 border-t border-slate-100 text-xs font-semibold text-emerald-800 flex items-center justify-between">
-                  <span>{step.tag}</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </div>
+                <h3 className="text-lg font-bold font-editorial text-[#141A16]">
+                  {step.title}
+                </h3>
+                <p className="text-xs text-[#2E3A33] leading-relaxed">
+                  {step.desc}
+                </p>
               </div>
-            );
-          })}
-        </div>
 
+              <div className="pt-3 border-t border-[#EAE5D9] text-xs font-semibold text-[#0E5C36] flex items-center justify-between">
+                <span>{step.tag}</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
