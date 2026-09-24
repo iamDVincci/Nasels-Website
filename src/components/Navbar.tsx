@@ -76,7 +76,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         {/* Center: Desktop Navigation Tabs */}
-        <nav className="hidden md:flex items-center gap-1 bg-[#F2EDE2]/90 p-1 rounded-full border border-[#EAE5D9]">
+        <nav className="hidden lg:flex items-center gap-1 bg-[#F2EDE2]/90 p-1 rounded-full border border-[#EAE5D9]">
           {navItems.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
@@ -96,12 +96,12 @@ export const Navbar: React.FC<NavbarProps> = ({
         </nav>
 
         {/* Right: Actions (Search, Saved, Contribute) */}
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
           
           {/* Quick Search Toggle / Input */}
           <div className="relative">
             {searchOpen ? (
-              <div className="flex items-center bg-white rounded-full border border-[#0E5C36] px-3 py-1 shadow-xs w-48 sm:w-60 animate-in fade-in zoom-in-95 duration-150">
+              <div className="flex items-center bg-white rounded-full border border-[#0E5C36] px-3 py-1 shadow-xs w-44 sm:w-60 animate-in fade-in zoom-in-95 duration-150">
                 <Search className="w-3.5 h-3.5 text-[#0E5C36] shrink-0" />
                 <input
                   autoFocus
@@ -124,7 +124,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             ) : (
               <button
                 onClick={() => setSearchOpen(true)}
-                className="p-2 rounded-full text-[#5A6860] hover:text-[#141A16] hover:bg-[#F2EDE2] transition-colors cursor-pointer"
+                className="p-1.5 sm:p-2 rounded-full text-[#5A6860] hover:text-[#141A16] hover:bg-[#F2EDE2] transition-colors cursor-pointer"
                 title="Search archive"
               >
                 <Search className="w-4 h-4" />
@@ -135,7 +135,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Saved Bookmarks Pill */}
           <button
             onClick={() => setActiveTab('saved')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border transition-colors cursor-pointer ${
+            className={`flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-medium border transition-colors cursor-pointer ${
               activeTab === 'saved'
                 ? 'bg-[#E7F3EC] text-[#0E5C36] border-[#0E5C36] font-bold shadow-2xs'
                 : 'bg-white text-[#2E3A33] border-[#EAE5D9] hover:bg-[#F2EDE2]'
@@ -154,16 +154,18 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Primary CTA: Contribute */}
           <button
             onClick={onOpenContribute}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold bg-[#0E5C36] text-white hover:bg-[#083820] transition-all shadow-xs hover:shadow-md cursor-pointer font-sans"
+            className="flex items-center gap-1.5 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-semibold bg-[#0E5C36] text-white hover:bg-[#083820] transition-all shadow-xs hover:shadow-md cursor-pointer font-sans shrink-0"
+            title="Contribute academic materials"
           >
             <Upload className="w-3.5 h-3.5 text-white shrink-0" />
-            <span>Contribute</span>
+            <span className="hidden sm:inline">Contribute</span>
           </button>
 
-          {/* Mobile Menu Trigger */}
+          {/* Mobile/Tablet Menu Trigger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-full text-[#2E3A33] hover:text-[#0E5C36] hover:bg-[#F2EDE2] transition-colors cursor-pointer"
+            className="lg:hidden p-1.5 sm:p-2 rounded-full text-[#2E3A33] hover:text-[#0E5C36] hover:bg-[#F2EDE2] transition-colors cursor-pointer"
+            aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </button>
@@ -172,7 +174,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden mt-2 p-4 bg-white/95 backdrop-blur-md rounded-2xl border border-[#EAE5D9] shadow-xl space-y-3 animate-in fade-in slide-in-from-top-2 duration-150">
+        <div className="lg:hidden mt-2 p-4 bg-white/95 backdrop-blur-md rounded-2xl border border-[#EAE5D9] shadow-xl space-y-3 animate-in fade-in slide-in-from-top-2 duration-150">
           {/* Mobile Search Bar */}
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#5A6860]" />
@@ -216,7 +218,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setActiveTab('saved');
                 setMobileMenuOpen(false);
               }}
-              className="flex items-center gap-1.5 text-[#0E5C36] font-semibold"
+              className="flex items-center gap-1.5 text-[#0E5C36] font-semibold cursor-pointer"
             >
               <Bookmark className="w-4 h-4" />
               <span>Saved Items ({savedCount})</span>
@@ -227,10 +229,23 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onOpenStudyGuide();
                 setMobileMenuOpen(false);
               }}
-              className="flex items-center gap-1.5 text-[#5A6860] hover:text-[#141A16] font-medium"
+              className="flex items-center gap-1.5 text-[#5A6860] hover:text-[#141A16] font-medium cursor-pointer"
             >
               <HelpCircle className="w-4 h-4 text-[#0E5C36]" />
               <span>MLA & Exam Guide</span>
+            </button>
+          </div>
+
+          <div className="pt-1">
+            <button
+              onClick={() => {
+                onOpenContribute();
+                setMobileMenuOpen(false);
+              }}
+              className="w-full py-2.5 px-4 bg-[#0E5C36] hover:bg-[#083820] text-white rounded-xl text-xs font-semibold flex items-center justify-center gap-2 shadow-xs transition-colors cursor-pointer"
+            >
+              <Upload className="w-3.5 h-3.5" />
+              <span>Contribute Academic Material</span>
             </button>
           </div>
         </div>

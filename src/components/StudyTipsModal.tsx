@@ -16,16 +16,16 @@ export const StudyTipsModal: React.FC<StudyTipsModalProps> = ({ isOpen, onClose 
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="bg-[#FAF7EE] text-[#141A16] px-6 py-4 flex items-center justify-between border-b border-[#F0EAD6]">
+        <div className="bg-[#FAF7EE] text-[#141A16] px-4 sm:px-6 py-3.5 sm:py-4 flex items-center justify-between border-b border-[#F0EAD6]">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-[6px] bg-[#E7F3EC] flex items-center justify-center text-[#0E5C36]">
+            <div className="w-8 h-8 rounded-[6px] bg-[#E7F3EC] flex items-center justify-center text-[#0E5C36] shrink-0">
               <Award className="w-4 h-4 text-[#0E5C36]" />
             </div>
             <div>
-              <h2 className="text-base font-bold font-editorial text-[#141A16]">
+              <h2 className="text-sm sm:text-base font-bold font-editorial text-[#141A16] [text-wrap:balance]">
                 NASELS UNIZIK Academic Excellence & Exam Guide
               </h2>
-              <p className="text-xs text-[#525D56] font-sans">
+              <p className="text-[11px] sm:text-xs text-[#525D56] font-sans">
                 Department of English Language and Literature • Faculty of Arts
               </p>
             </div>

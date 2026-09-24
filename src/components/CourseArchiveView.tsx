@@ -266,15 +266,15 @@ export const CourseArchiveView: React.FC<CourseArchiveViewProps> = ({
 
         {/* Academic Year Filter Bar */}
         <div className="mt-5 pt-4 border-t border-[#F0EAD6] flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
-          <div className="flex items-center gap-2 text-xs font-semibold text-[#0E5C36]">
+          <div className="flex items-center gap-2 text-xs font-semibold text-[#0E5C36] shrink-0">
             <Calendar className="w-4 h-4 text-[#0E5C36]" />
             <span>Sub-Categorize by Academic Session:</span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-1.5 text-xs font-sans">
+          <div className="flex items-center gap-1.5 text-xs font-sans overflow-x-auto no-scrollbar -mx-1 px-1 py-1 whitespace-nowrap sm:flex-wrap">
             <button
               onClick={() => setSelectedYearFilter('All')}
-              className={`px-3 py-1 rounded-[6px] border transition-all cursor-pointer ${
+              className={`px-3 py-1 rounded-[6px] border transition-all cursor-pointer shrink-0 ${
                 selectedYearFilter === 'All'
                   ? 'bg-[#0E5C36] text-white border-[#0E5C36] font-bold shadow-2xs'
                   : 'bg-white text-[#2C3530] border-[#F0EAD6] hover:bg-[#FAF7EE]'
@@ -287,7 +287,7 @@ export const CourseArchiveView: React.FC<CourseArchiveViewProps> = ({
               <button
                 key={year}
                 onClick={() => setSelectedYearFilter(year)}
-                className={`px-3 py-1 rounded-[6px] border transition-all cursor-pointer ${
+                className={`px-3 py-1 rounded-[6px] border transition-all cursor-pointer shrink-0 ${
                   selectedYearFilter === year
                     ? 'bg-[#0E5C36] text-white border-[#0E5C36] font-bold shadow-2xs'
                     : 'bg-white text-[#2C3530] border-[#F0EAD6] hover:bg-[#FAF7EE]'
@@ -302,12 +302,12 @@ export const CourseArchiveView: React.FC<CourseArchiveViewProps> = ({
 
       {/* Consistent Tagging System Bar */}
       <div className="bg-white rounded-xl border border-[#F0EAD6] p-4 sm:p-5 shadow-2xs space-y-2.5">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0E5C36] font-sans">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0E5C36] font-sans">
             <Tag className="w-3.5 h-3.5 text-[#0E5C36]" />
             <span>Standardized Tag Index</span>
             <span className="text-[10px] text-[#525D56] lowercase font-normal">
-              (click any standardized tag to filter all resources)
+              (click any tag to filter)
             </span>
           </div>
 
@@ -321,7 +321,7 @@ export const CourseArchiveView: React.FC<CourseArchiveViewProps> = ({
           )}
         </div>
 
-        <div className="flex flex-wrap gap-1.5 text-xs">
+        <div className="flex items-center gap-1.5 text-xs overflow-x-auto no-scrollbar -mx-1 px-1 py-1 whitespace-nowrap sm:flex-wrap">
           {topTags.map(tag => {
             const tagType = getTagType(tag);
             const isSelected = selectedTag === tag;
@@ -329,7 +329,7 @@ export const CourseArchiveView: React.FC<CourseArchiveViewProps> = ({
               <button
                 key={tag}
                 onClick={() => setSelectedTag(isSelected ? 'All' : tag)}
-                className={`px-2.5 py-1 rounded-[6px] border transition-all text-xs flex items-center gap-1 cursor-pointer ${
+                className={`px-2.5 py-1 rounded-[6px] border transition-all text-xs flex items-center gap-1 cursor-pointer shrink-0 ${
                   isSelected
                     ? 'bg-[#0E5C36] text-white border-[#0E5C36] font-bold shadow-2xs'
                     : `${getTagStyles(tagType)}`

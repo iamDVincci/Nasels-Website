@@ -33,10 +33,10 @@ export const FaqSection: React.FC = () => {
         <div className="badge-pill bg-[#E7F3EC] text-[#0E5C36] border border-[#0E5C36]/20">
           Academic Support
         </div>
-        <h2 className="text-2xl sm:text-4xl font-bold font-editorial text-[#141A16] tracking-tight">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-editorial text-[#141A16] tracking-[-0.02em] [text-wrap:balance]">
           Frequently asked questions
         </h2>
-        <p className="text-xs sm:text-sm text-[#5A6860] font-sans">
+        <p className="text-xs sm:text-sm text-[#5A6860] font-sans max-w-md mx-auto [text-wrap:pretty]">
           Everything you need to know about the NASELS UNIZIK Archive platform.
         </p>
       </div>
@@ -51,9 +51,9 @@ export const FaqSection: React.FC = () => {
             >
               <button
                 onClick={() => setOpenIndex(isOpen ? null : idx)}
-                className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer"
+                className="w-full p-4 sm:p-6 text-left flex items-center justify-between gap-3 sm:gap-4 cursor-pointer"
               >
-                <span className="text-sm sm:text-base font-bold font-editorial text-[#141A16]">
+                <span className="text-sm sm:text-base font-bold font-editorial text-[#141A16] leading-snug">
                   {faq.q}
                 </span>
                 <span className="p-1 rounded-full bg-[#FAF7EE] border border-[#EAE5D9] text-[#141A16] shrink-0">
@@ -62,7 +62,7 @@ export const FaqSection: React.FC = () => {
               </button>
 
               {isOpen && (
-                <div className="px-5 sm:px-6 pb-6 text-xs sm:text-sm text-[#2E3A33] leading-relaxed font-sans border-t border-[#EAE5D9] pt-3 animate-in fade-in duration-150">
+                <div className="px-4 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-[#2E3A33] leading-relaxed font-sans border-t border-[#EAE5D9] pt-3 animate-in fade-in duration-150">
                   {faq.a}
                 </div>
               )}

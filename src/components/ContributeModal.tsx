@@ -261,16 +261,16 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="bg-[#FAF7EE] text-[#141A16] px-6 py-4 flex items-center justify-between border-b border-[#F0EAD6]">
+        <div className="bg-[#FAF7EE] text-[#141A16] px-4 sm:px-6 py-3.5 sm:py-4 flex items-center justify-between border-b border-[#F0EAD6]">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-[6px] bg-[#E7F3EC] flex items-center justify-center text-[#0E5C36]">
+            <div className="w-8 h-8 rounded-[6px] bg-[#E7F3EC] flex items-center justify-center text-[#0E5C36] shrink-0">
               <Upload className="w-4 h-4 text-[#0E5C36]" />
             </div>
             <div>
-              <h2 className="text-base font-bold font-editorial text-[#141A16]">
+              <h2 className="text-sm sm:text-base font-bold font-editorial text-[#141A16]">
                 Contribute Material to NASELS Archive
               </h2>
-              <p className="text-xs text-[#525D56] font-sans">
+              <p className="text-[11px] sm:text-xs text-[#525D56] font-sans">
                 Department of English Language and Literature, UNIZIK
               </p>
             </div>
@@ -285,7 +285,7 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({
         </div>
 
         {/* Form Body */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-4 max-h-[82vh] overflow-y-auto bg-white font-sans">
+        <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4 max-h-[82vh] overflow-y-auto bg-white font-sans">
           {errorMsg && (
             <div className="p-3 bg-rose-50 border border-rose-200 text-rose-800 rounded-lg text-xs flex items-center gap-2">
               <AlertCircle className="w-4 h-4 shrink-0 text-rose-700" />

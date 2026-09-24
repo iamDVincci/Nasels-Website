@@ -41,25 +41,25 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({
         <div className="badge-pill bg-[#E7F3EC] text-[#0E5C36] border border-[#0E5C36]/20 shadow-2xs">
           Academic Workflow
         </div>
-        <h2 className="text-2xl sm:text-4xl font-bold font-editorial text-[#141A16] tracking-tight">
-          Excel in your studies in <span className="italic text-[#0E5C36]">3 simple steps</span>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-editorial text-[#141A16] tracking-[-0.02em] leading-snug [text-wrap:balance]">
+          Excel in your studies in <span className="italic text-[#0E5C36] whitespace-nowrap">3 simple steps</span>
         </h2>
-        <p className="text-xs sm:text-sm text-[#5A6860] font-sans">
+        <p className="text-xs sm:text-sm text-[#5A6860] font-sans max-w-md mx-auto [text-wrap:pretty]">
           Designed for seamless revision, exam preparation, and departmental research.
         </p>
       </div>
 
       {/* 3 Step Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
         {steps.map((step) => {
           const Icon = step.icon;
           return (
             <div 
               key={step.number}
-              className="bento-card p-6 sm:p-7 flex flex-col justify-between space-y-6 relative overflow-hidden group"
+              className="bento-card p-5 sm:p-7 flex flex-col justify-between space-y-5 sm:space-y-6 relative overflow-hidden group"
             >
               {/* Step Number Watermark */}
-              <span className="absolute top-4 right-5 text-4xl font-bold font-editorial text-[#FAF7EE] group-hover:text-[#E7F3EC] transition-colors select-none">
+              <span className="absolute top-4 right-5 text-4xl font-bold font-editorial text-[#EAE5D9] group-hover:text-[#0E5C36]/20 transition-colors select-none">
                 {step.number}
               </span>
 

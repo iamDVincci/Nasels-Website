@@ -39,12 +39,12 @@ export const CourseDirectory: React.FC<CourseDirectoryProps> = ({ onSelectCourse
         </div>
 
         {/* Level Switcher */}
-        <div className="flex flex-wrap gap-2 mt-6 pt-5 border-t border-[#F0EAD6]">
+        <div className="flex items-center gap-2 mt-6 pt-5 border-t border-[#F0EAD6] overflow-x-auto no-scrollbar -mx-2 px-2 sm:mx-0 sm:px-0 sm:flex-wrap">
           {(['100', '200', '300', '400', 'All'] as AcademicLevel[]).map((lvl) => (
             <button
               key={lvl}
               onClick={() => setSelectedLevel(lvl)}
-              className={`px-4 py-2 text-xs font-bold rounded-[6px] transition-all font-sans cursor-pointer ${
+              className={`px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs font-bold rounded-[6px] transition-all font-sans cursor-pointer shrink-0 ${
                 selectedLevel === lvl
                   ? 'bg-[#0E5C36] text-white shadow-2xs'
                   : 'bg-white text-[#2C3530] border border-[#F0EAD6] hover:bg-[#FAF7EE] hover:text-[#0E5C36]'
@@ -61,13 +61,13 @@ export const CourseDirectory: React.FC<CourseDirectoryProps> = ({ onSelectCourse
         {filteredCourses.map((course) => (
           <div 
             key={course.code}
-            className="bg-white rounded-xl border border-[#F0EAD6] shadow-2xs hover:shadow-md hover:border-[#0E5C36]/40 hover:-translate-y-0.5 transition-all p-6 flex flex-col justify-between"
+            className="bg-white rounded-xl border border-[#F0EAD6] shadow-2xs hover:shadow-md hover:border-[#0E5C36]/40 hover:-translate-y-0.5 transition-all p-5 sm:p-6 flex flex-col justify-between"
           >
             <div className="space-y-4">
               {/* Header Badge */}
-              <div className="flex items-start justify-between gap-2">
+              <div className="flex flex-wrap sm:flex-nowrap items-start justify-between gap-2">
                 <div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                     <span className="px-2.5 py-1 rounded-[4px] bg-[#0E5C36] text-white text-xs font-black tracking-wide font-mono">
                       {course.code}
                     </span>

@@ -192,9 +192,9 @@ export const DocumentViewerModal: React.FC<DocumentViewerModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Control Bar (Non-Printable) */}
-        <div className="no-print bg-[#FAF7EE] text-[#141A16] px-5 py-3 flex items-center justify-between border-b border-[#F0EAD6]">
+        <div className="no-print bg-[#FAF7EE] text-[#141A16] px-3.5 sm:px-5 py-2.5 sm:py-3 flex items-center justify-between border-b border-[#F0EAD6]">
           <div className="flex items-center gap-2 text-xs font-medium font-sans">
-            <span className="px-2.5 py-1 rounded-[4px] bg-[#0E5C36] font-bold text-white font-mono">
+            <span className="px-2.5 py-1 rounded-[4px] bg-[#0E5C36] font-bold text-white font-mono shrink-0">
               {item.level}L • {item.courseCode}
             </span>
             <span className="hidden sm:inline text-[#525D56] font-sans truncate max-w-xs md:max-w-md">
@@ -202,7 +202,7 @@ export const DocumentViewerModal: React.FC<DocumentViewerModalProps> = ({
             </span>
           </div>
 
-          <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="flex items-center gap-1 sm:gap-2">
             {/* Font Size Adjusters */}
             <div className="hidden sm:flex items-center bg-white border border-[#F0EAD6] rounded-[6px] px-1 text-xs">
               <button
@@ -231,7 +231,7 @@ export const DocumentViewerModal: React.FC<DocumentViewerModalProps> = ({
             {/* Bookmark button */}
             <button
               onClick={() => onToggleBookmark(item.id)}
-              className={`p-2 rounded-[6px] hover:bg-[#F0EAD6] transition-colors ${isBookmarked ? 'text-[#0E5C36]' : 'text-[#525D56] hover:text-[#141A16]'}`}
+              className={`p-1.5 sm:p-2 rounded-[6px] hover:bg-[#F0EAD6] transition-colors ${isBookmarked ? 'text-[#0E5C36]' : 'text-[#525D56] hover:text-[#141A16]'}`}
               title={isBookmarked ? 'Remove bookmark' : 'Bookmark to My Saved'}
             >
               <Bookmark className={`w-4 h-4 ${isBookmarked ? 'fill-[#0E5C36]' : ''}`} />
@@ -240,7 +240,7 @@ export const DocumentViewerModal: React.FC<DocumentViewerModalProps> = ({
             {/* Copy button */}
             <button
               onClick={handleCopy}
-              className="p-2 rounded-[6px] hover:bg-[#F0EAD6] text-[#525D56] hover:text-[#141A16] transition-colors"
+              className="p-1.5 sm:p-2 rounded-[6px] hover:bg-[#F0EAD6] text-[#525D56] hover:text-[#141A16] transition-colors"
               title="Copy text excerpt"
             >
               {copied ? <Check className="w-4 h-4 text-[#0E5C36]" /> : <Copy className="w-4 h-4" />}
@@ -249,7 +249,7 @@ export const DocumentViewerModal: React.FC<DocumentViewerModalProps> = ({
             {/* Print button */}
             <button
               onClick={handlePrint}
-              className="p-2 rounded-[6px] hover:bg-[#F0EAD6] text-[#525D56] hover:text-[#141A16] transition-colors"
+              className="p-1.5 sm:p-2 rounded-[6px] hover:bg-[#F0EAD6] text-[#525D56] hover:text-[#141A16] transition-colors hidden sm:block"
               title="Print document or save to PDF"
             >
               <Printer className="w-4 h-4" />
@@ -258,7 +258,7 @@ export const DocumentViewerModal: React.FC<DocumentViewerModalProps> = ({
             {/* Download Document Button */}
             <button
               onClick={handleDownload}
-              className="flex items-center gap-1.5 px-4 py-1.5 text-xs rounded-[6px] bg-[#0E5C36] hover:bg-[#147B4A] text-white font-semibold transition-colors shadow-2xs font-sans cursor-pointer"
+              className="flex items-center gap-1.5 px-3 sm:px-4 py-1.5 text-xs rounded-[6px] bg-[#0E5C36] hover:bg-[#147B4A] text-white font-semibold transition-colors shadow-2xs font-sans cursor-pointer"
               title="Download full material"
             >
               {downloadSuccess ? (
@@ -277,7 +277,7 @@ export const DocumentViewerModal: React.FC<DocumentViewerModalProps> = ({
             {/* Close modal */}
             <button
               onClick={onClose}
-              className="p-2 ml-1 rounded-[6px] hover:bg-[#F0EAD6] text-[#525D56] hover:text-[#141A16] transition-colors"
+              className="p-1.5 sm:p-2 rounded-[6px] hover:bg-[#F0EAD6] text-[#525D56] hover:text-[#141A16] transition-colors"
               title="Close window"
             >
               <X className="w-5 h-5" />
@@ -286,13 +286,13 @@ export const DocumentViewerModal: React.FC<DocumentViewerModalProps> = ({
         </div>
 
         {/* Scrollable Document Content */}
-        <div className="flex-1 overflow-y-auto p-6 sm:p-10 bg-[#FAF7EE] print:bg-white print:p-0">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-8 md:p-10 bg-[#FAF7EE] print:bg-white print:p-0">
           {/* Official Document Letterhead */}
-          <div className="border-b-2 border-[#0E5C36] pb-6 mb-6 text-center">
+          <div className="border-b-2 border-[#0E5C36] pb-5 mb-5 text-center">
             <div className="inline-block px-3 py-1 bg-[#E7F3EC] text-[#0E5C36] text-[11px] font-bold rounded-[4px] border border-[#0E5C36]/20 tracking-wider uppercase mb-2 font-sans">
               National Association of Students of English and Literary Studies (NASELS)
             </div>
-            <h1 className="text-xl sm:text-2xl font-bold font-editorial tracking-tight text-[#141A16] uppercase">
+            <h1 className="text-lg sm:text-2xl font-bold font-editorial tracking-[-0.02em] leading-tight text-[#141A16] uppercase [text-wrap:balance]">
               NNAMDI AZIKIWE UNIVERSITY, AWKA
             </h1>
             <p className="text-sm font-semibold tracking-wide text-[#525D56] font-sans mt-0.5">

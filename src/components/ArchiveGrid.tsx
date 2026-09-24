@@ -115,26 +115,26 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
   return (
     <div className="space-y-6">
       {/* View Mode Switcher Header */}
-      <div className="bg-white rounded-2xl border border-[#EAE5D9] shadow-xs p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-sans">
+      <div className="bg-white rounded-2xl border border-[#EAE5D9] shadow-xs p-3.5 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 font-sans">
         <div className="space-y-1">
-          <div className="flex items-center gap-2">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-[#0E5C36]">Archive Organization</span>
-            <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#E7F3EC] text-[#0E5C36] border border-[#0E5C36]/20">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#0E5C36]">Archive Organization</span>
+            <span className="px-2 sm:px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-semibold bg-[#E7F3EC] text-[#0E5C36] border border-[#0E5C36]/20">
               {archiveViewMode === 'courses' ? 'Structured Course Categories' : 'Resource Cards Matrix'}
             </span>
           </div>
-          <p className="text-xs text-[#5A6860]">
+          <p className="text-[11px] sm:text-xs text-[#5A6860]">
             {archiveViewMode === 'courses' 
-              ? 'Organized by Departmental Courses, with each course sub-categorized by Academic Year.'
+              ? 'Organized by Departmental Courses, sub-categorized by Academic Year.'
               : 'Direct card view displaying authenticated past questions, literature texts, and lecture notes.'}
           </p>
         </div>
 
         {/* Mode Toggle Buttons */}
-        <div className="flex items-center bg-[#FAF7EE] p-1 rounded-full border border-[#EAE5D9] shrink-0 font-sans">
+        <div className="flex items-center bg-[#FAF7EE] p-0.5 sm:p-1 rounded-full border border-[#EAE5D9] shrink-0 font-sans self-start sm:self-auto">
           <button
             onClick={() => setArchiveViewMode('grid')}
-            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
               archiveViewMode === 'grid'
                 ? 'bg-[#0E5C36] text-white shadow-xs font-bold'
                 : 'text-[#2E3A33] hover:text-[#0E5C36]'
@@ -146,7 +146,7 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
 
           <button
             onClick={() => setArchiveViewMode('courses')}
-            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
               archiveViewMode === 'courses'
                 ? 'bg-[#0E5C36] text-white shadow-xs font-bold'
                 : 'text-[#2E3A33] hover:text-[#0E5C36]'
@@ -159,20 +159,20 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
       </div>
 
       {/* Filtering Header Toolbar */}
-      <div className="bg-white rounded-2xl border border-[#EAE5D9] shadow-xs p-5 sm:p-6 space-y-4 font-sans">
+      <div className="bg-white rounded-2xl border border-[#EAE5D9] shadow-xs p-4 sm:p-6 space-y-3.5 sm:space-y-4 font-sans">
         {/* Row 1: Academic Level Selector */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div className="flex items-center gap-2 text-xs font-bold text-[#141A16] uppercase tracking-wider">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
+          <div className="flex items-center gap-2 text-xs font-bold text-[#141A16] uppercase tracking-wider shrink-0">
             <Layers className="w-4 h-4 text-[#0E5C36]" />
             <span>Academic Level</span>
           </div>
 
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 no-scrollbar -mx-2 px-2 sm:mx-0 sm:px-0">
             {(['All', '100', '200', '300', '400'] as AcademicLevel[]).map((lvl) => (
               <button
                 key={lvl}
                 onClick={() => setSelectedLevel(lvl)}
-                className={`px-3.5 py-1.5 text-xs font-semibold rounded-full border transition-all cursor-pointer ${
+                className={`whitespace-nowrap px-3 sm:px-3.5 py-1.5 text-xs font-semibold rounded-full border transition-all cursor-pointer shrink-0 ${
                   selectedLevel === lvl
                     ? 'bg-[#0E5C36] text-white border-[#0E5C36] shadow-xs'
                     : 'bg-[#FAF7EE] text-[#2E3A33] border-[#EAE5D9] hover:bg-white hover:border-[#0E5C36]/30'
@@ -187,8 +187,8 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
         <div className="h-px bg-[#EAE5D9]" />
 
         {/* Row 2: Category Filter Tabs */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
-          <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 lg:pb-0 no-scrollbar -mx-2 px-2 sm:mx-0 sm:px-0">
             {[
               { id: 'all', label: 'All Resources' },
               { id: 'past_question', label: 'Past Questions (PQ)' },
@@ -199,7 +199,7 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id as ResourceCategory)}
-                className={`px-3.5 py-1.5 text-xs font-medium rounded-full border transition-all cursor-pointer ${
+                className={`whitespace-nowrap px-3 sm:px-3.5 py-1.5 text-xs font-medium rounded-full border transition-all cursor-pointer shrink-0 ${
                   selectedCategory === cat.id
                     ? 'bg-[#0E5C36] text-white font-bold border-[#0E5C36] shadow-xs'
                     : 'bg-white text-[#2E3A33] border-[#EAE5D9] hover:bg-[#FAF7EE]'
@@ -211,11 +211,11 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
           </div>
 
           {/* Sub filters: Track & Semester */}
-          <div className="flex flex-wrap items-center gap-2 text-xs">
+          <div className="grid grid-cols-2 sm:flex sm:items-center gap-2 text-xs w-full lg:w-auto pt-1 lg:pt-0">
             <select
               value={selectedTrack}
               onChange={(e) => setSelectedTrack(e.target.value as AcademicTrack)}
-              className="bg-[#FAF7EE] border border-[#EAE5D9] text-[#141A16] py-1.5 px-3.5 rounded-full focus:outline-none focus:border-[#0E5C36] font-medium"
+              className="w-full sm:w-auto bg-[#FAF7EE] border border-[#EAE5D9] text-[#141A16] py-1.5 px-3 rounded-xl sm:rounded-full focus:outline-none focus:border-[#0E5C36] font-medium text-xs truncate"
             >
               <option value="All">All Disciplines</option>
               <option value="Literature">Literature in English</option>
@@ -225,7 +225,7 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
             <select
               value={selectedSemester}
               onChange={(e) => setSelectedSemester(e.target.value as Semester)}
-              className="bg-[#FAF7EE] border border-[#EAE5D9] text-[#141A16] py-1.5 px-3.5 rounded-full focus:outline-none focus:border-[#0E5C36] font-medium"
+              className="w-full sm:w-auto bg-[#FAF7EE] border border-[#EAE5D9] text-[#141A16] py-1.5 px-3 rounded-xl sm:rounded-full focus:outline-none focus:border-[#0E5C36] font-medium text-xs"
             >
               <option value="All">All Semesters</option>
               <option value="1st">1st Semester</option>
@@ -235,7 +235,7 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
             {(selectedLevel !== 'All' || selectedCategory !== 'all' || selectedTrack !== 'All' || selectedSemester !== 'All' || searchQuery) && (
               <button
                 onClick={onResetFilters}
-                className="text-xs text-[#0E5C36] hover:text-[#083820] font-semibold underline px-1 cursor-pointer"
+                className="col-span-2 sm:col-span-1 text-xs text-[#0E5C36] hover:text-[#083820] font-semibold underline px-1 cursor-pointer text-center sm:text-left"
               >
                 Reset
               </button>
@@ -302,7 +302,7 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {items.slice(0, visibleCount).map((item) => {
                   const badge = getCategoryBadge(item.category);
                   const isBookmarked = bookmarkedIds.includes(item.id);
@@ -312,20 +312,20 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
                     <div
                       key={item.id}
                       onClick={() => onSelectItem(item)}
-                      className="group bg-white rounded-2xl border border-[#EAE5D9] p-5 sm:p-6 transition-all duration-200 hover:border-[#0E5C36]/40 hover:-translate-y-0.5 hover:shadow-lg cursor-pointer flex flex-col justify-between"
+                      className="group bg-white rounded-2xl border border-[#EAE5D9] p-4 sm:p-5 lg:p-6 transition-all duration-200 hover:border-[#0E5C36]/40 hover:-translate-y-0.5 hover:shadow-lg cursor-pointer flex flex-col justify-between"
                     >
                       {/* Card Content Top */}
                       <div className="space-y-3">
                         {/* Meta Top */}
-                        <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-start justify-between gap-2">
                           <div className="flex items-center gap-1.5 flex-wrap">
-                            <span className="bg-[#141A16] text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full font-mono">
+                            <span className="bg-[#141A16] text-white text-[10px] sm:text-[11px] font-bold px-2.5 py-0.5 rounded-full font-mono">
                               {item.courseCode}
                             </span>
-                            <span className={`text-[11px] font-medium px-2.5 py-0.5 rounded-full border ${badge.bg}`}>
+                            <span className={`text-[10px] sm:text-[11px] font-medium px-2 sm:px-2.5 py-0.5 rounded-full border ${badge.bg}`}>
                               {badge.label}
                             </span>
-                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${getLevelColor(item.level)}`}>
+                            <span className={`text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded-full ${getLevelColor(item.level)}`}>
                               {item.level}L
                             </span>
                           </div>
@@ -335,7 +335,7 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
                               e.stopPropagation();
                               onToggleBookmark(item.id);
                             }}
-                            className={`p-1.5 rounded-full hover:bg-[#FAF7EE] transition-colors ${
+                            className={`p-1 rounded-full hover:bg-[#FAF7EE] transition-colors shrink-0 ${
                               isBookmarked ? 'text-[#0E5C36]' : 'text-[#8A9790] hover:text-[#141A16]'
                             }`}
                             title={isBookmarked ? 'Saved to bookmarks' : 'Save bookmark'}
@@ -345,14 +345,14 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
                         </div>
 
                         {/* Academic Year Session */}
-                        <div className="flex items-center gap-1.5 text-[11px] font-medium text-[#2E3A33] bg-[#FAF7EE] px-2.5 py-1 rounded-full border border-[#EAE5D9] w-fit font-sans">
+                        <div className="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-medium text-[#2E3A33] bg-[#FAF7EE] px-2.5 py-1 rounded-full border border-[#EAE5D9] w-fit font-sans">
                           <Calendar className="w-3.5 h-3.5 text-[#0E5C36]" />
                           <span>Session: {yearNormalized}</span>
                         </div>
 
                         {/* Title & Course */}
                         <div>
-                          <h3 className="font-editorial font-bold text-base sm:text-lg text-[#141A16] group-hover:text-[#0E5C36] transition-colors leading-snug line-clamp-2">
+                          <h3 className="font-editorial font-bold text-base sm:text-lg text-[#141A16] group-hover:text-[#0E5C36] transition-colors leading-snug line-clamp-2 tracking-tight">
                             {item.title}
                           </h3>
                           <p className="text-xs text-[#5A6860] mt-1 font-sans truncate">
@@ -392,8 +392,8 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
                       </div>
 
                       {/* Card Footer */}
-                      <div className="mt-4 pt-3.5 border-t border-[#EAE5D9] flex items-center justify-between text-xs">
-                        <span className="text-[11px] text-[#5A6860] font-sans font-medium">
+                      <div className="mt-4 pt-3.5 border-t border-[#EAE5D9] flex items-center justify-between gap-2 text-xs">
+                        <span className="text-[10px] sm:text-[11px] text-[#5A6860] font-sans font-medium truncate">
                           {item.fileFormat} • {item.fileSize} • Sem {item.semester}
                         </span>
 
@@ -402,7 +402,7 @@ export const ArchiveGrid: React.FC<ArchiveGridProps> = ({
                             e.stopPropagation();
                             onSelectItem(item);
                           }}
-                          className="bg-[#0E5C36] hover:bg-[#083820] text-white font-semibold text-xs px-3.5 py-1.5 rounded-full transition-colors cursor-pointer flex items-center gap-1.5 shadow-2xs font-sans"
+                          className="bg-[#0E5C36] hover:bg-[#083820] text-white font-semibold text-xs px-3 sm:px-3.5 py-1.5 rounded-full transition-colors cursor-pointer flex items-center gap-1.5 shadow-2xs font-sans shrink-0"
                         >
                           <span>View & Practice</span>
                           <ExternalLink className="w-3 h-3" />

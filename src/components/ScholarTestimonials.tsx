@@ -29,17 +29,17 @@ export const ScholarTestimonials: React.FC = () => {
         <div className="badge-pill bg-[#E7F3EC] text-[#0E5C36] border border-[#0E5C36]/20">
           Student Voices
         </div>
-        <h2 className="text-2xl sm:text-4xl font-bold font-editorial text-[#141A16] tracking-tight">
-          Empowering academic excellence in <br className="hidden sm:inline" />
-          <span className="italic text-[#0E5C36]">Awka and beyond</span>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-editorial text-[#141A16] tracking-[-0.02em] leading-snug [text-wrap:balance]">
+          Empowering academic excellence in{" "}
+          <span className="italic text-[#0E5C36] whitespace-nowrap">Awka and beyond</span>
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
         {testimonials.map((t, idx) => (
           <div 
             key={idx}
-            className="bento-card p-6 sm:p-7 flex flex-col justify-between space-y-6"
+            className="bento-card p-5 sm:p-7 flex flex-col justify-between space-y-5 sm:space-y-6"
           >
             <div className="space-y-4">
               <div className="flex items-center gap-1 text-amber-500">

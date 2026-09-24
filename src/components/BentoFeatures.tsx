@@ -35,25 +35,25 @@ export const BentoFeatures: React.FC<BentoFeaturesProps> = ({
           <Sparkles className="w-3.5 h-3.5" />
           <span>Departmental Excellence</span>
         </div>
-        <h2 className="text-2xl sm:text-4xl font-bold font-editorial text-[#141A16] tracking-tight">
-          Why UNIZIK scholars rely on the <br className="hidden sm:inline" />
-          <span className="italic text-[#0E5C36]">NASELS Archive</span>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-editorial text-[#141A16] tracking-[-0.02em] leading-snug [text-wrap:balance]">
+          Why UNIZIK scholars rely on the{" "}
+          <span className="italic text-[#0E5C36] whitespace-nowrap">NASELS Archive</span>
         </h2>
-        <p className="text-xs sm:text-sm text-[#525D56] font-sans">
+        <p className="text-xs sm:text-sm text-[#525D56] font-sans max-w-xl mx-auto [text-wrap:pretty]">
           Purpose-built for undergraduate and postgraduate scholars in the Department of English Language & Literature.
         </p>
       </div>
 
       {/* Bento Grid Layout (2x2 / Asymmetric cards inspired by Zova) */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6">
         
         {/* Bento 1: Authentic Past Question Bank (Col 7) */}
-        <div className="md:col-span-7 bento-card p-6 sm:p-8 flex flex-col justify-between space-y-6">
+        <div className="md:col-span-7 bento-card p-5 sm:p-7 lg:p-8 flex flex-col justify-between space-y-5 sm:space-y-6">
           <div className="space-y-3">
             <div className="w-10 h-10 rounded-2xl bg-[#0E5C36] text-white flex items-center justify-center shadow-xs">
               <Award className="w-5 h-5" />
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold font-editorial text-[#141A16]">
+            <h3 className="text-lg sm:text-2xl font-bold font-editorial text-[#141A16]">
               Authentic Examination Papers
             </h3>
             <p className="text-xs sm:text-sm text-[#2E3A33] leading-relaxed">
@@ -63,15 +63,15 @@ export const BentoFeatures: React.FC<BentoFeaturesProps> = ({
           </div>
 
           {/* Micro-UI Preview Card */}
-          <div className="bg-[#FAF7EE] p-4 rounded-2xl border border-[#EAE5D9] space-y-2.5 text-xs font-sans">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="px-2.5 py-0.5 rounded-full bg-[#141A16] text-white font-mono text-[10px] font-bold">
+          <div className="bg-[#FAF7EE] p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border border-[#EAE5D9] space-y-2 text-xs font-sans">
+            <div className="flex items-start sm:items-center justify-between gap-2 flex-wrap sm:flex-nowrap">
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <span className="px-2.5 py-0.5 rounded-full bg-[#141A16] text-white font-mono text-[10px] font-bold shrink-0">
                   ENG 101
                 </span>
-                <span className="font-semibold text-[#141A16]">Practical English Grammar</span>
+                <span className="font-semibold text-[#141A16] text-xs">Practical English Grammar</span>
               </div>
-              <span className="px-2.5 py-0.5 rounded-full bg-white text-[#0E5C36] border border-[#0E5C36]/20 text-[10px] font-bold shadow-2xs">
+              <span className="px-2.5 py-0.5 rounded-full bg-white text-[#0E5C36] border border-[#0E5C36]/20 text-[10px] font-bold shadow-2xs shrink-0">
                 COMPULSORY • 30M
               </span>
             </div>
